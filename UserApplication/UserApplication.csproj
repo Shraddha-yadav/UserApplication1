@@ -155,9 +155,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Migrations\201810041042399_UserMigration.cs" />
-    <Compile Include="Migrations\201810041042399_UserMigration.Designer.cs">
-      <DependentUpon>201810041042399_UserMigration.cs</DependentUpon>
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Migrations\201810051252316_CreateDatabase.cs" />
+    <Compile Include="Migrations\201810051252316_CreateDatabase.Designer.cs">
+      <DependentUpon>201810051252316_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SubjectInCourse.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -233,8 +235,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810041042399_UserMigration.resx">
-      <DependentUpon>201810041042399_UserMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810051252316_CreateDatabase.resx">
+      <DependentUpon>201810051252316_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

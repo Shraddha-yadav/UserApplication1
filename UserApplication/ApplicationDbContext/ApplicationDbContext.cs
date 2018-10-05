@@ -6,7 +6,7 @@ using System.Web;
 using UserApplication.fonts;
 using UserApplication.Models;
 
-namespace UserApplication.ApplicationDbContext
+namespace UserApplication.Models
 {
     public class ApplicationDbContext : DbContext
     {
@@ -21,7 +21,7 @@ namespace UserApplication.ApplicationDbContext
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<SubjectInCourse> SubjectsInCourses { get; set; }
         public virtual DbSet<TeacherInSubject> TeacherInSubjects { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
