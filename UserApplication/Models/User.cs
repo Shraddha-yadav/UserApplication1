@@ -34,8 +34,15 @@ namespace UserApplication.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Confirm your password.")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
+
+        public string IsEmailVerified { get; set; }
 
         [Required(ErrorMessage = "Please enter valid DOB")]
         public DateTime DOB { get; set; }
@@ -67,6 +74,12 @@ namespace UserApplication.Models
         public int AddressId { get; set; }
         [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
+
+        [Required(ErrorMessage = "Enter date created.")]
+        public DateTime DateCreated { get; set; }
+
+        [Required(ErrorMessage = "Enter date modified.")]
+        public DateTime DateModified { get; set; }
 
         public bool IsActive { get; set; }
 

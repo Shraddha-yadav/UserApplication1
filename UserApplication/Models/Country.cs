@@ -15,7 +15,7 @@ namespace UserApplication.Models
         public int CountryId { get; set; }
 
         [Required(ErrorMessage = "Please enter your country")]
-        public int CountryName { get; set; }
+        public string CountryName { get; set; }
 
         public bool IsActive { get; set; }
 
