@@ -57,7 +57,7 @@ namespace UserApplication.Models
         [DisplayName("Role")]
         public int RoleId { get; set; }
         [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
+        public virtual Role RoleName { get; set; }
 
         [Required(ErrorMessage = "Enter your permanent address")]
         [DisplayName("Permanent Address")]

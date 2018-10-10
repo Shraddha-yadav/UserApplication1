@@ -16,7 +16,7 @@ namespace UserApplication.Controllers
       private  ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            return View(db.User.ToList());
         }
 
 
@@ -26,6 +26,7 @@ namespace UserApplication.Controllers
         {
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
+
             //Getting Course dropdown from Database
             var courseList = db.Courses.Select(x => new CourseModel
             {
@@ -42,13 +43,44 @@ namespace UserApplication.Controllers
             //sending data in roleList and courseList to Roles and Courses properties of ViewModel.  
             model.Roles = roleList;
             model.Courses = courseList;
+            //to get country dropdown from database.
+            var countryList = db.Countries.Select(x => new CountryModel
+            {
+                CountryName = x.CountryName,
+                CountryId = x.CountryId
+            }).ToList();
+            //seding countrie's data to ViewModel's property, Countries.
+            model.Countries = countryList;
 
-           // return object of ViewModel in the view.
+
+            //to get state dropdown from database.
+            var stateList = db.States.Select(x => new StateModel
+            {
+                StateId = x.StateId,
+                StateName = x.StateName
+            }
+            ).ToList();
+            ////send state's data to ViewModel's property,States.
+            model.States = stateList;
+
+
+            //to get city dropdown from database.
+            var cityList = db.Cities.Select(x => new CityModel
+            {
+                CityName = x.CityName,
+                CityId = x.CityId
+            }).ToList();
+
+            ////send cities data to ViewModel's property,Cities.
+            model.Cities = cityList;
+
+
+            //return object of ViewModel in the view.
             return View(model);
         }
         //To post the values of the registration form to the database.
         [HttpPost]
-        public ActionResult Register(UserViewModel objUserViewModel)
+        public ActionResult Registration(UserViewModel objUserViewModel)
         {
 
             if (!ModelState.IsValid)
@@ -61,14 +93,15 @@ namespace UserApplication.Controllers
                 {//Raw data sent to address table.
                     Address objAddress = new Address
                     {
-                        AddressLine1 = "Test1",
-                        AddressLine2="Test2",
-                        CityId = 1,
-                        CountryId = 1,
-                        Zipcode = 452001,
-                        StateId = 7,
+                        AddressLine1 = objUserViewModel.AddressLine1,
+                        AddressLine2 = objUserViewModel.AddressLine2,
+                        CityId = objUserViewModel.CityId,
+                        CountryId = objUserViewModel.CountryId,
+                        Zipcode = objUserViewModel.Zipcode,
+                        StateId = objUserViewModel.StateId,
 
                     };
+                    
                     db.Addresses.Add(objAddress);
                     db.SaveChanges();
                     //Raw data sent for IsEmailVerified property through ViewModel object.
@@ -76,32 +109,40 @@ namespace UserApplication.Controllers
                     //try to insert user details of registration form in User table of database.
                     User objUser = new User
                     {
-                        UserId = objUserViewModel.UserId,
+                        //UserId = objUserViewModel.UserId,
                         FirstName = objUserViewModel.FirstName,
                         LastName = objUserViewModel.LastName,
                         Gender = objUserViewModel.Gender,
-                        DOB = objUserViewModel.DateOfBirth,
+                        DOB = objUserViewModel.DOB,
                         Hobbies = objUserViewModel.Hobbies,
                         Email = objUserViewModel.Email,
                         IsEmailVerified = objUserViewModel.IsEmailVerified,
                         Password = objUserViewModel.Password,
                         ConfirmPassword = objUserViewModel.ConfirmPassword,
+                        AddressLine1= objUserViewModel.AddressLine1,
+                        AddressLine2= objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
+                        RoleId=objUserViewModel.RoleId,
+                       
+                      
+
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
-
+                        
                         DateCreated = DateTime.Now,
                         //Done for testing purpose.
                         DateModified = DateTime.Now
 
-
                     };
-                    db.Users.Add(objUser);
+
+                    db.User.Add(objUser);
                     db.SaveChanges();
 
-                    //RoleId for the respective UserId gets saved in database.
-                    UserInRole objUserInRole = new UserInRole
+
+                
+                //RoleId for the respective UserId gets saved in database.
+                UserInRole objUserInRole = new UserInRole
                     {
                         RoleId = objUserViewModel.RoleId,
                         UserId = objUser.UserId
@@ -116,12 +157,90 @@ namespace UserApplication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    //roll back all database operations, if anything goes wrong.
-                    transaction.Rollback();
-                    ViewBag.ResultMessage = "Error occurred in the registration process.Please register again.";
+                    throw ex;
                 }
             }
             return RedirectToAction("Index", "User");
+            
         }
+        public int GetAdressId()
+        { return 0; }
+
+        SqlConnection ApplicationDbContext = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
+        //Get all country
+        public DataSet Get_Country()
+        {
+
+            SqlCommand com = new SqlCommand("Select * from Countries", ApplicationDbContext);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        //Get all state
+        public DataSet Get_State(string CountryId)
+        {
+            SqlCommand com = new SqlCommand("Select * from States where CountryId=@countryid", ApplicationDbContext);
+            com.Parameters.AddWithValue("@countryid", CountryId);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+        //Get all city
+        public DataSet Get_City(string StateId)
+        {
+            SqlCommand com = new SqlCommand("Select * from Cities where StateId=@stateid", ApplicationDbContext);
+            com.Parameters.AddWithValue("@stateid", StateId);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
+
+        public void Country_Bind()
+        {
+            DataSet ds = Get_Country();
+            List<SelectListItem> countrylist = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                countrylist.Add(new SelectListItem { Text = dr["CountryName"].ToString(), Value = dr["CountryId"].ToString() });
+
+            }
+            ViewBag.Country = countrylist;
+        }
+        public JsonResult State_Bind(string CountryId)
+        {
+            DataSet ds = Get_State(CountryId);
+            List<SelectListItem> statelist = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                statelist.Add(new SelectListItem { Text = dr["StateName"].ToString(), Value = dr["StateId"].ToString() });
+            }
+            return Json(statelist, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult City_Bind(string StateId)
+        {
+            DataSet ds = Get_City(StateId);
+            List<SelectListItem> citylist = new List<SelectListItem>();
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                citylist.Add(new SelectListItem { Text = dr["CityName"].ToString(), Value = dr["CityId"].ToString() });
+            }
+            return Json(citylist, JsonRequestBehavior.AllowGet);
+        }
+
+       
+
     }
+
+
+
+
+  
 }
