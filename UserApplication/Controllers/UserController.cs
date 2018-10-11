@@ -13,9 +13,10 @@ namespace UserApplication.Controllers
    
     public class UserController : Controller
     {
-      private  ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+            //Country_Bind();
             return View(db.User.ToList());
         }
 
@@ -27,7 +28,7 @@ namespace UserApplication.Controllers
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
-            //Getting Course dropdown from Database
+            //Query for getting Course dropdown from Database
             var courseList = db.Courses.Select(x => new CourseModel
             {
                 CourseName = x.CourseName,
@@ -54,29 +55,29 @@ namespace UserApplication.Controllers
 
 
             //to get state dropdown from database.
-            var stateList = db.States.Select(x => new StateModel
-            {
-                StateId = x.StateId,
-                StateName = x.StateName
-            }
-            ).ToList();
-            ////send state's data to ViewModel's property,States.
-            model.States = stateList;
+           var stateList = db.States.Select(x => new StateModel
+          {
+               StateId = x.StateId,
+               StateName = x.StateName
+          }
+          ).ToList();
+            //send state's data to ViewModel's property,States.
+           model.States = stateList;
 
 
             //to get city dropdown from database.
-            var cityList = db.Cities.Select(x => new CityModel
-            {
-                CityName = x.CityName,
-                CityId = x.CityId
-            }).ToList();
+           var cityList = db.Cities.Select(x => new CityModel
+           {
+               CityName = x.CityName,
+               CityId = x.CityId
+           }).ToList();
 
-            ////send cities data to ViewModel's property,Cities.
-            model.Cities = cityList;
+           //send cities data to ViewModel's property,Cities.
+          model.Cities = cityList;
 
 
-            //return object of ViewModel in the view.
-            return View(model);
+        //return object of ViewModel in the view.
+         return View(model);
         }
         //To post the values of the registration form to the database.
         [HttpPost]
@@ -109,7 +110,7 @@ namespace UserApplication.Controllers
                     //try to insert user details of registration form in User table of database.
                     User objUser = new User
                     {
-                        //UserId = objUserViewModel.UserId,
+                        UserId = objUserViewModel.UserId,
                         FirstName = objUserViewModel.FirstName,
                         LastName = objUserViewModel.LastName,
                         Gender = objUserViewModel.Gender,
@@ -157,90 +158,124 @@ namespace UserApplication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    //throw ex;
+                    //roll back all database operations, if anything goes wrong.
+                    transaction.Rollback();
+                    ViewBag.ResultMessage = "Error occurred in the registration process.Please register again.";
+
                 }
             }
             return RedirectToAction("Index", "User");
             
         }
-        public int GetAdressId()
-        { return 0; }
+        public JsonResult getState(int Id)
+        {
+            var states = db.States.Where(x => x.CountryId == Id).ToList();
+            List<SelectListItem> stateList = new List<SelectListItem>();
 
-        SqlConnection ApplicationDbContext = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
+            stateList.Add(new SelectListItem { Text = "", Value = "0" });
+            if (states != null)
+            {
+                foreach (var x in states)
+                {
+                    stateList.Add(new SelectListItem { Text = x.StateName, Value = x.StateId.ToString() });
+
+                }
+            }
+            return Json(new SelectList(stateList, "Value", "Text", JsonRequestBehavior.AllowGet));
+        }
+
+        public JsonResult getCity(int id)
+        {
+            var cities = db.Cities.Where(x => x.StateId == id).ToList();
+            List<SelectListItem> cityList = new List<SelectListItem>();
+            cityList.Add(new SelectListItem { Text = "", Value = "0" });
+            if (cities != null)
+            {
+                foreach (var x in cities)
+                {
+                    cityList.Add(new SelectListItem { Text = x.CityName, Value = x.CityId.ToString() });
+                }
+            }
+            return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
+        }
+
+
+
+
+        //public int GetAdressId()
+        //{ return 0; }
+
+        //SqlConnection ApplicationDbContext = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
         //Get all country
-        public DataSet Get_Country()
-        {
+        //    public DataSet Get_Country()
+        //    {
 
-            SqlCommand com = new SqlCommand("Select * from Countries", ApplicationDbContext);
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            return ds;
-        }
+        //        SqlCommand com = new SqlCommand("Select * from Country", ApplicationDbContext);
+        //        SqlDataAdapter da = new SqlDataAdapter(com);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
+        //    }
 
-        //Get all state
-        public DataSet Get_State(string CountryId)
-        {
-            SqlCommand com = new SqlCommand("Select * from States where CountryId=@countryid", ApplicationDbContext);
-            com.Parameters.AddWithValue("@countryid", CountryId);
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            return ds;
-        }
-        //Get all city
-        public DataSet Get_City(string StateId)
-        {
-            SqlCommand com = new SqlCommand("Select * from Cities where StateId=@stateid", ApplicationDbContext);
-            com.Parameters.AddWithValue("@stateid", StateId);
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            return ds;
-        }
+        //    //Get all state
+        //    public DataSet Get_State(string CountryId)
+        //    {
+        //        SqlCommand com = new SqlCommand("Select * from State where CountryId=@countryid", ApplicationDbContext);
+        //        com.Parameters.AddWithValue("@countryid", CountryId);
+        //        SqlDataAdapter da = new SqlDataAdapter(com);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
+        //    }
+        //    //Get all city
+        //    public DataSet Get_City(string StateId)
+        //    {
+        //        SqlCommand com = new SqlCommand("Select * from City where StateId=@stateid", ApplicationDbContext);
+        //        com.Parameters.AddWithValue("@stateid", StateId);
+        //        SqlDataAdapter da = new SqlDataAdapter(com);
+        //        DataSet ds = new DataSet();
+        //        da.Fill(ds);
+        //        return ds;
+        //    }
 
-        public void Country_Bind()
-        {
-            DataSet ds = Get_Country();
-            List<SelectListItem> countrylist = new List<SelectListItem>();
+        //    public void Country_Bind()
+        //    {
+        //        DataSet ds = Get_Country();
+        //        List<SelectListItem> countrylist = new List<SelectListItem>();
 
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                countrylist.Add(new SelectListItem { Text = dr["CountryName"].ToString(), Value = dr["CountryId"].ToString() });
+        //        foreach (DataRow dr in ds.Tables[0].Rows)
+        //        {
+        //            countrylist.Add(new SelectListItem { Text = dr["CountryName"].ToString(), Value = dr["CountryId"].ToString() });
 
-            }
-            ViewBag.Country = countrylist;
-        }
-        public JsonResult State_Bind(string CountryId)
-        {
-            DataSet ds = Get_State(CountryId);
-            List<SelectListItem> statelist = new List<SelectListItem>();
+        //        }
+        //        ViewBag.Country = countrylist;
+        //    }
+        //    public JsonResult State_Bind(string CountryId)
+        //    {
+        //        DataSet ds = Get_State(CountryId);
+        //        List<SelectListItem> statelist = new List<SelectListItem>();
 
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                statelist.Add(new SelectListItem { Text = dr["StateName"].ToString(), Value = dr["StateId"].ToString() });
-            }
-            return Json(statelist, JsonRequestBehavior.AllowGet);
-        }
+        //        foreach (DataRow dr in ds.Tables[0].Rows)
+        //        {
+        //            statelist.Add(new SelectListItem { Text = dr["StateName"].ToString(), Value = dr["StateId"].ToString() });
+        //        }
+        //        return Json(statelist, JsonRequestBehavior.AllowGet);
+        //    }
 
-        public JsonResult City_Bind(string StateId)
-        {
-            DataSet ds = Get_City(StateId);
-            List<SelectListItem> citylist = new List<SelectListItem>();
+        //    public JsonResult City_Bind(string StateId)
+        //    {
+        //        DataSet ds = Get_City(StateId);
+        //        List<SelectListItem> citylist = new List<SelectListItem>();
 
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                citylist.Add(new SelectListItem { Text = dr["CityName"].ToString(), Value = dr["CityId"].ToString() });
-            }
-            return Json(citylist, JsonRequestBehavior.AllowGet);
-        }
+        //        foreach (DataRow dr in ds.Tables[0].Rows)
+        //        {
+        //            citylist.Add(new SelectListItem { Text = dr["CityName"].ToString(), Value = dr["CityId"].ToString() });
+        //        }
+        //        return Json(citylist, JsonRequestBehavior.AllowGet);
+        //    }
 
-       
+
 
     }
-
-
-
-
-  
 }
