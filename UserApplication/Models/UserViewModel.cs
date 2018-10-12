@@ -35,11 +35,11 @@ namespace UserApplication.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        //[Required(ErrorMessage = "Your email address is not verified.")]
+        [Required(ErrorMessage = "Your email address is not verified.")]
         public string IsEmailVerified { get; set; }
 
-        //[Required(ErrorMessage = "Enter a password.")]
-        //[DataType(DataType.Password)]
+        [Required(ErrorMessage = "Enter a password.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm your password.")]

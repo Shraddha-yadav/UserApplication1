@@ -10,7 +10,7 @@ using UserApplication.Models;
 
 namespace UserApplication.Controllers
 {
-   
+
     public class UserController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -55,29 +55,29 @@ namespace UserApplication.Controllers
 
 
             //to get state dropdown from database.
-           var stateList = db.States.Select(x => new StateModel
-          {
-               StateId = x.StateId,
-               StateName = x.StateName
-          }
-          ).ToList();
+            var stateList = db.States.Select(x => new StateModel
+            {
+                StateId = x.StateId,
+                StateName = x.StateName
+            }
+           ).ToList();
             //send state's data to ViewModel's property,States.
-           model.States = stateList;
+            model.States = stateList;
 
 
             //to get city dropdown from database.
-           var cityList = db.Cities.Select(x => new CityModel
-           {
-               CityName = x.CityName,
-               CityId = x.CityId
-           }).ToList();
+            var cityList = db.Cities.Select(x => new CityModel
+            {
+                CityName = x.CityName,
+                CityId = x.CityId
+            }).ToList();
 
-           //send cities data to ViewModel's property,Cities.
-          model.Cities = cityList;
+            //send cities data to ViewModel's property,Cities.
+            model.Cities = cityList;
 
 
-        //return object of ViewModel in the view.
-         return View(model);
+            //return object of ViewModel in the view.
+            return View(model);
         }
         //To post the values of the registration form to the database.
         [HttpPost]
@@ -102,7 +102,7 @@ namespace UserApplication.Controllers
                         StateId = objUserViewModel.StateId,
 
                     };
-                    
+
                     db.Addresses.Add(objAddress);
                     db.SaveChanges();
                     //Raw data sent for IsEmailVerified property through ViewModel object.
@@ -120,17 +120,17 @@ namespace UserApplication.Controllers
                         IsEmailVerified = objUserViewModel.IsEmailVerified,
                         Password = objUserViewModel.Password,
                         ConfirmPassword = objUserViewModel.ConfirmPassword,
-                        AddressLine1= objUserViewModel.AddressLine1,
-                        AddressLine2= objUserViewModel.AddressLine2,
+                        AddressLine1 = objUserViewModel.AddressLine1,
+                        AddressLine2 = objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
-                        RoleId=objUserViewModel.RoleId,
-                       
-                      
+                        RoleId = objUserViewModel.RoleId,
+
+
 
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
-                        
+
                         DateCreated = DateTime.Now,
                         //Done for testing purpose.
                         DateModified = DateTime.Now
@@ -141,9 +141,9 @@ namespace UserApplication.Controllers
                     db.SaveChanges();
 
 
-                
-                //RoleId for the respective UserId gets saved in database.
-                UserInRole objUserInRole = new UserInRole
+
+                    //RoleId for the respective UserId gets saved in database.
+                    UserInRole objUserInRole = new UserInRole
                     {
                         RoleId = objUserViewModel.RoleId,
                         UserId = objUser.UserId
@@ -165,8 +165,8 @@ namespace UserApplication.Controllers
 
                 }
             }
-            return RedirectToAction("Index", "User");
-            
+            return RedirectToAction("Login", "User");
+
         }
         public JsonResult getState(int Id)
         {
@@ -199,81 +199,24 @@ namespace UserApplication.Controllers
             }
             return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
         }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+            if (LoginDetails != null)
+                if (LoginDetails.RoleId == 1)
+                {
+                    return RedirectToAction("DisplayList", "SuperAdmin");
+                }
+            return View("Registration");
+        }
+       
 
-
-
-
-        //public int GetAdressId()
-        //{ return 0; }
-
-        //SqlConnection ApplicationDbContext = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
-        //Get all country
-        //    public DataSet Get_Country()
-        //    {
-
-        //        SqlCommand com = new SqlCommand("Select * from Country", ApplicationDbContext);
-        //        SqlDataAdapter da = new SqlDataAdapter(com);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-        //        return ds;
-        //    }
-
-        //    //Get all state
-        //    public DataSet Get_State(string CountryId)
-        //    {
-        //        SqlCommand com = new SqlCommand("Select * from State where CountryId=@countryid", ApplicationDbContext);
-        //        com.Parameters.AddWithValue("@countryid", CountryId);
-        //        SqlDataAdapter da = new SqlDataAdapter(com);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-        //        return ds;
-        //    }
-        //    //Get all city
-        //    public DataSet Get_City(string StateId)
-        //    {
-        //        SqlCommand com = new SqlCommand("Select * from City where StateId=@stateid", ApplicationDbContext);
-        //        com.Parameters.AddWithValue("@stateid", StateId);
-        //        SqlDataAdapter da = new SqlDataAdapter(com);
-        //        DataSet ds = new DataSet();
-        //        da.Fill(ds);
-        //        return ds;
-        //    }
-
-        //    public void Country_Bind()
-        //    {
-        //        DataSet ds = Get_Country();
-        //        List<SelectListItem> countrylist = new List<SelectListItem>();
-
-        //        foreach (DataRow dr in ds.Tables[0].Rows)
-        //        {
-        //            countrylist.Add(new SelectListItem { Text = dr["CountryName"].ToString(), Value = dr["CountryId"].ToString() });
-
-        //        }
-        //        ViewBag.Country = countrylist;
-        //    }
-        //    public JsonResult State_Bind(string CountryId)
-        //    {
-        //        DataSet ds = Get_State(CountryId);
-        //        List<SelectListItem> statelist = new List<SelectListItem>();
-
-        //        foreach (DataRow dr in ds.Tables[0].Rows)
-        //        {
-        //            statelist.Add(new SelectListItem { Text = dr["StateName"].ToString(), Value = dr["StateId"].ToString() });
-        //        }
-        //        return Json(statelist, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    public JsonResult City_Bind(string StateId)
-        //    {
-        //        DataSet ds = Get_City(StateId);
-        //        List<SelectListItem> citylist = new List<SelectListItem>();
-
-        //        foreach (DataRow dr in ds.Tables[0].Rows)
-        //        {
-        //            citylist.Add(new SelectListItem { Text = dr["CityName"].ToString(), Value = dr["CityId"].ToString() });
-        //        }
-        //        return Json(citylist, JsonRequestBehavior.AllowGet);
-        //    }
 
 
 

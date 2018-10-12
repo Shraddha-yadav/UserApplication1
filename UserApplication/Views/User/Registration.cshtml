@@ -4,55 +4,6 @@
 }
 
 <h2>Registration</h2>
-@*<script src="~/Script/jquery-1.7.1.min.js"></script>
-    
-<script>
-    $(document).ready(function () {
-        $("#Country").change(function () {
-            var id = $(this).val();
-            $("#state").empty();
-            $.get("State_Bind", { CountryId: id }, function (data) {
-                var v = "<option>--select--</option>";
-                $.each(data, function (i, v1) {
-                    v += "<option value=" + v1.Value + ">" + v1.Text + "</option>";
-
-                });
-                $("#state").html(v);
-            });
-        });
-
-        $("#state").change(function () {
-            var id = $(this).val();
-            $("#city").empty();
-            $.get("City_Bind", { StateId: id }, function (data) {
-                var v = "<option>--select--</option>";
-                $.each(data, function (i, v1) {
-                    v += "<option value=" + v1.Value + ">" + v1.Text + "</option>";
-
-                });
-                $("#city").html(v);
-            });
-
-        });
-    });
-
-</script>
-<script>
-        $(function () {
-            $("#ContID").change(function () {
-                $.get("/Coding for dropdown/GetStateById", { CountryId: $("#ContID").val() }, function (data) {
-                    $("#St").empty();
-                    $.each(data, function (index, row) {
-                        $("#St").append("<option value ='"+row.StateId+"'>"+ row.StateName +"</option>")
-
-                    });
-                });
-            });
-        });
-    </script>**@
-
-
-
 
 @using (Html.BeginForm())
 {
