@@ -17,7 +17,7 @@ namespace UserApplication.Controllers
         public ActionResult Index()
         {
             //Country_Bind();
-            return View(db.User.ToList());
+            return View(db.Users.ToList());
         }
 
 
@@ -137,7 +137,7 @@ namespace UserApplication.Controllers
 
                     };
 
-                    db.User.Add(objUser);
+                    db.Users.Add(objUser);
                     db.SaveChanges();
 
 
@@ -207,15 +207,15 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+            var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
             if (LoginDetails != null)
                 if (LoginDetails.RoleId == 1)
                 {
-                    return RedirectToAction("DisplayList", "SuperAdmin");
+                    return RedirectToAction("GetAllUsers", "SuperAdmin");
                 }
-            return View("Registration");
+            return View("GetAllUsers");
         }
-       
+
 
 
 

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace UserApplication.Models
 {
+    [Table("UserViewModel")]
     public class UserViewModel
     {
         [Key]
@@ -28,14 +30,14 @@ namespace UserApplication.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DOB { get; set; }
 
-        [Required(ErrorMessage = "Enter your hobbies.")]
+      [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
         [Required(ErrorMessage = "Enter your email address.")]
-        [DataType(DataType.EmailAddress)]
+       [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Your email address is not verified.")]
+       [Required(ErrorMessage = "Your email address is not verified.")]
         public string IsEmailVerified { get; set; }
 
         [Required(ErrorMessage = "Enter a password.")]
@@ -47,12 +49,15 @@ namespace UserApplication.Models
         public string ConfirmPassword { get; set; }
 
 
-        //[Required(ErrorMessage = "Your account is inactive.")]
+        [Required(ErrorMessage = "Your account is inactive.")]
         public bool IsActive { get; set; }
 
+        [DisplayName("Course")]
         public int CourseId { get; set; }
 
+        [DisplayName("Address")]
         public int AddressId { get; set; }
+
         [Required(ErrorMessage = "Enter your permanent address")]
         [DisplayName("Permanent Address")]
         public string AddressLine1 { get; set; }
@@ -74,6 +79,7 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter date modified.")]
         public DateTime DateModified { get; set; }
 
+        [DisplayName("Role")]
         public int RoleId { get; set; }
 
         public string RoleName { get; set; }
@@ -89,25 +95,26 @@ namespace UserApplication.Models
 
         public List<RoleModel> Roles { get; set; }
         public List<CourseModel> Courses { get; set; }
-
+        
     }
 
     public class RoleModel
     {
-        
+        [Key]
         public int RoleId { get; set; }
         public string RoleName { get; set; }
+       
     }
     public class CourseModel
     {
-        
+        [Key]
         public int CourseId { get; set; }
         public string CourseName { get; set; }
     }
 
     public class CountryModel
     {
-        
+        [Key]
         public int CountryId { get; set; }
 
         [Required(ErrorMessage = "Please enter your country")]
@@ -116,7 +123,7 @@ namespace UserApplication.Models
     }
     public class StateModel
     {
-        
+        [Key]  
         public int StateId { get; set; }
 
         public string StateName { get; set; }
@@ -125,7 +132,7 @@ namespace UserApplication.Models
     }
     public class CityModel
     {
-        
+        [Key]
         public int CityId { get; set; }
 
         public string CityName { get; set; }

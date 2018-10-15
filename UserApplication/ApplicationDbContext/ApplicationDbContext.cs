@@ -15,7 +15,7 @@ namespace UserApplication.Models
 
 
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserInRole> UserInRoles { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -26,6 +26,6 @@ namespace UserApplication.Models
         public virtual DbSet<TeacherInSubject> TeacherInSubjects { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
 
-      
+        public System.Data.Entity.DbSet<UserApplication.Models.UserViewModel> UserViewModels { get; set; }
     }
 }

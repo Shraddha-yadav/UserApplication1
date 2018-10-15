@@ -22,7 +22,7 @@ namespace UserApplication.Models
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
-        [Required(ErrorMessage = "LastName is required")]
+       [Required(ErrorMessage = "LastName is required")]
         public string LastName{ get; set; }
 
         [Required(ErrorMessage = "This field cannot be null")]
@@ -37,7 +37,7 @@ namespace UserApplication.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm your password.")]
-        [DataType(DataType.Password)]
+       [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
 
@@ -55,7 +55,7 @@ namespace UserApplication.Models
         [ForeignKey("CourseId")]
         public virtual Course Course { get; set; }
 
-        [Required(ErrorMessage = "Please select the course")]
+       [Required(ErrorMessage = "Please select the Role")]
         [DisplayName("Role")]
         public int RoleId { get; set; }
         [ForeignKey("RoleId")]
