@@ -14,15 +14,15 @@ namespace UserApplication.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "Enter your firstname.")]
-        [MaxLength(50)]
+       [Required(ErrorMessage = "Enter your firstname.")]
+       [MaxLength(50)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter your last name.")]
         [MaxLength(50)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your gender.")]
+       [Required(ErrorMessage = "Please enter your gender.")]
         public string Gender { get; set; }
 
         [Display(Name = "Date of Birth")]
@@ -33,15 +33,15 @@ namespace UserApplication.Models
       [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
-        [Required(ErrorMessage = "Enter your email address.")]
-       [DataType(DataType.EmailAddress)]
+       [Required(ErrorMessage = "Enter your email address.")]
+      [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
        [Required(ErrorMessage = "Your email address is not verified.")]
         public string IsEmailVerified { get; set; }
 
         [Required(ErrorMessage = "Enter a password.")]
-        [DataType(DataType.Password)]
+       [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm your password.")]
@@ -49,7 +49,7 @@ namespace UserApplication.Models
         public string ConfirmPassword { get; set; }
 
 
-        [Required(ErrorMessage = "Your account is inactive.")]
+       [Required(ErrorMessage = "Your account is inactive.")]
         public bool IsActive { get; set; }
 
         [DisplayName("Course")]
@@ -76,10 +76,10 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter date created.")]
         public DateTime DateCreated { get; set; }
 
-        [Required(ErrorMessage = "Enter date modified.")]
+       [Required(ErrorMessage = "Enter date modified.")]
         public DateTime DateModified { get; set; }
 
-        [DisplayName("Role")]
+       [DisplayName("Role")]
         public int RoleId { get; set; }
 
         public string RoleName { get; set; }

@@ -9,8 +9,7 @@ namespace UserApplication.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(UserApplication.Models.ApplicationDbContext context)
