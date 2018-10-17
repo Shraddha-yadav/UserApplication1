@@ -3,7 +3,7 @@ namespace UserApplication.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDatabase : DbMigration
+    public partial class RecordsMigration : DbMigration
     {
         public override void Up()
         {
@@ -79,8 +79,6 @@ namespace UserApplication.Migrations
                         DOB = c.DateTime(nullable: false),
                         CourseId = c.Int(nullable: false),
                         RoleId = c.Int(nullable: false),
-                        AddressLine1 = c.String(),
-                        AddressLine2 = c.String(),
                         AddressId = c.Int(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
                         DateModified = c.DateTime(nullable: false),

@@ -14,72 +14,114 @@ namespace UserApplication.Controllers
     public class UserController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        /// <summary>
+        /// List of users
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            //Country_Bind();
+            
             return View(db.Users.ToList());
         }
 
 
-        // show Registration form to New User
+
+        /// <summary>
+        /// GET:show Registration form to New User
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Registration()
         {
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
-            //Query for getting Course dropdown from Database
-            var courseList = db.Courses.Select(x => new CourseModel
-            {
-                CourseName = x.CourseName,
-                CourseId = x.CourseId
-            }).ToList();
+            ////Query for getting Course dropdown from Database
+            //var courseList = db.Courses.Select(x => new Course
+            //{
+            //    CourseName = x.CourseName,
+            //    CourseId = x.CourseId
+            //}).ToList();
 
-            //query to get the role dropdown from database.
-            var roleList = db.Roles.Select(x => new RoleModel
-            {
-                RoleName = x.RoleName,
-                RoleId = x.RoleId
-            }).ToList();
-            //sending data in roleList and courseList to Roles and Courses properties of ViewModel.  
-            model.Roles = roleList;
-            model.Courses = courseList;
-            //to get country dropdown from database.
-            var countryList = db.Countries.Select(x => new CountryModel
-            {
-                CountryName = x.CountryName,
-                CountryId = x.CountryId
-            }).ToList();
-            //seding countrie's data to ViewModel's property, Countries.
-            model.Countries = countryList;
+            List<Country> countryList = new List<Country>();
+            List<State> stateList = new List<State>();
+            List<City> cityList = new List<City>();
+            List<Course> courseList = new List<Course>();
+            List<Role> roleList = new List<Role>();
 
+            var tempcountryList = db.Countries.ToList();
+            var tempstateList = db.States.ToList();
+            var tempcityList = db.Cities.ToList();
+            var tempCourseList = db.Courses.ToList();
+            var tempRoleList = db.Roles.ToList();
 
-            //to get state dropdown from database.
-            var stateList = db.States.Select(x => new StateModel
-            {
-                StateId = x.StateId,
-                StateName = x.StateName
-            }
-           ).ToList();
-            //send state's data to ViewModel's property,States.
-            model.States = stateList;
+            model.Countries = tempcountryList;
+            model.States = tempstateList;
+            model.Cities = tempcityList;
+            model.Courses= tempCourseList;
+            model.Roles= tempRoleList;
 
 
-            //to get city dropdown from database.
-            var cityList = db.Cities.Select(x => new CityModel
-            {
-                CityName = x.CityName,
-                CityId = x.CityId
-            }).ToList();
 
-            //send cities data to ViewModel's property,Cities.
-            model.Cities = cityList;
+
+
+
+
+
+
+
+
+
+
+           // //query to get the role dropdown from database.
+           // var roleList = db.Roles.Select(x => new Role
+           // {
+           //     RoleName = x.RoleName,
+           //     RoleId = x.RoleId
+           // }).ToList();
+           // //sending data in roleList and courseList to Roles and Courses properties of ViewModel.  
+           // model.Roles = roleList;
+           // model.Courses = courseList;
+           // //to get country dropdown from database.
+           // var countryList = db.Countries.Select(x => new Country
+           // {
+           //     CountryName = x.CountryName,
+           //     CountryId = x.CountryId
+           // }).ToList();
+           // //seding countrie's data to ViewModel's property, Countries.
+           // model.Countries = countryList;
+
+
+           // //to get state dropdown from database.
+           // var stateList = db.States.Select(x => new State
+           // {
+           //     StateId = x.StateId,
+           //     StateName = x.StateName
+           // }
+           //).ToList();
+           // //send state's data to ViewModel's property,States.
+           // model.States = stateList;
+
+
+           // //to get city dropdown from database.
+           // var cityList = db.Cities.Select(x => new City
+           // {
+           //     CityName = x.CityName,
+           //     CityId = x.CityId
+           // }).ToList();
+
+           // //send cities data to ViewModel's property,Cities.
+           // model.Cities = cityList;
 
 
             //return object of ViewModel in the view.
             return View(model);
         }
-        //To post the values of the registration form to the database.
+        /// <summary>
+        /// To post the values of the registration form to the database.
+        /// </summary>
+        /// <param name="objUserViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Registration(UserViewModel objUserViewModel)
         {
@@ -120,8 +162,8 @@ namespace UserApplication.Controllers
                         IsEmailVerified = objUserViewModel.IsEmailVerified,
                         Password = objUserViewModel.Password,
                         ConfirmPassword = objUserViewModel.ConfirmPassword,
-                        AddressLine1 = objUserViewModel.AddressLine1,
-                        AddressLine2 = objUserViewModel.AddressLine2,
+                        //AddressLine1 = objUserViewModel.AddressLine1,
+                        //AddressLine2 = objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
                         RoleId = objUserViewModel.RoleId,

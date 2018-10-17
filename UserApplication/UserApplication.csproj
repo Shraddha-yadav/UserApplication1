@@ -159,9 +159,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Migrations\201810161319049_CreateDatabase.cs" />
-    <Compile Include="Migrations\201810161319049_CreateDatabase.Designer.cs">
-      <DependentUpon>201810161319049_CreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201810171226590_RecordsMigration.cs" />
+    <Compile Include="Migrations\201810171226590_RecordsMigration.Designer.cs">
+      <DependentUpon>201810171226590_RecordsMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SubjectInCourse.cs" />
@@ -265,13 +265,12 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\SuperAdmin\DisplayUserList.cshtml" />
-    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
     <Content Include="Views\SuperAdmin\Index.cshtml" />
-    <Content Include="Views\SuperAdmin\EditUser.cshtml" />
     <Content Include="Views\SuperAdmin\UserDetails.cshtml" />
     <Content Include="Views\SuperAdmin\DeleteUser.cshtml" />
+    <Content Include="Views\SuperAdmin\EditUser.cshtml" />
     <Content Include="Views\SuperAdmin\CreateUser.cshtml" />
+    <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,8 +287,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810161319049_CreateDatabase.resx">
-      <DependentUpon>201810161319049_CreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810171226590_RecordsMigration.resx">
+      <DependentUpon>201810171226590_RecordsMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

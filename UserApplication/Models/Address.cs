@@ -15,19 +15,18 @@ namespace UserApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressId { get; set; }
 
-       // [Required]
-       // public int UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public virtual User User { get; set; }
-
-        [Required(ErrorMessage = "Enter your permanent address")]
-        [DisplayName("Permanent Address")]
-        public string AddressLine1 { get; set; }
+       [Required(ErrorMessage = "Enter your permanent address")]
+       [DisplayName("Permanent Address")]
+       public string AddressLine1 { get; set; }
 
 
-        [Required(ErrorMessage = "Enter your current address")]
-        [DisplayName("Temporary Address")]
+      [Required(ErrorMessage = "Enter your current address")]
+      [DisplayName("Temporary Address")]
         public string AddressLine2 { get; set; }
+
+
+
+
 
         [DisplayName("Country Name")]
         [Required(ErrorMessage = "Please select your Country")]
