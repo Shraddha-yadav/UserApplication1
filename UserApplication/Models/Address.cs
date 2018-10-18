@@ -15,12 +15,12 @@ namespace UserApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressId { get; set; }
 
-       [Required(ErrorMessage = "Enter your permanent address")]
+       //[Required(ErrorMessage = "Enter your permanent address")]
        [DisplayName("Permanent Address")]
        public string AddressLine1 { get; set; }
 
 
-      [Required(ErrorMessage = "Enter your current address")]
+      //[Required(ErrorMessage = "Enter your current address")]
       [DisplayName("Temporary Address")]
         public string AddressLine2 { get; set; }
 
@@ -29,27 +29,27 @@ namespace UserApplication.Models
 
 
         [DisplayName("Country Name")]
-        [Required(ErrorMessage = "Please select your Country")]
+       // [Required(ErrorMessage = "Please select your Country")]
         public int CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 
 
         [DisplayName("State Name")]
-        [Required(ErrorMessage = "Please select your State")]
+       // [Required(ErrorMessage = "Please select your State")]
         public int StateId { get; set; }
         [ForeignKey("StateId")]
         public virtual State State { get; set; }
 
         [DisplayName("City Name")]
-        [Required(ErrorMessage = "Please select your City name")]
+       // [Required(ErrorMessage = "Please select your City name")]
         public int CityId { get; set; }
         [ForeignKey("CityId")]
         public virtual City City { get; set;}
 
 
         [DisplayName("Zip code")]
-        [Required(ErrorMessage = "Please enter Zipcode")]
+       // [Required(ErrorMessage = "Please enter Zipcode")]
         public int Zipcode { get; set; }
 
         public virtual ICollection<User> Users { get; set; }

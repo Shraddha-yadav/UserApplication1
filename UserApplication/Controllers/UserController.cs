@@ -13,20 +13,18 @@ namespace UserApplication.Controllers
 
     public class UserController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
-        /// <summary>
-        /// List of users
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
-        {
-            
-            return View(db.Users.ToList());
-        }
+        private ApplicationDbContext db = new ApplicationDbContext();
+        ///// <summary>
+        ///// List of users
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //    //return View(db.Users.ToList());
+        //}
 
-
-
-        /// <summary>
+        ///// <summary>
         /// GET:show Registration form to New User
         /// </summary>
         /// <returns></returns>
@@ -35,13 +33,6 @@ namespace UserApplication.Controllers
         {
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
-
-            ////Query for getting Course dropdown from Database
-            //var courseList = db.Courses.Select(x => new Course
-            //{
-            //    CourseName = x.CourseName,
-            //    CourseId = x.CourseId
-            //}).ToList();
 
             List<Country> countryList = new List<Country>();
             List<State> stateList = new List<State>();
@@ -58,65 +49,11 @@ namespace UserApplication.Controllers
             model.Countries = tempcountryList;
             model.States = tempstateList;
             model.Cities = tempcityList;
-            model.Courses= tempCourseList;
-            model.Roles= tempRoleList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-           // //query to get the role dropdown from database.
-           // var roleList = db.Roles.Select(x => new Role
-           // {
-           //     RoleName = x.RoleName,
-           //     RoleId = x.RoleId
-           // }).ToList();
-           // //sending data in roleList and courseList to Roles and Courses properties of ViewModel.  
-           // model.Roles = roleList;
-           // model.Courses = courseList;
-           // //to get country dropdown from database.
-           // var countryList = db.Countries.Select(x => new Country
-           // {
-           //     CountryName = x.CountryName,
-           //     CountryId = x.CountryId
-           // }).ToList();
-           // //seding countrie's data to ViewModel's property, Countries.
-           // model.Countries = countryList;
-
-
-           // //to get state dropdown from database.
-           // var stateList = db.States.Select(x => new State
-           // {
-           //     StateId = x.StateId,
-           //     StateName = x.StateName
-           // }
-           //).ToList();
-           // //send state's data to ViewModel's property,States.
-           // model.States = stateList;
-
-
-           // //to get city dropdown from database.
-           // var cityList = db.Cities.Select(x => new City
-           // {
-           //     CityName = x.CityName,
-           //     CityId = x.CityId
-           // }).ToList();
-
-           // //send cities data to ViewModel's property,Cities.
-           // model.Cities = cityList;
-
-
-            //return object of ViewModel in the view.
+            model.Courses = tempCourseList;
+            model.Roles = tempRoleList;
             return View(model);
         }
+
         /// <summary>
         /// To post the values of the registration form to the database.
         /// </summary>
@@ -167,22 +104,15 @@ namespace UserApplication.Controllers
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
                         RoleId = objUserViewModel.RoleId,
-
-
-
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
-
                         DateCreated = DateTime.Now,
                         //Done for testing purpose.
                         DateModified = DateTime.Now
-
                     };
 
                     db.Users.Add(objUser);
                     db.SaveChanges();
-
-
 
                     //RoleId for the respective UserId gets saved in database.
                     UserInRole objUserInRole = new UserInRole
@@ -249,18 +179,41 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
+            //var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+            //if (LoginDetails != null)
+            //    if (LoginDetails.RoleId == 1)
+            //    {
+            //        return RedirectToAction("GetAllUsers", "SuperAdmin");
+            //    }
             var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-            if (LoginDetails != null)
+                      if (LoginDetails != null)
                 if (LoginDetails.RoleId == 1)
                 {
                     return RedirectToAction("GetAllUsers", "SuperAdmin");
                 }
-            return View("GetAllUsers");
+                else if (LoginDetails.RoleId == 2)
+                {
+                    return RedirectToAction("GetAllUsers", "Admin");
+                }
+                else if (LoginDetails.RoleId == 3)
+                {
+                    return RedirectToAction("GetStudentList", "Teacher");
+                }
+                //else
+                //{
+                //    return RedirectToAction("TeachersCourse", "Student");
+                //}
+
+            return View("Login");
         }
-
-
-
-
-
+        public ActionResult LogOut()
+        {
+            return RedirectToAction("Login");
+        }
     }
 }
+
+
+
+
+

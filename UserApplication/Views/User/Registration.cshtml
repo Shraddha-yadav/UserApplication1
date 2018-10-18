@@ -109,7 +109,20 @@
 
 
     @*get country dropdown*@
+
     <div class="form-group">
+        @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
+       {
+           Value = item.CountryId.ToString(),
+           Text = item.CountryName.ToString()
+
+       }), htmlAttributes: new { id = "ddlCountry", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
         @Html.LabelFor(model => model.CountryId, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
@@ -121,7 +134,7 @@
             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
 
         </div>
-    </div>
+    </div>*@
 
     @*get state dropdown*@
     <div class="form-group">
@@ -173,10 +186,10 @@
 
             }))
 
-          @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
 
 
-       </div>
+        </div>
     </div>
 
     <div class="form-group">

@@ -48,7 +48,7 @@ namespace UserApplication.Models
 
         public string IsEmailVerified { get; set; }
 
-        [Required(ErrorMessage = "Please enter valid DOB")]
+        //[Required(ErrorMessage = "Please enter valid DOB")]
         public DateTime DOB { get; set; }
 
         //[Required(ErrorMessage = "Please select the course")]

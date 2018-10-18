@@ -11,19 +11,18 @@ using UserApplication.Models;
 
 namespace UserApplication.Controllers
 {
-    public class SuperAdminController : Controller
+    public class AdminController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        /// <summary>
-        /// GET: Get all users except Super Admin
+         /// <summary>
+        /// GET: Get all Users Expect Super Admin and Admin
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllUsers()
         {
-            var returnedUserList = db.Users.Where(x => x.RoleId != 1).ToList();
+            var returnedUserList = db.Users.Where(x => x.RoleId != 1 && x.RoleId !=2).ToList();
             return View(returnedUserList);
         }
-
         /// <summary>
         /// GET: To Show the details of the user
         /// </summary>
@@ -53,7 +52,7 @@ namespace UserApplication.Controllers
                 objUserViewModel.Hobbies = user.Hobbies;
                 objUserViewModel.Email = user.Email;
                 objUserViewModel.Password = user.Password;
-               objUserViewModel.DOB = user.DOB;
+                objUserViewModel.DOB = user.DOB;
                 objUserViewModel.RoleId = user.RoleId;
                 objUserViewModel.CourseId = user.CourseId;
                 objUserViewModel.AddressId = user.AddressId;
@@ -180,20 +179,12 @@ namespace UserApplication.Controllers
 
             }
         }
-
-
-
-
-
-
-
-
-            /// <summary>
-            ///  GET: To Edit User Record
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
-            public ActionResult EditUser(int id)
+        /// <summary>
+        ///  GET: To Edit User Record
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult EditUser(int id)
         {
             // Code to show Roles in DropDown
             List<Role> roleList = GetRoles();
@@ -243,6 +234,7 @@ namespace UserApplication.Controllers
             return View(objUserViewModel);
         }
 
+
         /// <summary>
         ///  To Edit User Record
         /// </summary>
@@ -260,8 +252,8 @@ namespace UserApplication.Controllers
             ViewBag.Course = objCourseList;
             List<Country> countryList = db.Countries.ToList();
             ViewBag.CountryList = new SelectList(countryList, "CountryId", "CountryName");
-           
-            
+
+
             try
             {
                 User objUser = db.Users.Find(id);
@@ -387,12 +379,12 @@ namespace UserApplication.Controllers
         {
             using (var db = new ApplicationDbContext())
             {
-                // condition not to Display SuperAdmin
-                var roleList = db.Roles.Where(x => x.RoleId != 1);
+                // condition not to Display SuperAdmin and Admin
+                var roleList = db.Roles.Where(x => x.RoleId != 1 && x.RoleId !=2);
                 return roleList.ToList();
             }
         }
-        
+
 
 
 
@@ -464,20 +456,12 @@ namespace UserApplication.Controllers
             return Json(cityList, JsonRequestBehavior.AllowGet);
         }
 
+
+
+
+
+
+
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      

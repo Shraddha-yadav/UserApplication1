@@ -22,7 +22,7 @@ namespace UserApplication.Models
         [MaxLength(50)]
         public string LastName { get; set; }
 
-       [Required(ErrorMessage = "Please enter your gender.")]
+       //[Required(ErrorMessage = "Please enter your gender.")]
         public string Gender { get; set; }
 
         [Display(Name = "Date of Birth")]
@@ -30,14 +30,14 @@ namespace UserApplication.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DOB { get; set; }
 
-      [Required(ErrorMessage = "Enter your hobbies.")]
+    //  [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
        [Required(ErrorMessage = "Enter your email address.")]
       [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-       [Required(ErrorMessage = "Your email address is not verified.")]
+     //  [Required(ErrorMessage = "Your email address is not verified.")]
         public string IsEmailVerified { get; set; }
 
         [Required(ErrorMessage = "Enter a password.")]
@@ -49,7 +49,7 @@ namespace UserApplication.Models
         public string ConfirmPassword { get; set; }
 
 
-       [Required(ErrorMessage = "Your account is inactive.")]
+      // [Required(ErrorMessage = "Your account is inactive.")]
         public bool IsActive { get; set; }
 
         [DisplayName("Course")]
@@ -58,25 +58,25 @@ namespace UserApplication.Models
         [DisplayName("Address")]
         public int AddressId { get; set; }
 
-        [Required(ErrorMessage = "Enter your permanent address")]
+        //[Required(ErrorMessage = "Enter your permanent address")]
         [DisplayName("Permanent Address")]
         public string AddressLine1 { get; set; }
 
 
-        [Required(ErrorMessage = "Enter your current address")]
+        //[Required(ErrorMessage = "Enter your current address")]
         [DisplayName("Temporary Address")]
         public string AddressLine2 { get; set; }
 
         [DisplayName("Zip code")]
-        [Required(ErrorMessage = "Please enter Zipcode")]
+        //[Required(ErrorMessage = "Please enter Zipcode")]
         public int Zipcode { get; set; }
 
 
 
-        [Required(ErrorMessage = "Enter date created.")]
+        //[Required(ErrorMessage = "Enter date created.")]
         public DateTime DateCreated { get; set; }
 
-       [Required(ErrorMessage = "Enter date modified.")]
+       //[Required(ErrorMessage = "Enter date modified.")]
         public DateTime DateModified { get; set; }
 
        [DisplayName("Role")]
