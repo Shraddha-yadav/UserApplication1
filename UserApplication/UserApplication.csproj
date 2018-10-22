@@ -17,7 +17,7 @@
     <AssemblyName>UserApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -167,6 +168,7 @@
       <DependentUpon>201810171226590_RecordsMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SearchRecord.cs" />
     <Compile Include="Models\SubjectInCourse.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,7 +182,6 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\TeacherInSubject.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserGridTable.cs" />
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,7 +267,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\SuperAdmin\UserDetails.cshtml" />
     <Content Include="Views\SuperAdmin\DeleteUser.cshtml" />
     <Content Include="Views\SuperAdmin\EditUser.cshtml" />
@@ -284,9 +284,12 @@
     <Content Include="Views\Student\TeachersSubject.cshtml" />
     <Content Include="Views\Student\SubjectsInCourse.cshtml" />
     <Content Include="Views\Student\StudentCourse.cshtml" />
+    <Content Include="Views\Search\SearchRecord.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SearchRecord\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -323,7 +326,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58448</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58448/</IISUrl>
+          <IISUrl>http://localhost/UserApplication</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

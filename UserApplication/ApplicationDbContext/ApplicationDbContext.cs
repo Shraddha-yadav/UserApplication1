@@ -27,5 +27,7 @@ namespace UserApplication.Models
         public virtual DbSet<Subject> Subjects { get; set; }
 
         public System.Data.Entity.DbSet<UserApplication.Models.UserViewModel> UserViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<UserApplication.Models.SearchRecord> SearchRecords { get; set; }
     }
 }

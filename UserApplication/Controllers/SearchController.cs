@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,27 +7,27 @@ using UserApplication.Models;
 
 namespace UserApplication.Controllers
 {
-
-    public class UserController : Controller
+    public class SearchController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        /// <summary>
-        /// GET:show Registration form to New User
-        /// </summary>
-        /// <returns></returns>
+        // GET: SearchRecord
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
-        public ActionResult Registration()
+        public ActionResult SearchRecord()
         {
             //Creating object of UserViewModel
-            UserViewModel model = new UserViewModel();
-           
-          
+            SearchRecord model = new SearchRecord();
+
             List<Country> countryList = new List<Country>();
             List<State> stateList = new List<State>();
             List<City> cityList = new List<City>();
             List<Course> courseList = new List<Course>();
             List<Role> roleList = new List<Role>();
-           
+
             var tempcountryList = db.Countries.ToList();
             var tempstateList = db.States.ToList();
             var tempcityList = db.Cities.ToList();
@@ -44,18 +41,13 @@ namespace UserApplication.Controllers
             model.Roles = tempRoleList;
             return View(model);
         }
-
-        /// <summary>
-        /// To post the values of the registration form to the database.
-        /// </summary>
-        /// <param name="objUserViewModel"></param>
-        /// <returns></returns>
         [HttpPost]
-        public ActionResult Registration(UserViewModel objUserViewModel)
+        public ActionResult SearchRecord(SearchRecord objSearchRecord)
         {
+
             if (!ModelState.IsValid)
             {
-                return View(objUserViewModel);
+                return View(objSearchRecord);
             }
             using (var transaction = db.Database.BeginTransaction())
             {
@@ -63,37 +55,37 @@ namespace UserApplication.Controllers
                 {//Raw data sent to address table.
                     Address objAddress = new Address
                     {
-                        AddressLine1 = objUserViewModel.AddressLine1,
-                        AddressLine2 = objUserViewModel.AddressLine2,
-                        CityId = objUserViewModel.CityId,
-                        CountryId = objUserViewModel.CountryId,
-                        Zipcode = objUserViewModel.Zipcode,
-                        StateId = objUserViewModel.StateId,
+                        AddressLine1 = objSearchRecord.AddressLine1,
+                        AddressLine2 = objSearchRecord.AddressLine2,
+                        CityId = objSearchRecord.CityId,
+                        CountryId = objSearchRecord.CountryId,
+                        Zipcode = objSearchRecord.Zipcode,
+                        StateId = objSearchRecord.StateId,
 
                     };
 
                     db.Addresses.Add(objAddress);
                     db.SaveChanges();
                     //Raw data sent for IsEmailVerified property through ViewModel object.
-                    objUserViewModel.IsEmailVerified = "Yes";
+                    objSearchRecord.IsEmailVerified = "Yes";
                     //try to insert user details of registration form in User table of database.
                     User objUser = new User
                     {
-                        UserId = objUserViewModel.UserId,
-                        FirstName = objUserViewModel.FirstName,
-                        LastName = objUserViewModel.LastName,
-                        Gender = objUserViewModel.Gender,
-                        DOB = objUserViewModel.DOB,
-                        Hobbies = objUserViewModel.Hobbies,
-                        Email = objUserViewModel.Email,
-                        IsEmailVerified = objUserViewModel.IsEmailVerified,
-                        Password = objUserViewModel.Password,
-                        ConfirmPassword = objUserViewModel.ConfirmPassword,
+                        UserId = objSearchRecord.UserId,
+                        FirstName = objSearchRecord.FirstName,
+                        LastName = objSearchRecord.LastName,
+                        Gender = objSearchRecord.Gender,
+                        DOB = objSearchRecord.DOB,
+                        Hobbies = objSearchRecord.Hobbies,
+                        Email = objSearchRecord.Email,
+                        IsEmailVerified = objSearchRecord.IsEmailVerified,
+                        Password = objSearchRecord.Password,
+                        ConfirmPassword = objSearchRecord.ConfirmPassword,
                         //AddressLine1 = objUserViewModel.AddressLine1,
                         //AddressLine2 = objUserViewModel.AddressLine2,
-                        IsActive = objUserViewModel.IsActive,
-                        CourseId = objUserViewModel.CourseId,
-                        RoleId = objUserViewModel.RoleId,
+                        IsActive = objSearchRecord.IsActive,
+                        CourseId = objSearchRecord.CourseId,
+                        RoleId = objSearchRecord.RoleId,
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
                         DateCreated = DateTime.Now,
@@ -107,7 +99,7 @@ namespace UserApplication.Controllers
                     //RoleId for the respective UserId gets saved in database.
                     UserInRole objUserInRole = new UserInRole
                     {
-                        RoleId = objUserViewModel.RoleId,
+                        RoleId = objSearchRecord.RoleId,
                         UserId = objUser.UserId
                     };
                     db.UserInRoles.Add(objUserInRole);
@@ -115,7 +107,7 @@ namespace UserApplication.Controllers
                     //Everything looks fine,so save the data permanently.
                     transaction.Commit();
 
-                    ViewBag.ResultMessage = objUserViewModel.FirstName + "" + objUserViewModel.LastName + "" + "is successfully registered.";
+                    ViewBag.ResultMessage = objSearchRecord.FirstName + "" + objSearchRecord.LastName + "" + "is successfully registered.";
                     ModelState.Clear();
                 }
                 catch (Exception ex)
@@ -130,9 +122,6 @@ namespace UserApplication.Controllers
             return RedirectToAction("Login", "User");
 
         }
-
-
-
         public JsonResult getState(int Id)
         {
             var states = db.States.Where(x => x.CountryId == Id).ToList();
@@ -164,52 +153,5 @@ namespace UserApplication.Controllers
             }
             return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
         }
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Login(User user)
-        {
-            //var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-            //if (LoginDetails != null)
-            //    if (LoginDetails.RoleId == 1)
-            //    {
-            //        return RedirectToAction("GetAllUsers", "SuperAdmin");
-            //    }
-            var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-                      if (LoginDetails != null)
-                if (LoginDetails.RoleId == 1)
-                {
-                    return RedirectToAction("GetAllUsers", "SuperAdmin");
-                }
-                else if (LoginDetails.RoleId == 2)
-                {
-                    return RedirectToAction("GetAllUsers", "Admin");
-                }
-                else if (LoginDetails.RoleId == 3)
-                {
-                    return RedirectToAction("GetStudentList", "Teacher");
-                }
-                //else
-                //{
-                //    return RedirectToAction("TeachersCourse", "Student");
-                //}
-
-            return View("Login");
-        }
-        public ActionResult LogOut()
-        {
-            return RedirectToAction("Login");
-        }
-      
-
-
     }
 }
-
-
-
-
-
