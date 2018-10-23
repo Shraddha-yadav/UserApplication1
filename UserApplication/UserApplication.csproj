@@ -193,6 +193,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\schoolimage1.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -221,6 +222,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\theme %281%29.zip" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -286,9 +288,12 @@
     <Content Include="Views\Student\StudentCourse.cshtml" />
     <Content Include="Views\Search\SearchRecord.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Shared\_LogoutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Content\style.css\" />
     <Folder Include="Views\SearchRecord\" />
   </ItemGroup>
   <ItemGroup>

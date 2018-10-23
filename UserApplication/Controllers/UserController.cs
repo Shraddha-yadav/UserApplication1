@@ -26,22 +26,22 @@ namespace UserApplication.Controllers
            
           
             List<Country> countryList = new List<Country>();
-            List<State> stateList = new List<State>();
-            List<City> cityList = new List<City>();
+           List<State> stateList = new List<State>();
+           List<City> cityList = new List<City>();
             List<Course> courseList = new List<Course>();
             List<Role> roleList = new List<Role>();
            
             var tempcountryList = db.Countries.ToList();
-            var tempstateList = db.States.ToList();
-            var tempcityList = db.Cities.ToList();
+           var tempstateList = db.States.ToList();
+           var tempcityList = db.Cities.ToList();
             var tempCourseList = db.Courses.ToList();
             var tempRoleList = db.Roles.ToList();
 
             model.Countries = tempcountryList;
-            model.States = tempstateList;
-            model.Cities = tempcityList;
-            model.Courses = tempCourseList;
-            model.Roles = tempRoleList;
+           model.States = tempstateList;
+           model.Cities = tempcityList;
+           model.Courses = tempCourseList;
+           model.Roles = tempRoleList;
             return View(model);
         }
 
@@ -130,9 +130,6 @@ namespace UserApplication.Controllers
             return RedirectToAction("Login", "User");
 
         }
-
-
-
         public JsonResult getState(int Id)
         {
             var states = db.States.Where(x => x.CountryId == Id).ToList();
@@ -164,6 +161,44 @@ namespace UserApplication.Controllers
             }
             return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
         }
+
+
+
+
+
+
+        //public JsonResult getState(int Id)
+        //{
+        //    var states = db.States.Where(x => x.CountryId == Id).ToList();
+        //    List<SelectListItem> stateList = new List<SelectListItem>();
+
+        //    stateList.Add(new SelectListItem { Text = "", Value = "0" });
+        //    if (states != null)
+        //    {
+        //        foreach (var x in states)
+        //        {
+        //            stateList.Add(new SelectListItem { Text = x.StateName, Value = x.StateId.ToString() });
+
+        //        }
+        //    }
+        //    return Json(new SelectList(stateList, "Value", "Text", JsonRequestBehavior.AllowGet));
+        //}
+
+        //public JsonResult getCity(int id)
+        //{
+        //    var cities = db.Cities.Where(x => x.StateId == id).ToList();
+        //    List<SelectListItem> cityList = new List<SelectListItem>();
+        //    cityList.Add(new SelectListItem { Text = "", Value = "0" });
+        //    if (cities != null)
+        //    {
+        //        foreach (var x in cities)
+        //        {
+        //            cityList.Add(new SelectListItem { Text = x.CityName, Value = x.CityId.ToString() });
+        //        }
+        //    }
+        //    return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
+        //}
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -172,12 +207,7 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            //var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-            //if (LoginDetails != null)
-            //    if (LoginDetails.RoleId == 1)
-            //    {
-            //        return RedirectToAction("GetAllUsers", "SuperAdmin");
-            //    }
+            
             var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
                       if (LoginDetails != null)
                 if (LoginDetails.RoleId == 1)
@@ -192,10 +222,10 @@ namespace UserApplication.Controllers
                 {
                     return RedirectToAction("GetStudentList", "Teacher");
                 }
-                //else
-                //{
-                //    return RedirectToAction("TeachersCourse", "Student");
-                //}
+                else
+                {
+                   return RedirectToAction("TeachersCourse", "Student");
+               }
 
             return View("Login");
         }

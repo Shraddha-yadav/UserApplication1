@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
 <script src="~/Script/jquery-1.7.1.min.js"></script>
 <script>
@@ -233,7 +234,7 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.StateId, "StateName", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.StateId, "State", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select id="state" name="StateId" class="form-control">--Select--</select>
         </div>
@@ -241,7 +242,7 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CityId, "CityName", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.CityId, "City", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select id="city" name="CityId" class="form-control">--Select--</select>
         </div>
@@ -284,7 +285,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "GetAllUsers")
 </div>
 
 @section Scripts {

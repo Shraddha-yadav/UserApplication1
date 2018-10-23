@@ -23,6 +23,23 @@ namespace UserApplication.Controllers
             var returnedUserList = db.Users.Where(x => x.RoleId != 1).ToList();
             return View(returnedUserList);
         }
+        [HttpPost]
+        public ActionResult GetAllUsers(int no =4)
+        {
+            List<SelectListItem> Role = new List<SelectListItem>();
+            Role.Add(new SelectListItem() { Text = "1", Value = "SuperAdmin" });
+            Role.Add(new SelectListItem() { Text = "2", Value = "Admin" });
+            Role.Add(new SelectListItem() { Text = "3", Value = "Teacher" });
+            Role.Add(new SelectListItem() { Text = "4", Value = "Student" });
+            
+            var ddl = from n in Role
+                      select n.Text;
+            ViewBag.No = ddl;
+            ApplicationDbContext entities = new ApplicationDbContext();
+            var roles = (from e in entities.Users
+                            select e).Take(no);
+            return View(roles);
+        }
 
         /// <summary>
         /// GET: To Show the details of the user
