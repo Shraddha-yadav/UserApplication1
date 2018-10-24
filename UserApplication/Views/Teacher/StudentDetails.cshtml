@@ -1,8 +1,8 @@
-﻿@model UserApplication.Models.UserViewModel
+﻿
+@model UserApplication.Models.UserViewModel
 
 @{
     ViewBag.Title = "StudentDetails";
-    Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
 
 <h2>StudentDetails</h2>
@@ -59,15 +59,15 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.IsEmailVerified)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.IsEmailVerified)
-        </dd>
+        </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Password)
         </dt>
 
@@ -81,7 +81,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.ConfirmPassword)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
@@ -99,13 +99,13 @@
             @Html.DisplayFor(model => model.CourseId)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.AddressId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AddressId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.AddressLine1)
@@ -131,7 +131,7 @@
             @Html.DisplayFor(model => model.Zipcode)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
 
@@ -161,7 +161,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.RoleName)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.CountryId)

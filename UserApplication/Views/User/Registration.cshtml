@@ -2,15 +2,16 @@
 @{
     ViewBag.Title = "Registration";
 }
-@*<link href="~/Content/Site.css" rel="stylesheet" />
-<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">*@
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
 
     <h2>Registration</h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+    <div class="form-horizontal">
+        <div style="background-color:gray">
 
             <h4>User Registration Form</h4>
             <hr />
@@ -23,7 +24,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-">
                     @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
@@ -107,52 +108,73 @@
                     @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
 
-
-            @*get country dropdown*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.CountryId, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
                     @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
                {
                    Value = item.CountryId.ToString(),
                    Text = item.CountryName.ToString()
 
-               }),new {@class="control-label col-md-2",@id="ddlCountry" })
+               }))
                     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-
-
                 </div>
             </div>
 
-            @*get state dropdown*@
+
             <div class="form-group">
-                @Html.LabelFor(model => model.StateId, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.StateId, Model.States.Select(item => new SelectListItem
-               {
-                   Value = item.StateId.ToString(),
-                   Text = item.StateName.ToString()
+                {
+                    Value = item.StateId.ToString(),
+                    Text = item.StateName.ToString()
 
-               }), new { @class = "control-label col-md-2", @id = "ddlStateData" })
+                }))
                     @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
-
-
                 </div>
             </div>
-            @*get city dropdown*@
+
             <div class="form-group">
-                @Html.LabelFor(model => model.CityId, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.CityId, Model.Cities.Select(item => new SelectListItem
-               {
-                   Value = item.CityId.ToString(),
-                   Text = item.CityName.ToString()
+                 {
+                     Value = item.CityId.ToString(),
+                     Text = item.CityName.ToString()
 
-               }), new { @class = "control-label col-md-2", @id = "ddlCity" })
+                 }))
                     @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.RoleId, Model.Roles.Select(item => new SelectListItem
+               {
+                   Value = item.RoleId.ToString(),
+                   Text = item.RoleName.ToString()
+
+               }))
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
 
 
+                        @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
+                   {
+                       Value = item.CourseId.ToString(),
+                       Text = item.CourseName.ToString()
+
+                   }))
+                        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
@@ -167,38 +189,6 @@
             </div>
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-
-
-
-                    @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
-                    {
-                    Value = item.CourseId.ToString(),
-                    Text = item.CourseName.ToString()
-
-                    }))
-
-                    @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
-
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-
-                    @Html.DropDownListFor(model => model.RoleId,Model.Roles.Select(item => new SelectListItem
-                    {
-                    Value = item.RoleId.ToString(),
-                    Text = item.RoleName.ToString()
-
-                    }))
-                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
 
 
@@ -211,21 +201,22 @@
                 </div>
             </div>
         </div>
-    }
-    @*</div>*@
+        </div>
+        }
+        </div>
 
-    <div>
-        @*@Html.Partial("_BackToListButtonPartial")*@
-    </div>
+        <div>
+            @*@Html.Partial("_BackToListButtonPartial")*@
+        </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
 
-    @*Jquery code for dropdown calling*@
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        @*Jquery code for dropdown calling*@
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
     $(document).ready(function () {
         jQuery("#ddlStateData").empty();
@@ -294,7 +285,7 @@
                 return false;
             });
 
-    </script>
+        </script>
 
 
 

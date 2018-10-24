@@ -1,6 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
+    <title>CSS Gradients</title>
+    <style>
+        #main {
+            height: 200px;
+            background-color: rebeccapurple;
+            background-image: repeating-linear-gradient(#090, #fff 10%, #2a4f32 20%);
+        }
+
+        .gfg {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            padding-top: 80px;
+        }
+
+        .geeks {
+            font-size: 17px;
+            text-align: center;
+        }
+    </style>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -11,7 +33,10 @@
 </head>
 <body>
 
-    
+    <div id="main">
+        <div class="gfg">Shishukunj International</div>
+        <div class="geeks">Portal which Defines Us.....</div>
+    </div>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -39,7 +64,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My School Application</p>
         </footer>
     </div>
 

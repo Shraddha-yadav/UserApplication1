@@ -23,24 +23,7 @@ namespace UserApplication.Controllers
             var returnedUserList = db.Users.Where(x => x.RoleId != 1).ToList();
             return View(returnedUserList);
         }
-        [HttpPost]
-        public ActionResult GetAllUsers(int no =4)
-        {
-            List<SelectListItem> Role = new List<SelectListItem>();
-            Role.Add(new SelectListItem() { Text = "1", Value = "SuperAdmin" });
-            Role.Add(new SelectListItem() { Text = "2", Value = "Admin" });
-            Role.Add(new SelectListItem() { Text = "3", Value = "Teacher" });
-            Role.Add(new SelectListItem() { Text = "4", Value = "Student" });
-            
-            var ddl = from n in Role
-                      select n.Text;
-            ViewBag.No = ddl;
-            ApplicationDbContext entities = new ApplicationDbContext();
-            var roles = (from e in entities.Users
-                            select e).Take(no);
-            return View(roles);
-        }
-
+        
         /// <summary>
         /// GET: To Show the details of the user
         /// </summary>
@@ -119,15 +102,14 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel objUserModel)
         {
-            // Code to show Roles in DropDown
-            List<Role> roleList = GetRoles();
-            ViewBag.RoleList = new SelectList(roleList, "RoleId", "RoleName");
-            // Code to show Courses in DropDown
-            List<Course> courseList = db.Courses.ToList();
-            ViewBag.CourseList = new SelectList(courseList, "CourseId", "CourseName");
-            // Code to show Countries in DropDown
+            List<Role> objRoleList = GetRoles();
+            ViewBag.Role = new SelectList(db.Users.ToList(), "RoleId", "RoleName");
+            List<Course> objCourseList = db.Courses.ToList();
+            ViewBag.Course = objCourseList;
             List<Country> countryList = db.Countries.ToList();
             ViewBag.CountryList = new SelectList(countryList, "CountryId", "CountryName");
+
+
 
             //objUserModel.UserId = 1;
             //objUserModel.AddressId = 1;
@@ -277,8 +259,18 @@ namespace UserApplication.Controllers
             ViewBag.Course = objCourseList;
             List<Country> countryList = db.Countries.ToList();
             ViewBag.CountryList = new SelectList(countryList, "CountryId", "CountryName");
-           
-            
+
+            //Code to show Roles in DropDown
+            //List<Role> roleList = GetRoles();
+            //ViewBag.RoleList = new SelectList(roleList, "RoleId", "RoleName");
+            //Code to show Courses in DropDown
+            //List<Course> courseList = db.Courses.ToList();
+            //ViewBag.CourseList = new SelectList(courseList, "CourseId", "CourseName");
+            //Code to show Countries in DropDown
+            //List<Country> countryList = db.Countries.ToList();
+            //ViewBag.CountryList = new SelectList(countryList, "CountryId", "CountryName");
+
+
             try
             {
                 User objUser = db.Users.Find(id);
@@ -300,13 +292,14 @@ namespace UserApplication.Controllers
                     objUser.RoleId = objUserViewModel.RoleId;
                     objUser.Address.AddressLine1 = objUserViewModel.AddressLine1;
                     objUser.Address.AddressLine2 = objUserViewModel.AddressLine2;
-                    objUser.Address.CountryId = objUserViewModel.CountryId;
-                    objUser.Address.StateId = objUserViewModel.StateId;
-                    objUser.Address.CityId = objUserViewModel.CityId;
+                    //objUser.Address.CountryId = objUserViewModel.CountryId;
+                    //objUser.Address.StateId = objUserViewModel.StateId;
+                    //objUser.Address.CityId = objUserViewModel.CityId;
                     objUser.Address.Zipcode = objUserViewModel.Zipcode;
                     objUser.IsActive = objUserViewModel.IsActive;
                     objUser.DateModified = DateTime.Now;
 
+                    
                     db.SaveChanges();  //User Data is saved in the user table
 
                     return RedirectToAction("GetAllUsers");

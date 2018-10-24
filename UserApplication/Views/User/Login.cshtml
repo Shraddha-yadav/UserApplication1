@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Login";
 }
-@*<link href="~/Content/Site.css" rel="stylesheet" />
-<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">*@
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
     <h2>Login</h2>
+
 
     @using (Html.BeginForm())
     {
@@ -13,7 +14,9 @@
 
 
 
-        <div class="form-horizontal">
+    <div class="form-horizontal">
+        <div style="background-color:plum">
+
             @*<h4>UserViewModel</h4>*@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -39,21 +42,21 @@
                 </div>
             </div>
 
+            
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+
+                <input type="checkbox" checked="checked"> Remember me
+                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
 
-
-
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-default" />
-                </div>
             </div>
         </div>
-
-    }
-@*</div>*@
+    </div>
+        </div>
+        }
+    </div>
 <div>
     @*@Html.ActionLink("Back to List", "Index")*@
 </div>

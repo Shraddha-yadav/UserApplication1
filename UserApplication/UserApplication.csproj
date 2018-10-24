@@ -276,11 +276,9 @@
     <Content Include="Views\SuperAdmin\GetAllUsers.cshtml" />
     <Content Include="Views\Admin\GetAllUsers.cshtml" />
     <Content Include="Views\Admin\UserDetails.cshtml" />
-    <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Admin\DeleteUser.cshtml" />
     <Content Include="Views\Teacher\GetStudentList.cshtml" />
-    <Content Include="Views\Teacher\StudentDetails.cshtml" />
     <Content Include="Views\Teacher\StudentCourse.cshtml" />
     <Content Include="Views\Student\TeachersCourse.cshtml" />
     <Content Include="Views\Student\TeachersSubject.cshtml" />
@@ -289,6 +287,9 @@
     <Content Include="Views\Search\SearchRecord.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_LogoutPage.cshtml" />
+    <Content Include="Views\Shared\_loginProfile.cshtml" />
+    <Content Include="Views\Teacher\StudentDetails.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
