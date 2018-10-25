@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using UserApplication.fonts;
 using UserApplication.Models;
 
 namespace UserApplication.Controllers
@@ -14,13 +15,13 @@ namespace UserApplication.Controllers
     public class AdminController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-         /// <summary>
+        /// <summary>
         /// GET: Get all Users Expect Super Admin and Admin
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllUsers()
         {
-            var returnedUserList = db.Users.Where(x => x.RoleId != 1 && x.RoleId !=2).ToList();
+            var returnedUserList = db.Users.Where(x => x.RoleId != 1 && x.RoleId != 2).ToList();
             return View(returnedUserList);
         }
         /// <summary>
@@ -94,7 +95,7 @@ namespace UserApplication.Controllers
             var tempStateList = db.States.ToList();
             var tempCityList = db.Cities.ToList();
             var tempCourseList = db.Courses.ToList();
-            var tempRoleList = db.Roles.ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2).ToList();
 
             model.Countries = tempCountryList;
             model.States = tempStateList;
@@ -193,38 +194,73 @@ namespace UserApplication.Controllers
 
         }
 
-        public JsonResult getState(int Id)
+
+
+
+
+
+        public JsonResult GetStates(int CountryId)
         {
-            var states = db.States.Where(x => x.CountryId == Id).ToList();
-            List<SelectListItem> stateList = new List<SelectListItem>();
-
-            stateList.Add(new SelectListItem { Text = "", Value = "0" });
-            if (states != null)
+            //State dropdown
+            List<State> stateslist = new List<State>();
+            try
             {
-                foreach (var x in states)
-                {
-                    stateList.Add(new SelectListItem { Text = x.StateName, Value = x.StateId.ToString() });
+                //data from db is filled in the data variable which is in the form of list
+                var newTemp = db.States.Where(val => val.CountryId == CountryId).Select(val => new { val.StateName, val.StateId }).ToList();
 
+                //using loop putting each value in the countriesList
+                foreach (var item in newTemp)
+                {
+                    State testState = new State
+                    {
+                        StateId = Convert.ToInt32(item.StateId),
+                        StateName = item.StateName.ToString()
+                    };
+                    stateslist.Add(testState);
                 }
+
             }
-            return Json(new SelectList(stateList, "Value", "Text", JsonRequestBehavior.AllowGet));
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception source: {0}", ex.Source);
+            }
+            return Json(stateslist, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult getCity(int id)
+
+
+        /// <summary>
+        /// this for binding as well as get list of selected cities
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
+        public JsonResult GetCities(int StateId)
         {
-            var cities = db.Cities.Where(x => x.StateId == id).ToList();
-            List<SelectListItem> cityList = new List<SelectListItem>();
-            cityList.Add(new SelectListItem { Text = "", Value = "0" });
-            if (cities != null)
+            //City dropdown
+            List<City> citieslist = new List<City>();
+            try
             {
-                foreach (var x in cities)
+                //data from db is filled in the data variable which is in the form of list
+                var newTemp = db.Cities.Where(val => val.StateId == StateId).Select(val => new { val.CityName, val.CityId }).ToList();
+
+                //using loop putting each value in the countriesList
+                foreach (var item in newTemp)
                 {
-                    cityList.Add(new SelectListItem { Text = x.CityName, Value = x.CityId.ToString() });
+                    City testCity = new City
+                    {
+                        CityId = Convert.ToInt32(item.CityId),
+                        CityName = item.CityName.ToString()
+                    };
+                    citieslist.Add(testCity);
                 }
             }
-            return Json(new SelectList(cityList, "Value", "Text", JsonRequestBehavior.AllowGet));
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception source: {0}", ex.Source);
+            }
 
+            return Json(citieslist, JsonRequestBehavior.AllowGet);
+        }
 
 
         /// <summary>
@@ -250,11 +286,10 @@ namespace UserApplication.Controllers
             var tempCourseList = db.Courses.ToList();
             var tempRoleList = db.Roles.ToList();
 
-            model.Countries = tempCountryList;
-            model.States = tempStateList;
-            model.Cities = tempCityList;
-            model.Courses = tempCourseList;
-            model.Roles = tempRoleList;
+            // model.States = tempStateList;
+            //  model.Cities = tempCityList;
+            //   model.Courses = tempCourseList;
+            //   model.Roles = tempRoleList;
 
 
 
@@ -271,24 +306,34 @@ namespace UserApplication.Controllers
 
 
             UserViewModel objUserViewModel = new UserViewModel();
+            objUserViewModel.UserId = objUser.UserId;
             objUserViewModel.FirstName = objUser.FirstName;
             objUserViewModel.LastName = objUser.LastName;
             objUserViewModel.Gender = objUser.Gender;
             objUserViewModel.Hobbies = objUser.Hobbies;
             objUserViewModel.Email = objUser.Email;
             objUserViewModel.Password = objUser.Password;
+            objUserViewModel.ConfirmPassword = objUser.ConfirmPassword;
+            objUserViewModel.IsEmailVerified = objUser.IsEmailVerified;
             objUserViewModel.DOB = objUser.DOB;
             objUserViewModel.RoleId = objUser.RoleId;
             objUserViewModel.CourseId = objUser.CourseId;
+            objUserViewModel.AddressId = objUser.AddressId;
             objUserViewModel.IsActive = objUser.IsActive;
-            objUserViewModel.DateCreated = objUser.DateCreated;
-            objUserViewModel.DateModified = objUser.DateModified;
+            //objUserViewModel.DateCreated = objUser.DateCreated;
+            objUser.DateModified = DateTime.Now;
             objUserViewModel.AddressLine1 = objUser.Address.AddressLine1;
             objUserViewModel.AddressLine2 = objUser.Address.AddressLine2;
             objUserViewModel.CountryId = objUser.Address.CountryId;
             objUserViewModel.StateId = objUser.Address.StateId;
             objUserViewModel.CityId = objUser.Address.CityId;
             objUserViewModel.Zipcode = objUser.Address.Zipcode;
+            objUserViewModel.States = tempStateList;
+            objUserViewModel.Cities = tempCityList;
+            objUserViewModel.Courses = tempCourseList;
+            objUserViewModel.Roles = tempRoleList;
+
+            objUserViewModel.Countries = tempCountryList;
 
             if (objUser == null)
             {
@@ -396,12 +441,6 @@ namespace UserApplication.Controllers
             return View(objUserViewModel);
 
         }
-        /// <summary>
-        ///  POST Method: To Delete User from User table
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="collection"></param>
-        /// <returns></returns>
 
         [HttpPost]
         public ActionResult DeleteUser(int id)
@@ -410,12 +449,24 @@ namespace UserApplication.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    User objUser = db.Users.Find(id);
-                    db.Users.Remove(objUser);
-                    db.SaveChanges();
-                }
 
+                    UserInRole objUserInRole = db.UserInRoles.Where(m => m.UserId == id).FirstOrDefault();
+                    User objUser = db.Users.Where(m => m.UserId == id).FirstOrDefault();
+                    Address objAddress = db.Addresses.Where(m => m.AddressId == objUser.AddressId).FirstOrDefault();
+
+                    //To remove address of user from address table
+                    db.Addresses.Remove(objAddress);
+                    //To Remove User from User Table
+                    db.Users.Remove(objUser);
+
+                    // To remove User from UserInRole table.
+                    db.UserInRoles.Remove(objUserInRole);
+
+                    db.SaveChanges();
+
+                }
                 return RedirectToAction("GetAllUsers");
+
             }
             catch (Exception ex)
             {
@@ -424,97 +475,155 @@ namespace UserApplication.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult CreateCourse()
+        {
+            return View();
+        }
         /// <summary>
-        /// Function to get list of Roles
+        /// POST : Admin can create course
+        /// </summary>
+        /// <param name="objCourse"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CreateCourse(Course objCourse)
+        {
+            db.Courses.Add(objCourse);      //Insert data 
+            db.SaveChanges();               //Save data
+
+            return RedirectToAction("CourseList");
+        }
+        /// <summary>
+        /// GET : Super Admin can create subject
         /// </summary>
         /// <returns></returns>
-        public static List<Role> GetRoles()
+        [HttpGet]
+        public ActionResult CreateSubject()
         {
-            using (var db = new ApplicationDbContext())
+            return View();
+        }
+        /// <summary>
+        /// POST: Super Admin can create subject
+        /// </summary>
+        /// <param name="objSubject"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CreateSubject(Subject objSubject)
+        {
+            db.Subjects.Add(objSubject);
+            db.SaveChanges();
+
+            return RedirectToAction("SubjectList");
+        }
+        /// <summary>
+        /// GET: Super Admin can assign subject to course
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult AssignSubjectForCourse()
+        {
+            List<Course> List = db.Courses.ToList();
+            ViewBag.CourseList = new SelectList(List, "CourseId", "CourseName");
+
+            List<Subject> Lists = db.Subjects.ToList();
+            ViewBag.SubjectList = new SelectList(Lists, "SubjectId", "SubjectName");
+
+            return View();
+        }
+        /// <summary>
+        /// POST:Super Admin can assign subject to course
+        /// </summary>
+        /// <param name="objSubjectInCourse"></param>
+        /// <returns></returns>           
+        [HttpPost]
+        public ActionResult AssignSubjectForCourse(SubjectInCourse objSubjectInCourse)
+        {
+            List<Course> List = db.Courses.ToList();
+            ViewBag.CourseList = new SelectList(List, "CourseId", "CourseName", objSubjectInCourse.CourseId);
+
+            List<Subject> Lists = db.Subjects.ToList();
+            ViewBag.SubjectList = new SelectList(Lists, "SubjectId", "SubjectName", objSubjectInCourse.SubjectId);
+
+            db.SubjectsInCourses.Add(objSubjectInCourse);
+            db.SaveChanges();
+
+
+            //return View(objSubjectInCourse);
+            return RedirectToAction("CourseAndSubjectList");
+        }
+        public ActionResult CourseList()
+        {
+            var listOfCourse = db.Courses.ToList();
+            return View(listOfCourse);
+        }
+        public ActionResult SubjectList()
+        {
+            var listOfSubject = db.Subjects.ToList();
+            return View(listOfSubject);
+        }
+        [HttpGet]
+        public ActionResult DeleteCourse(int id)
+        {
+            var removeCourse = db.Courses.Single(x => x.CourseId == id);
+
+            return View(removeCourse);
+        }
+        [HttpPost]
+        public ActionResult DeleteCourse(int id, Course objCourse)
+        {
+            try
             {
-                // condition not to Display SuperAdmin and Admin
-                var roleList = db.Roles.Where(x => x.RoleId != 1 && x.RoleId != 2);
-                return roleList.ToList();
+                // TODO: Add delete logic here
+                var deleteCourse = db.Courses.Single(x => x.CourseId == id);
+                db.Courses.Remove(deleteCourse);
+
+                db.SaveChanges();
+
+                return RedirectToAction("CourseList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult DeleteSubject(int id)
+        {
+            var removeSubject = db.Subjects.Single(x => x.SubjectId == id);
+
+            return View(removeSubject);
+        }
+        [HttpPost]
+        public ActionResult DeleteSubject(int id, Subject objSubject)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                var deleteSubject = db.Subjects.Single(x => x.SubjectId == id);
+                db.Subjects.Remove(deleteSubject);
+
+                db.SaveChanges();
+
+                return RedirectToAction("SubjectList");
+            }
+            catch
+            {
+                return View();
             }
         }
 
+        public ActionResult CourseAndSubjectList()
+        {
+            var listOfCourseAndSubject = db.SubjectsInCourses.ToList();
+            return View(listOfCourseAndSubject);
+        }
+        [HttpGet]
+        public ActionResult CourseAndSubject(int id)
+        {
+            var removeCourseAndSubject = db.SubjectsInCourses.Single(x => x.CourseId == id);
 
-
-
-        //public DataSet GetStates(string countryId)
-        //{
-        //    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
-
-        //    SqlCommand com = new SqlCommand("Select * from State where CountryId=@catid", con);
-        //    com.Parameters.AddWithValue("@catid", countryId);
-
-        //    SqlDataAdapter da = new SqlDataAdapter(com);
-        //    DataSet ds = new DataSet();
-        //    da.Fill(ds);
-
-        //    return ds;
-
-        //}
-
-        ///// <summary>
-        ///// Code to bind States.
-        ///// </summary>
-        ///// <param name="countryId"></param>
-        ///// <returns></returns>
-        //public JsonResult StateBind(string countryId)
-        //{
-        //    DataSet ds = GetStates(countryId);
-        //    List<SelectListItem> stateList = new List<SelectListItem>();
-
-        //    foreach (DataRow dr in ds.Tables[0].Rows)
-        //    {
-        //        stateList.Add(new SelectListItem { Text = dr["StateName"].ToString(), Value = dr["StateId"].ToString() });
-        //    }
-        //    return Json(stateList, JsonRequestBehavior.AllowGet);
-        //}
-        ///// <summary>
-        ///// Get all Cities from City table
-        ///// </summary>
-        ///// <param name="stateId"></param>
-        ///// <returns></returns>
-        //public DataSet GetCity(string stateId)
-        //{
-        //    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
-
-        //    SqlCommand com = new SqlCommand("Select * from City where StateId=@staid", con);
-        //    com.Parameters.AddWithValue("@staid", stateId);
-
-        //    SqlDataAdapter da = new SqlDataAdapter(com);
-        //    DataSet ds = new DataSet();
-        //    da.Fill(ds);
-
-        //    return ds;
-
-        //}
-        ///// <summary>
-        ///// Code To bind City
-        ///// </summary>
-        ///// <param name="stateId"></param>
-        ///// <returns></returns>
-        //public JsonResult CityBind(string stateId)
-        //{
-
-        //    DataSet ds = GetCity(stateId);
-
-        //    List<SelectListItem> cityList = new List<SelectListItem>();
-        //    foreach (DataRow dr in ds.Tables[0].Rows)
-        //    {
-        //        cityList.Add(new SelectListItem { Text = dr["CityName"].ToString(), Value = dr["CityId"].ToString() });
-        //    }
-        //    return Json(cityList, JsonRequestBehavior.AllowGet);
-        //}
-
-
-
-
-
-
-
-
+            return View(removeCourseAndSubject);
+        }
     }
+
 }

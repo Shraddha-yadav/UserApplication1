@@ -9,7 +9,7 @@ using System.Web;
 namespace UserApplication.Models
 {
     [Table("SearchRecordModel")]
-    public class SearchRecord
+    public class SearchRecordModel
     {
         [Key]
         public int UserId { get; set; }

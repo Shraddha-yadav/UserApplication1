@@ -168,7 +168,7 @@
       <DependentUpon>201810171226590_RecordsMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\SearchRecord.cs" />
+    <Compile Include="Models\SearchRecordModel.cs" />
     <Compile Include="Models\SubjectInCourse.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -290,6 +290,22 @@
     <Content Include="Views\Shared\_loginProfile.cshtml" />
     <Content Include="Views\Teacher\StudentDetails.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\CreateSubject.cshtml" />
+    <Content Include="Views\Admin\AssignSubjectForCourse.cshtml" />
+    <Content Include="Views\Admin\CourseList.cshtml" />
+    <Content Include="Views\Admin\SubjectList.cshtml" />
+    <Content Include="Views\Admin\DeleteCourse.cshtml" />
+    <Content Include="Views\Admin\DeleteSubject.cshtml" />
+    <Content Include="Views\Admin\CourseAndSubjectList.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateCourse.cshtml" />
+    <Content Include="Views\SuperAdmin\CreateSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\AssignSubjectForCourse.cshtml" />
+    <Content Include="Views\SuperAdmin\CourseList.cshtml" />
+    <Content Include="Views\SuperAdmin\SubjectList.cshtml" />
+    <Content Include="Views\SuperAdmin\DeleteCourse.cshtml" />
+    <Content Include="Views\SuperAdmin\DeleteSubject.cshtml" />
+    <Content Include="Views\SuperAdmin\CourseAndSubjectList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

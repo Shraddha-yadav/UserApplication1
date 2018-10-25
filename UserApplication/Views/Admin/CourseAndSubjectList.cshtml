@@ -1,0 +1,60 @@
+﻿@model IEnumerable<UserApplication.fonts.SubjectInCourse>
+
+@{
+    ViewBag.Title = "CourseAndSubjectList";
+}
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
+<h2>CourseAndSubjectList</h2>
+
+<p>
+    @Html.ActionLink(" ", " ")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectInCourseId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.SubjectInCourseId })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<p>@Html.ActionLink("Back to list", "GetAllUsers")</p>

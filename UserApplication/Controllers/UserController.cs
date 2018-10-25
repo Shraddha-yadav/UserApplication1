@@ -21,6 +21,7 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult Registration()
         {
+
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
            
@@ -30,12 +31,14 @@ namespace UserApplication.Controllers
            List<City> cityList = new List<City>();
             List<Course> courseList = new List<Course>();
             List<Role> roleList = new List<Role>();
-           
+
+
+
             var tempCountryList = db.Countries.ToList();
            var tempStateList = db.States.ToList();
            var tempCityList = db.Cities.ToList();
             var tempCourseList = db.Courses.ToList();
-            var tempRoleList = db.Roles.ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2).ToList();
 
             model.Countries = tempCountryList;
           model.States = tempStateList;
@@ -94,6 +97,7 @@ namespace UserApplication.Controllers
                         //AddressLine2 = objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
+                       
                         RoleId = objUserViewModel.RoleId,
                         // Adding addresId 
                         AddressId = objAddress.AddressId,

@@ -28,6 +28,6 @@ namespace UserApplication.Models
 
         public System.Data.Entity.DbSet<UserApplication.Models.UserViewModel> UserViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<UserApplication.Models.SearchRecord> SearchRecords { get; set; }
+        public System.Data.Entity.DbSet<UserApplication.Models.SearchRecordModel> SearchRecords { get; set; }
     }
 }
