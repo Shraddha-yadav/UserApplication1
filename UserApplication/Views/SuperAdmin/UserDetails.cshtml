@@ -197,8 +197,8 @@
         </dl>
     </div>
     </div>
-    <p>
-        @*@Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |*@
-        @*@Html.Partial("_BackToListButtonPartial", "GetAllUsers")*@
-        @Html.ActionLink("Back to List", "GetAllUsers")
-    </p>
+<p>
+    @*@Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |*@
+    @*@Html.Partial("_BackToListButtonPartial", "GetAllUsers")*@
+    @Html.Partial("_BackToListButtonPartial")
+</p>

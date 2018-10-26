@@ -3,6 +3,29 @@
 @{
     ViewBag.Title = "Login";
 }
+@*<img src="~/UserApplication/Content/Images/schoolimage2.jpeg" alt="Sample Image" width="1200" />*@
+<style>
+    #main {
+        height: 200px;
+        background-color: rebeccapurple;
+        background-image: repeating-linear-gradient(#090, #fff 10%, #2a4f32 20%);
+    }
+
+    .gfg {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        padding-top: 80px;
+    }
+
+    .geeks {
+        font-size: 17px;
+        text-align: center;
+    }
+</style>
+
+
+
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
     <h2>Login</h2>
@@ -14,51 +37,60 @@
 
 
 
-    <div class="form-horizontal">
-        <div style="background-color:plum">
-
-            @*<h4>UserViewModel</h4>*@
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <div style="background-color:plum">
 
 
+                @*<h4>UserViewModel</h4>*@
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Login" class="btn btn-default" />
+
+
+                        @*<input type="checkbox" checked="checked"> Remember me
+                            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>*@
+
+
+                    </div>
                 </div>
             </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-
-                @*<input type="checkbox" checked="checked"> Remember me
-                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>*@
-
-
-            </div>
-        </div>
-    </div>
         </div>
 
     }
 
-    </div>
+</div>
 <div>
-    @Html.ActionLink("Register", "Registration")
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Register"
+           onclick="window.location.href='@Url.Action("Registration","User")'" />
+
+
+
+
+
 </div>

@@ -82,6 +82,5 @@ namespace UserApplication.Models
 
         public virtual ICollection<UserInRole> UserInRoles { get; set; }
         public virtual ICollection<TeacherInSubject> TeacherInSubjects { get; set; }
-        //public virtual ICollection<Address> Addresses { get; set; }
     }
 }

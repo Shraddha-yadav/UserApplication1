@@ -25,14 +25,15 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                    @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |*@
+                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
             </td>
         </tr>
     }
 
 </table>
-<p>
-    @Html.ActionLink("Create Subject", "CreateSubject")
-    @Html.ActionLink("BackToList", "GetAllUsers")
+<<p>
+    @Html.Partial("_AddSubjectButtonPartial")
+    @Html.Partial("_BackToListButtonPartial")
+    @Html.Partial("_CreateCourseButtonPartial")
 </p>

@@ -106,7 +106,7 @@ namespace UserApplication.Controllers
                         DateModified = DateTime.Now
                     };
 
-                    db.Users.Add(objUser);
+                    db.User.Add(objUser);
                     db.SaveChanges();
 
                     //RoleId for the respective UserId gets saved in database.
@@ -115,7 +115,7 @@ namespace UserApplication.Controllers
                         RoleId = objUserViewModel.RoleId,
                         UserId = objUser.UserId
                     };
-                    db.UserInRoles.Add(objUserInRole);
+                    db.UserInRole.Add(objUserInRole);
                     db.SaveChanges();
                     //Everything looks fine,so save the data permanently.
                     transaction.Commit();
@@ -182,7 +182,7 @@ namespace UserApplication.Controllers
         public ActionResult Login(User user)
         {
             
-            var LoginDetails = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+            var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
                       if (LoginDetails != null)
                 if (LoginDetails.RoleId == 1)
                 {
@@ -198,7 +198,7 @@ namespace UserApplication.Controllers
                 }
                 else
                 {
-                   return RedirectToAction("TeachersCourse", "Student");
+                   return RedirectToAction("StudentHomePage", "Student" , new { id = LoginDetails.UserId });
                }
 
             return View("Login");

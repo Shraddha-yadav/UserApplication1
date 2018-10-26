@@ -17,7 +17,7 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetStudentList()
         {
-            var returnedUserList = db.Users.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3).ToList();
+            var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3).ToList();
             return View(returnedUserList);
         }
         /// <summary>
@@ -34,7 +34,7 @@ namespace UserApplication.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                User user = db.Users.Find(id);
+                User user = db.User.Find(id);
                 // var userData = from p in db.Users
                 // where p.UserId == id
                 // select p;
@@ -74,7 +74,7 @@ namespace UserApplication.Controllers
 
         public ActionResult StudentCourse()
         {
-            var returnedUserList = db.Users.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3).ToList();
+            var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3).ToList();
             return View(returnedUserList);
         }
     }

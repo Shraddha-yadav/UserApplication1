@@ -6,10 +6,10 @@
 
 <h2>CreateSubject</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Subject</h4>
         <hr />
@@ -30,6 +30,7 @@
     </div>
 }
 
-    <div>
-        @Html.ActionLink("Assign Subject To Course", "AssignSubjectForCourse")
-    </div>
+<div>
+    @Html.Partial("_AssignSubjectForCourseButtonPartial")
+    @Html.Partial("_BacktoListButtonPartial")
+</div>

@@ -193,6 +193,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\schoolimage2.jpeg" />
     <Content Include="Content\schoolimage1.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -258,7 +259,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Registration.cshtml" />
-    <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -287,7 +287,6 @@
     <Content Include="Views\Search\SearchRecord.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_LogoutPage.cshtml" />
-    <Content Include="Views\Shared\_loginProfile.cshtml" />
     <Content Include="Views\Teacher\StudentDetails.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
@@ -306,10 +305,17 @@
     <Content Include="Views\SuperAdmin\DeleteCourse.cshtml" />
     <Content Include="Views\SuperAdmin\DeleteSubject.cshtml" />
     <Content Include="Views\SuperAdmin\CourseAndSubjectList.cshtml" />
+    <Content Include="Views\Student\StudentHomePage.cshtml" />
+    <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_AssignSubjectForCourseButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_AddSubjectButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_BackToListButtonForStudent.cshtml" />
+    <Content Include="Views\Shared\_createCourseButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_RegistrationPartialView.cshtml" />
+    <Content Include="Views\Student\EditStudentProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Content\style.css\" />
     <Folder Include="Views\SearchRecord\" />
   </ItemGroup>

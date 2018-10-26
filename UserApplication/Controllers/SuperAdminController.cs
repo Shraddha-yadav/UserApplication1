@@ -21,7 +21,7 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetAllUsers()
         {
-            var returnedUserList = db.Users.Where(x => x.RoleId != 1).ToList();
+            var returnedUserList = db.User.Where(x => x.RoleId != 1).ToList();
             return View(returnedUserList);
         }
         
@@ -39,7 +39,7 @@ namespace UserApplication.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                User user = db.Users.Find(id);
+                User user = db.User.Find(id);
                 // var userData = from p in db.Users
                 // where p.UserId == id
                 // select p;
@@ -164,7 +164,7 @@ namespace UserApplication.Controllers
                         DateModified = DateTime.Now
                     };
 
-                    db.Users.Add(objUser);
+                    db.User.Add(objUser);
                     db.SaveChanges();
 
                     //RoleId for the respective UserId gets saved in database.
@@ -173,7 +173,7 @@ namespace UserApplication.Controllers
                         RoleId = objUserViewModel.RoleId,
                         UserId = objUser.UserId
                     };
-                    db.UserInRoles.Add(objUserInRole);
+                    db.UserInRole.Add(objUserInRole);
                     db.SaveChanges();
                     //Everything looks fine,so save the data permanently.
                     transaction.Commit();
@@ -294,7 +294,7 @@ namespace UserApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User objUser = db.Users.Find(id);
+            User objUser = db.User.Find(id);
 
             // var userData = from p in db.Users where p.UserId == id select p;       
             //var tempUserList = db.Users.ToList();
@@ -347,7 +347,7 @@ namespace UserApplication.Controllers
         {
             try
             {
-                User objUser = db.Users.Find(id);
+                User objUser = db.User.Find(id);
                 //  var userData = from p in db.Users where p.UserId == id select p;
                 // var tempUserList = db.Users.FirstOrDefault();
 
@@ -399,7 +399,7 @@ namespace UserApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User objUser = db.Users.Find(id);
+            User objUser = db.User.Find(id);
             // var userData = (from p in db.Users
             // where p.UserId == id
             // select p).ToList();
@@ -445,17 +445,17 @@ namespace UserApplication.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    UserInRole objUserInRole = db.UserInRoles.Where(m => m.UserId == id).FirstOrDefault();
-                    User objUser = db.Users.Where(m => m.UserId == id).FirstOrDefault();
+                    UserInRole objUserInRole = db.UserInRole.Where(m => m.UserId == id).FirstOrDefault();
+                    User objUser = db.User.Where(m => m.UserId == id).FirstOrDefault();
                     Address objAddress = db.Addresses.Where(m => m.AddressId == objUser.AddressId).FirstOrDefault();
 
                     //To remove address of user from address table
                     db.Addresses.Remove(objAddress);
                     //To Remove User from User Table
-                    db.Users.Remove(objUser);
+                    db.User.Remove(objUser);
 
                     // To remove User from UserInRole table.
-                    db.UserInRoles.Remove(objUserInRole);
+                    db.UserInRole.Remove(objUserInRole);
 
                     db.SaveChanges();
 

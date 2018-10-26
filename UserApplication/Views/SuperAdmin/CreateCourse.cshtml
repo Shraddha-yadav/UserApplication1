@@ -6,10 +6,10 @@
 
 <h2>CreateCourse</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Course</h4>
         <hr />
@@ -24,13 +24,19 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create " class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
     <div>
-        @Html.ActionLink("Create Subject", "CreateSubject");
-        @Html.ActionLink("BackToList", "GetAllUsers");
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Create Subject"
+               onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />
+
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Back To List"
+               onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+
     </div>

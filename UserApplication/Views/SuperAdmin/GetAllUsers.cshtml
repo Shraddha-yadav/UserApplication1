@@ -24,12 +24,21 @@
 </style>
 
 
+<h2> Welcome SuperAdmin </h2>
 
-
-<h2>GetAllUsers</h2>
+<h4> List Of Users</h4>
 
 <p>
-    @Html.ActionLink("Create New", "CreateUser")
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Create New"
+           onclick="window.location.href='@Url.Action("CreateUser","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Create Course"
+           onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
+
+
+    @*@Html.ActionLink("Create New", "CreateUser")*@
 </p>
 
 <table class="table">
