@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateSubject";
 }
 
-<h2>CreateSubject</h2>
+<h2>Create Subject</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -30,6 +30,13 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Assign Subject To Course", "AssignSubjectForCourse")
-</div>
+    <div>
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Assign Subject for Course"
+               onclick="window.location.href='@Url.Action("AssignSubjectForCourse","Admin")'" />
+
+
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Back To List"
+               onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+    </div>

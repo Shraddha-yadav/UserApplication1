@@ -1,9 +1,8 @@
-﻿@model IEnumerable<UserApplication.fonts.SubjectInCourse>
+﻿@model IEnumerable<UserApplication.Models.TeacherInSubject>
 
 @{
-    ViewBag.Title = "CourseAndSubjectList";
+    ViewBag.Title = "TeacherAndSubjectList";
 }
-
 <style>
     table {
         font-family: arial, sans-serif;
@@ -22,16 +21,16 @@
     }
 </style>
 
-
-<h2>CourseAndSubjectList</h2>
+<h2>Teacher And SubjectList</h2>
 
 <p>
     @Html.ActionLink(" ", " ")
 </p>
 <table class="table">
     <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
+            @Html.DisplayNameFor(model => model.User.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Subject.SubjectName)
@@ -43,22 +42,24 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.CourseName)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Subject.SubjectName)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectInCourseId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |*@
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.SubjectInCourseId })*@
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.TeacherInSubjectId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TeacherInSubjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TeacherInSubjectId })*@
             </td>
         </tr>
     }
 
 </table>
+
 <p>
     <input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
 </p>
+

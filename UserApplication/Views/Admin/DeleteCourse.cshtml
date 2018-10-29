@@ -24,9 +24,16 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to course", "CourseList")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+
+
+
+    </div>
     }
 </div>
+<p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Course"
+           onclick="window.location.href='@Url.Action("CourseList","Admin")'" />
+</p>

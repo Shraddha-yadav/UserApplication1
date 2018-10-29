@@ -5,6 +5,25 @@
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
 
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
 <h2>TeachersSubject</h2>
 
 <p>
@@ -25,25 +44,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.User.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.SubjectName)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.TeacherInSubjectId }) |*@
-            @Html.ActionLink("Details", "TeachersCourse", new { id = item.TeacherInSubjectId }) 
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.TeacherInSubjectId })*@
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.TeacherInSubjectId }) |*@
+                @Html.ActionLink("Back To Course Details", "TeachersCourse", new { id = item.TeacherInSubjectId })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.TeacherInSubjectId })*@
+            </td>
+        </tr>
+    }
 
 </table>
+<p>
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />
+
+</p>

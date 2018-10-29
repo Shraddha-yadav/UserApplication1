@@ -229,7 +229,11 @@
 }
 
     <div>
-        @Html.Partial("_BackToListButtonPartial")
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Back To List"
+               onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+
     </div>
 
 

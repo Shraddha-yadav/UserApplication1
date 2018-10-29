@@ -65,173 +65,136 @@ namespace UserApplication.Controllers
 
         }
 
+
         /// <summary>
-        ///  GET: To Edit student profile
+        /// GET:Super Admin can edit the user details
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult EditStudentProfile(int? id)
-        {
-            try
-            { 
-            //Creating object of UserViewModel
-            UserViewModel model = new UserViewModel();
+        //[HttpGet]
+        //public ActionResult EditStudentProfile(int id)
+        //{
+        //    //Creating object of UserViewModel
+        //    UserViewModel model = new UserViewModel();
 
 
-            List<Country> countryList = new List<Country>();
-            List<State> stateList = new List<State>();
-            List<City> cityList = new List<City>();
-            List<Course> courseList = new List<Course>();
-            List<Role> roleList = new List<Role>();
+        //    List<Country> countryList = new List<Country>();
+        //    List<State> stateList = new List<State>();
+        //    List<City> cityList = new List<City>();
+        //    List<Course> courseList = new List<Course>();
+        //    List<Role> roleList = new List<Role>();
 
-            var tempCountryList = db.Countries.ToList();
-            var tempStateList = db.States.ToList();
-            var tempCityList = db.Cities.ToList();
-            var tempCourseList = db.Courses.ToList();
-            var tempRoleList = db.Roles.ToList();
+        //    var tempCountryList = db.Countries.ToList();
+        //    var tempStateList = db.States.ToList();
+        //    var tempCityList = db.Cities.ToList();
+        //    var tempCourseList = db.Courses.ToList();
+        //    var tempRoleList = db.Roles.ToList();
 
-            // model.States = tempStateList;
-            //  model.Cities = tempCityList;
-            //   model.Courses = tempCourseList;
-            //   model.Roles = tempRoleList;
-
-
-
-
-            var studentDetails = (from
-                                         user in db.User
-                                  join userInRole in db.UserInRole on user.UserId equals userInRole.UserId
-
-                                  where user.UserId == id
-
-                                  select new UserViewModel
-                                  {
-
-                                      UserId = user.UserId,
-                                      CountryId = user.Address.CountryId,
-                                      AddressId = user.AddressId,
-                                      StateId = user.Address.StateId,
-                                      CityId = user.Address.CityId,
-                                      CourseId = user.CourseId,
-                                      RoleId = userInRole.RoleId,
-                                      RoleName = userInRole.Role.RoleName,
-
-
-                                      FirstName = user.FirstName,
-                                      LastName = user.LastName,
-                                      Gender = user.Gender,
-                                      DOB = user.DOB,
-                                      Hobbies = user.Hobbies,
-                                      Email = user.Email,
-                                      IsEmailVerified = user.IsEmailVerified,
-                                      Password = user.Password,
-                                      ConfirmPassword = user.ConfirmPassword,
-                                      IsActive = user.IsActive,
-                                      DateCreated = user.DateCreated,
-                                      DateModified = user.DateModified,
-                                     // CourseName = user.Course.CourseName,
-                                      AddressLine1 = user.Address.AddressLine1,
-                                      AddressLine2 = user.Address.AddressLine2,
-
-                                      //CityName = user.Address.City.CityName,
-                                     // StateName = user.Address.State.StateName,
-                                      //CountryName = user.Address.Country.CountryName,
-                                      Zipcode = user.Address.Zipcode
-
-                                  }).FirstOrDefault();
-
-            studentDetails.Countries = countryList;
-            studentDetails.States = stateList;
-            studentDetails.Cities = cityList;
-            studentDetails.Courses = courseList;
-            studentDetails.Roles = roleList;
-
-            return View(studentDetails);
-        }
-             catch(Exception er)
-            {
-                Console.Write(er.Message);
-                return View();
-             }
-
-}
-
-        /// <summary>
-        /// Save updates in database.
-        /// </summary>
-        [HttpPost]
-        public ActionResult EditStudentProfile(UserViewModel objUserViewModel)
-        {
-            try
-            {
-                //Update User table.
-
-                var userRecord = (from user in db.User
-                                  where user.UserId == objUserViewModel.UserId
-                                  select user).FirstOrDefault();
-                if (userRecord != null)
-
-                {
-                    userRecord.DateCreated = DateTime.Now;
-                    userRecord.DateModified = DateTime.Now;
-                    userRecord.UserId = objUserViewModel.UserId;
-                    userRecord.FirstName = objUserViewModel.FirstName;
-                    userRecord.LastName = objUserViewModel.LastName;
-                    userRecord.Gender = objUserViewModel.Gender;
-                    userRecord.DOB = objUserViewModel.DOB;
-                    userRecord.Hobbies = objUserViewModel.Hobbies;
-                    userRecord.Email = objUserViewModel.Email;
-                    userRecord.IsEmailVerified = objUserViewModel.IsEmailVerified;
-                    userRecord.Password = objUserViewModel.Password;
-                    userRecord.ConfirmPassword = objUserViewModel.ConfirmPassword;
-                    userRecord.IsActive = objUserViewModel.IsActive;
-                    userRecord.CourseId = objUserViewModel.CourseId;
-                }
-
-                //Update Address table.
-                var addressRecord = (from address in db.Addresses
-                                     where address.AddressId == objUserViewModel.AddressId
-                                     select address
-                              ).FirstOrDefault();
-                if (addressRecord != null)
-                {
-
-                    addressRecord.AddressLine1 = objUserViewModel.AddressLine1;
-                    addressRecord.AddressLine2 = objUserViewModel.AddressLine2;
-
-                    addressRecord.CityId = objUserViewModel.CityId;
-                    addressRecord.CountryId = objUserViewModel.CountryId;
-                    addressRecord.Zipcode = objUserViewModel.Zipcode;
-                    addressRecord.StateId = objUserViewModel.StateId;
-                }
-
-                //Update UserInRole Table.
-                var userInRoleRecord = (from userInRole in db.UserInRole
-                                        where userInRole.UserId == objUserViewModel.UserId
-                                        select userInRole
-                                      ).FirstOrDefault();
-
-                if (userInRoleRecord != null)
-                {
-                    userInRoleRecord.RoleId = objUserViewModel.RoleId;
-                    userInRoleRecord.UserId = objUserViewModel.UserId;
-                }
-
-                //Save to database.
-                db.SaveChanges();
+        //    // model.States = tempStateList;
+        //    //  model.Cities = tempCityList;
+        //    //   model.Courses = tempCourseList;
+        //    //   model.Roles = tempRoleList;
 
 
 
-                return RedirectToAction("StudentHomePage", new { id = objUserViewModel.UserId });
-            }
 
-            catch (Exception er)
-            {
-                Console.Write(er.Message);
-                return View();
-            }
+        //    if (id == 0)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-        }
+        //    User objUser = db.User.Find(id);
+
+        //    // var userData = from p in db.Users where p.UserId == id select p;       
+        //    //var tempUserList = db.Users.ToList();
+
+
+        //    UserViewModel objUserViewModel = new UserViewModel();
+        //    objUserViewModel.UserId = objUser.UserId;
+        //    objUserViewModel.FirstName = objUser.FirstName;
+        //    objUserViewModel.LastName = objUser.LastName;
+        //    objUserViewModel.Gender = objUser.Gender;
+        //    objUserViewModel.Hobbies = objUser.Hobbies;
+        //    objUserViewModel.Email = objUser.Email;
+        //    objUserViewModel.Password = objUser.Password;
+        //    objUserViewModel.ConfirmPassword = objUser.ConfirmPassword;
+        //    objUserViewModel.IsEmailVerified = objUser.IsEmailVerified;
+        //    objUserViewModel.DOB = objUser.DOB;
+        //    objUserViewModel.RoleId = objUser.RoleId;
+        //    objUserViewModel.CourseId = objUser.CourseId;
+        //    objUserViewModel.AddressId = objUser.AddressId;
+        //    objUserViewModel.IsActive = objUser.IsActive;
+        //    //objUserViewModel.DateCreated = objUser.DateCreated;
+        //    objUser.DateModified = DateTime.Now;
+        //    objUserViewModel.AddressLine1 = objUser.Address.AddressLine1;
+        //    objUserViewModel.AddressLine2 = objUser.Address.AddressLine2;
+        //    objUserViewModel.CountryId = objUser.Address.CountryId;
+        //    objUserViewModel.StateId = objUser.Address.StateId;
+        //    objUserViewModel.CityId = objUser.Address.CityId;
+        //    objUserViewModel.Zipcode = objUser.Address.Zipcode;
+        //    objUserViewModel.Countries = tempCountryList;
+        //    objUserViewModel.States = tempStateList;
+        //    objUserViewModel.Cities = tempCityList;
+        //    objUserViewModel.Courses = tempCourseList;
+        //    objUserViewModel.Roles = tempRoleList;
+
+
+        //    if (objUser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(objUserViewModel);
+        //}
+        ///// <summary>
+        /////  POST:Super Admin can edit the user details
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <param name="objUserViewModel"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public ActionResult EditStudentProfile(int id, UserViewModel objUserViewModel)
+        //{
+        //    try
+        //    {
+        //        User objUser = db.User.Find(id);
+        //        //  var userData = from p in db.Users where p.UserId == id select p;
+        //        // var tempUserList = db.Users.FirstOrDefault();
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            objUser.FirstName = objUserViewModel.FirstName;
+        //            objUser.LastName = objUserViewModel.LastName;
+        //            objUser.Gender = objUserViewModel.Gender;
+        //            objUser.Hobbies = objUserViewModel.Hobbies;
+        //            objUser.Email = objUserViewModel.Email;
+        //            objUser.IsEmailVerified = objUserViewModel.IsEmailVerified;
+        //            objUser.Password = objUserViewModel.Password;
+        //            objUser.ConfirmPassword = objUserViewModel.ConfirmPassword;
+        //            objUser.DOB = objUserViewModel.DOB;
+        //            objUser.CourseId = objUserViewModel.CourseId;
+        //            objUser.RoleId = objUserViewModel.RoleId;
+        //            objUser.Address.AddressLine1 = objUserViewModel.AddressLine1;
+        //            objUser.Address.AddressLine2 = objUserViewModel.AddressLine2;
+        //            objUser.Address.CountryId = objUserViewModel.CountryId;
+        //            objUser.Address.StateId = objUserViewModel.StateId;
+        //            objUser.Address.CityId = objUserViewModel.CityId;
+        //            objUser.Address.Zipcode = objUserViewModel.Zipcode;
+        //            objUser.IsActive = objUserViewModel.IsActive;
+        //            objUser.DateModified = DateTime.Now;
+
+        //            db.SaveChanges();  //User Data is saved in the user table
+
+        //            return RedirectToAction("GetAllUsers");
+
+        //        }
+        //        return View(objUserViewModel);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
 
 
 
@@ -239,9 +202,9 @@ namespace UserApplication.Controllers
         /// Show the list of teachers with courses assigned to them
         /// </summary>
         /// <returns></returns>
-        public ActionResult TeachersCourse( )
+        public ActionResult TeachersCourse()
         {
-            var listOfTeacherCourse = db.User.Where(u => u.RoleId == 3 ).ToList();
+            var listOfTeacherCourse = db.User.Where(u => u.RoleId == 3).ToList();
             return View(listOfTeacherCourse);
         }
         /// <summary>
@@ -264,5 +227,5 @@ namespace UserApplication.Controllers
             return View(listOfSubjectsInCourse);
         }
 
-        }
+    }
     }

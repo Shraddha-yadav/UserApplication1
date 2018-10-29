@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "StudentHomePage";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 }
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
@@ -197,7 +199,11 @@
         </dl>
     </div>
     </div>
-    <p>
-        @Html.ActionLink("View Teacher List", "TeachersCourse")
-    </p>
+<p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="View Teacher List"
+           onclick="window.location.href='@Url.Action("TeachersCourse","Student")'" />
+
+
+</p>
 

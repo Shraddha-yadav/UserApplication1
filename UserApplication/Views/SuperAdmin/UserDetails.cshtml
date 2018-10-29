@@ -200,5 +200,8 @@
 <p>
     @*@Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |*@
     @*@Html.Partial("_BackToListButtonPartial", "GetAllUsers")*@
-    @Html.Partial("_BackToListButtonPartial")
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+
 </p>

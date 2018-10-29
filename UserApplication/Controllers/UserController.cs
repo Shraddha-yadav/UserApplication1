@@ -27,24 +27,22 @@ namespace UserApplication.Controllers
            
           
             List<Country> countryList = new List<Country>();
-          List<State> stateList = new List<State>();
-           List<City> cityList = new List<City>();
+            List<State> stateList = new List<State>();
+            List<City> cityList = new List<City>();
             List<Course> courseList = new List<Course>();
             List<Role> roleList = new List<Role>();
 
-
-
             var tempCountryList = db.Countries.ToList();
-           var tempStateList = db.States.ToList();
-           var tempCityList = db.Cities.ToList();
+            var tempStateList = db.States.ToList();
+            var tempCityList = db.Cities.ToList();
             var tempCourseList = db.Courses.ToList();
             var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2).ToList();
 
             model.Countries = tempCountryList;
-          model.States = tempStateList;
-          model.Cities = tempCityList;
-           model.Courses = tempCourseList;
-           model.Roles = tempRoleList;
+            model.States = tempStateList;
+            model.Cities = tempCityList;
+            model.Courses = tempCourseList;
+            model.Roles = tempRoleList;
             return View(model);
         }
 
@@ -194,7 +192,7 @@ namespace UserApplication.Controllers
                 }
                 else if (LoginDetails.RoleId == 3)
                 {
-                    return RedirectToAction("GetStudentList", "Teacher");
+                    return RedirectToAction("TeacherHomePage", "Teacher", new { id = LoginDetails.UserId });
                 }
                 else
                 {

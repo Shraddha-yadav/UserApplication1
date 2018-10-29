@@ -4,7 +4,7 @@
     ViewBag.Title = "DeleteSubject";
 }
 
-<h2>DeleteSubject</h2>
+<h2>Delete Subject</h2>
 
 <h3>Are you sure you want to delete this subject?</h3>
 <div>
@@ -26,7 +26,13 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to Subject", "SubjectList")
+
+        
     </div>
     }
 </div>
+<p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Subject"
+           onclick="window.location.href='@Url.Action("SubjectList","Admin")'" />
+</p>

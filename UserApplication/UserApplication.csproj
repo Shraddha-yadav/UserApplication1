@@ -313,6 +313,12 @@
     <Content Include="Views\Shared\_createCourseButtonPartial.cshtml" />
     <Content Include="Views\Shared\_RegistrationPartialView.cshtml" />
     <Content Include="Views\Student\EditStudentProfile.cshtml" />
+    <Content Include="Views\SuperAdmin\AssignSubjectToTeacher.cshtml" />
+    <Content Include="Views\SuperAdmin\TeacherAndSubjectList.cshtml" />
+    <Content Include="Views\Admin\AssignSubjectToTeacher.cshtml" />
+    <Content Include="Views\Admin\TeacherAndSubjectList.cshtml" />
+    <Content Include="Views\Teacher\EditProfile.cshtml" />
+    <Content Include="Views\Teacher\TeacherHomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

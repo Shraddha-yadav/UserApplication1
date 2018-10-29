@@ -624,6 +624,51 @@ namespace UserApplication.Controllers
 
             return View(removeCourseAndSubject);
         }
+
+        /// <summary>
+        /// GET: Super Admin can assign subject to teacher
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult AssignSubjectToTeacher()
+        {
+
+
+            List<User> List = db.User.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId != 4).ToList();
+            ViewBag.TeacherList = new SelectList(List, "UserId", "FirstName");
+
+            List<Subject> Lists = db.Subjects.ToList();
+            ViewBag.SubjectList = new SelectList(Lists, "SubjectId", "SubjectName");
+
+            return View();
+        }
+        /// <summary>
+        /// POST:Super Admin can assign subject to teacher
+        /// </summary>
+        /// <param name="objTeacherInSubject"></param>
+        /// <returns></returns>           
+        [HttpPost]
+        public ActionResult AssignSubjectToTeacher(TeacherInSubject objTeacherInSubject)
+        {
+
+            List<User> List = db.User.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId != 4).ToList();
+            ViewBag.TeacherList = new SelectList(List, "UserId", "FirstName", objTeacherInSubject.UserId);
+
+
+            List<Subject> Lists = db.Subjects.ToList();
+            ViewBag.SubjectList = new SelectList(Lists, "SubjectId", "SubjectName", objTeacherInSubject.SubjectId);
+
+            db.TeacherInSubjects.Add(objTeacherInSubject);
+            db.SaveChanges();
+
+
+            return RedirectToAction("TeacherAndSubjectList");
+        }
+        public ActionResult TeacherAndSubjectList()
+        {
+            var listOfTeacherAndSubject = db.TeacherInSubjects.ToList();
+            return View(listOfTeacherAndSubject);
+        }
     }
 
 }

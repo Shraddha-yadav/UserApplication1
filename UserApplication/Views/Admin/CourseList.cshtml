@@ -17,25 +17,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
         @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |*@
-            @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
-
-            
+                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
 
 
-        </td>
-    </tr>
-}
+
+            </td>
+        </tr>
+    }
 
 </table>
-<p>
-    @Html.ActionLink("Create Subject", "CreateSubject")
-@Html.ActionLink("BackToList", "GetAllUsers")
+<<p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Add Subject"
+           onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Add Course"
+           onclick="window.location.href='@Url.Action("CreateCourse","Admin")'" />
+
 </p>

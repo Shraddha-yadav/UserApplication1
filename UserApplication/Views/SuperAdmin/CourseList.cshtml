@@ -33,7 +33,16 @@
 
 </table>
 <<p>
-    @Html.Partial("_AddSubjectButtonPartial")
-    @Html.Partial("_BackToListButtonPartial")
-    @Html.Partial("_CreateCourseButtonPartial")
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Add Subject"
+           onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Add Course"
+           onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
+
 </p>

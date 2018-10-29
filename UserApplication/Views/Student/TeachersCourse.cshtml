@@ -4,6 +4,23 @@
     ViewBag.Title = "TeachersCourse";
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <h2>Teachers With Their Corresponding Course</h2>
 
@@ -29,30 +46,38 @@
 
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName.RoleName)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName.RoleName)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.CourseName)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
 
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |*@
-            @Html.ActionLink("Details", "TeachersSubject", new { id = item.UserId }) 
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
-        </td>
-    </tr>
-}
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |*@
+                @Html.ActionLink("Check Subjects", "TeachersSubject", new { id = item.UserId })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+            </td>
+        </tr>
+    }
 
 </table>
+<p>
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />
+
+</p>

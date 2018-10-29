@@ -26,7 +26,12 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to Subject", "SubjectList")
+
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Back To Subject"
+               onclick="window.location.href='@Url.Action("SubjectList","SuperAdmin")'" />
+
+
     </div>
     }
 </div>

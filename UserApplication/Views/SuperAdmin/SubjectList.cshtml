@@ -3,32 +3,31 @@
 @{
     ViewBag.Title = "SubjectList";
 }
-@*  *@
+
 <h2>SubjectList</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", " ")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SubjectName)
+           @Html.DisplayNameFor(model => model.SubjectName)
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+@foreach (var item in Model)
     {
         <tr>
+
             <td>
                 @Html.DisplayFor(modelItem => item.SubjectName)
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.SubjectId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.SubjectId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.SubjectId })*@
+        @Html.ActionLink("Details", "Details", new { id = item.SubjectId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.SubjectId })*@
 
-                @Html.ActionLink(" Course and Subject List", "CourseAndSubjectList")
 
             </td>
         </tr>
@@ -36,7 +35,22 @@
 
 </table>
 <p>
-    @Html.Partial("_AssignSubjectForCourseButtonPartial")
-    @Html.Partial("_BackToListButtonPartial")
-    @Html.Partial("_AddSubjectButtonPartial")
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="List of Course And Subject"
+           onclick="window.location.href='@Url.Action("CourseAndSubjectList","SuperAdmin")'" />
+
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Assign Subject For Course"
+           onclick="window.location.href='@Url.Action("AssignSubjectForCourse","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Add Subject"
+           onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />
+
 </p>
