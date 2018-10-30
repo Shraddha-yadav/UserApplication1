@@ -1,6 +1,8 @@
 ﻿@model UserApplication.Models.UserViewModel
+
 @{
     ViewBag.Title = "Registration";
+    //Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
 @*Jquery code for dropdown calling*@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -78,12 +80,11 @@
 
 
 
-
-
-<h2>Registration</h2>
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
 
+
+    <h2>Registration</h2>
 
     @using (Html.BeginForm())
     {
@@ -140,6 +141,13 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsEmailVerified, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsEmailVerified, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsEmailVerified, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -157,6 +165,15 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -254,24 +271,23 @@
                 </div>
             </div>
 
+
+
+
+
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-success" />
+                    <input type="submit" value="Register" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     </div>
 
-
-    <p>
+    <<div>
         <input type="button" class="btn btn-primary btn-sm" '
                value="Login"
                onclick="window.location.href='@Url.Action("Login","User")'" />
-    </p>
 
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-
+    </div>

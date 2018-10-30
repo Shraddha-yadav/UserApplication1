@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "GetStudentList";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 
 }
 
@@ -108,16 +110,17 @@
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |*@
                 @Html.ActionLink("Details", "StudentDetails", new { id = item.UserId })
 
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+
+                @*@Html.ActionLink("Back To List", "TeacherHomePage", new { id = item.CourseId })*@
             </td>
         </tr>
     }
 
 </table>
-@*<p>
+<p>
 
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />
+           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />*@
 
-</p>*@
+</p>

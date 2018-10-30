@@ -83,21 +83,21 @@
             @Html.DisplayFor(model => model.ConfirmPassword)
         </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.IsActive)
-        </dd>
+        </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CourseId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CourseId)
-        </dd>
+        </dd>*@
 
         @*<dt>
             @Html.DisplayNameFor(model => model.AddressId)
@@ -189,13 +189,12 @@
 
     </dl>
 </div>
-<p>
+<div>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |*@
-    @*@Html.ActionLink("Back to List", "GetStudentList")*@
-    <input type="button" class="btn btn-primary btn-sm" '
+    @Html.ActionLink("Back to list", "GetStudentList", new { id = Model.CourseId }) 
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("GetStudentList","Teacher")'" />
+           onclick="window.location.href='@Url.Action("GetStudentList","Teacher")'" />*@
 
 
-
-</p>
+</div>

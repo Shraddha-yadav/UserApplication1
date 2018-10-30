@@ -1,209 +1,123 @@
-﻿@model UserApplication.Models.UserViewModel
+﻿@model IEnumerable<UserApplication.Models.User>
 
 @{
     ViewBag.Title = "StudentHomePage";
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
 
 }
-<link href="~/Content/Site.css" rel="stylesheet" />
-<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-    <h2>Welcome Student</h2>
-    <div>
-        <h4></h4>
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-        <input type="button" class="btn btn-primary btn-sm" '
-               value="Edit Profile"
-               onclick="window.location.href='@Url.Action("EditStudentProfile","Student")'" />
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
-        @*@Html.ActionLink("Edit", "EditStudentProfile", new { id = Model.UserId }) |*@
 
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
+<h2>Welcome Student</h2>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DOB)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DOB)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Hobbies)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Hobbies)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.IsEmailVerified)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsEmailVerified)
-            </dd>*@
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ConfirmPassword)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ConfirmPassword)
-            </dd>*@
-
-            <dt>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsActive)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CourseId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CourseId)
-            </dd>
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.AddressId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AddressId)
-            </dd>*@
-
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressLine1)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AddressLine1)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressLine2)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.AddressLine2)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Zipcode)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Zipcode)
-            </dd>
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateCreated)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DateModified)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateModified)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.RoleId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.RoleId)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.RoleName)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.RoleName)
-            </dd>*@
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.CountryId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CountryId)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.StateId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.StateId)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CityId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CityId)
-            </dd>*@
-
-        </dl>
-    </div>
-    </div>
 <p>
-    <input type="button" class="btn btn-primary btn-sm" '
-           value="View Teacher List"
-           onclick="window.location.href='@Url.Action("TeachersCourse","Student")'" />
-
-
+    @Html.ActionLink(" ", " ")
 </p>
+<table class="table">
+    <tr>
 
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hobbies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.AddressLine1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName.RoleName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hobbies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.AddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName.RoleName)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditStudentProfile", new { id = item.UserId }) |
+                @Html.ActionLink("Teacher List", "TeachersList", new { id = item.CourseId }) |
+
+                @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+            </td>
+        </tr>
+    }
+
+</table>

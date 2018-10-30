@@ -280,8 +280,7 @@
     <Content Include="Views\Admin\DeleteUser.cshtml" />
     <Content Include="Views\Teacher\GetStudentList.cshtml" />
     <Content Include="Views\Teacher\StudentCourse.cshtml" />
-    <Content Include="Views\Student\TeachersCourse.cshtml" />
-    <Content Include="Views\Student\TeachersSubject.cshtml" />
+    <Content Include="Views\Student\TeachersList.cshtml" />
     <Content Include="Views\Student\SubjectsInCourse.cshtml" />
     <Content Include="Views\Student\StudentCourse.cshtml" />
     <Content Include="Views\Search\SearchRecord.cshtml" />
@@ -305,7 +304,6 @@
     <Content Include="Views\SuperAdmin\DeleteCourse.cshtml" />
     <Content Include="Views\SuperAdmin\DeleteSubject.cshtml" />
     <Content Include="Views\SuperAdmin\CourseAndSubjectList.cshtml" />
-    <Content Include="Views\Student\StudentHomePage.cshtml" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_AssignSubjectForCourseButtonPartial.cshtml" />
     <Content Include="Views\Shared\_AddSubjectButtonPartial.cshtml" />
@@ -319,6 +317,8 @@
     <Content Include="Views\Admin\TeacherAndSubjectList.cshtml" />
     <Content Include="Views\Teacher\EditProfile.cshtml" />
     <Content Include="Views\Teacher\TeacherHomePage.cshtml" />
+    <Content Include="Views\Student\StudentHomePage.cshtml" />
+    <Content Include="Views\Student\TeachersSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

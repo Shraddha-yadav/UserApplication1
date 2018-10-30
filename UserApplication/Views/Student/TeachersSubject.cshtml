@@ -1,10 +1,10 @@
-﻿@model IEnumerable<UserApplication.Models.TeacherInSubject>
+﻿@model IEnumerable<UserApplication.fonts.SubjectInCourse>
 
 @{
     ViewBag.Title = "TeachersSubject";
-    Layout = "~/Views/Shared/_LogOutPage.cshtml";
 }
 
+<h2>Teachers Subjects</h2>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -24,19 +24,13 @@
 </style>
 
 
-<h2>TeachersSubject</h2>
-
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-
         <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.LastName)
+            @Html.DisplayNameFor(model => model.Course.CourseName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Subject.SubjectName)
@@ -47,30 +41,18 @@
     @foreach (var item in Model)
     {
         <tr>
-
             <td>
-                @Html.DisplayFor(modelItem => item.User.FirstName)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.User.LastName)
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Subject.SubjectName)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.TeacherInSubjectId }) |*@
-                @Html.ActionLink("Back To Course Details", "TeachersCourse", new { id = item.TeacherInSubjectId })
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.TeacherInSubjectId })*@
+                @Html.ActionLink("Edit", "Edit", new { id = item.SubjectInCourseId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SubjectInCourseId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SubjectInCourseId })
             </td>
         </tr>
     }
 
 </table>
-<p>
-
-    <input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
-           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />
-
-</p>

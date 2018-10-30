@@ -190,7 +190,7 @@ namespace UserApplication.Controllers
 
                 }
             }
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("GetAllUsers", "Admin");
 
         }
 
