@@ -1,21 +1,15 @@
 ﻿@model UserApplication.Models.UserViewModel
 
 @{
-    ViewBag.Title = "UserDetails";
-    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+    ViewBag.Title = "TeacherHomePage1";
 }
-
-
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
 
-
-
-
-    <h2>UserDetails</h2>
+    <h2>TeacherHomePage1</h2>
 
     <div>
-        <h4>UserViewModel</h4>
+        <h4> </h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -88,18 +82,18 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.ConfirmPassword)
-                </dd>*@
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.IsActive)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.IsActive)
+                </dd>
 
-            @*@<dt>
-                    @Html.DisplayNameFor(model => model.Courseid)
+                <dt>
+                    @Html.DisplayNameFor(model => model.CourseId)
                 </dt>
 
                 <dd>
@@ -194,15 +188,10 @@
                     @Html.DisplayFor(model => model.CityId)
                 </dd>*@
 
-
         </dl>
     </div>
     </div>
 <p>
-    @*@Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |*@
-    @*@Html.Partial("_BackToListButtonPartial", "GetAllUsers")*@
-    <input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
-
+    @Html.ActionLink("Edit", "EditProfile", new { id = Model.UserId }) |
+    @Html.ActionLink("Student List", "GetStudentList", new { id = Model.CourseId }) |
 </p>

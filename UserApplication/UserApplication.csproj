@@ -319,6 +319,7 @@
     <Content Include="Views\Teacher\TeacherHomePage.cshtml" />
     <Content Include="Views\Student\StudentHomePage.cshtml" />
     <Content Include="Views\Student\TeachersSubject.cshtml" />
+    <Content Include="Views\Teacher\TeacherHomePage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

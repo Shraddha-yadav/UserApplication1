@@ -28,13 +28,14 @@ namespace UserApplication.Models
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public System.DateTime DOB { get; set; }
+        public DateTime DOB { get; set; }
 
      [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
        [Required(ErrorMessage = "Enter your email address.")]
       [DataType(DataType.EmailAddress)]
+      [EmailAddress]
         public string Email { get; set; }
 
       [Required(ErrorMessage = "Your email address is not verified.")]
@@ -69,6 +70,7 @@ namespace UserApplication.Models
 
         [DisplayName("Zip code")]
         [Required(ErrorMessage = "Please enter Zipcode")]
+        
         public int Zipcode { get; set; }
 
 

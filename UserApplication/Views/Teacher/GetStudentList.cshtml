@@ -39,33 +39,36 @@
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hobbies)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hobbies)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.DOB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address.AddressLine1)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.AddressLine2)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Course.CourseName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleName.RoleName)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.RoleName.RoleName)
+            </th>*@
 
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>*@
         <th></th>
     </tr>
 
@@ -79,48 +82,48 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hobbies)
-            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hobbies)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address.AddressLine1)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address.AddressLine1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address.AddressLine2)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Course.CourseName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleName.RoleName)
-            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.RoleName.RoleName)
+                </td>*@
 
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |*@
                 @Html.ActionLink("Details", "StudentDetails", new { id = item.UserId })
 
-
-                @*@Html.ActionLink("Back To List", "TeacherHomePage", new { id = item.CourseId })*@
             </td>
+
         </tr>
     }
 
 </table>
 <p>
 
-    @*<input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
-           onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />*@
-
-</p>
+@Html.RouteLink("Back To Profile ", "Default",
+new { action = "TeacherHomePage1", controller ="Teacher", })
+    <p>

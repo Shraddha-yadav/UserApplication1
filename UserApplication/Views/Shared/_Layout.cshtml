@@ -3,7 +3,7 @@
 <head>
 
     <title>School Application</title>
-         @*<style>
+    @*<style>
             #main {
                 height: 200px;
                 background-color: rebeccapurple;
@@ -29,9 +29,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+    @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
 

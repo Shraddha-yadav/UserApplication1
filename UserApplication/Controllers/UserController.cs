@@ -179,11 +179,12 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            
+
             var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
                       if (LoginDetails != null)
                 if (LoginDetails.RoleId == 1)
                 {
+                    
                     return RedirectToAction("GetAllUsers", "SuperAdmin");
                 }
                 else if (LoginDetails.RoleId == 2)
@@ -192,7 +193,9 @@ namespace UserApplication.Controllers
                 }
                 else if (LoginDetails.RoleId == 3)
                 {
-                    return RedirectToAction("TeacherHomePage", "Teacher", new { id = LoginDetails.UserId });
+                    Session["login"] = user.Email;
+                    Session["userid"] = user.UserId;
+                    return RedirectToAction("TeacherHomePage1", "Teacher", new { id = LoginDetails.UserId });
                 }
                 else
                 {
@@ -203,6 +206,8 @@ namespace UserApplication.Controllers
         }
         public ActionResult LogOut()
         {
+            Session["login"] = null;
+            Session.Abandon();
             return RedirectToAction("Login");
         }
       
