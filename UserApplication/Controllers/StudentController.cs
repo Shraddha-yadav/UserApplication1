@@ -18,10 +18,52 @@ namespace UserApplication.Controllers
         /// Student homepage.
         /// </summary>
         /// <returns></returns>
-        public ActionResult StudentHomePage(int? id)
+        public ActionResult StudentHomePage1( )
         {
-            var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId !=3 &&  x.UserId == id).ToList();
-            return View(returnedUserList);
+
+            User user = (User)Session["User"];
+            var usr = db.User.Find(user.UserId);
+
+
+            if (Session["User"] != null)
+            {
+
+
+                UserViewModel objUserViewModel = new UserViewModel();
+
+                objUserViewModel.UserId = user.UserId;
+                objUserViewModel.FirstName = user.FirstName;
+                objUserViewModel.LastName = user.LastName;
+                objUserViewModel.Gender = user.Gender;
+                objUserViewModel.Hobbies = user.Hobbies;
+                objUserViewModel.Email = user.Email;
+                objUserViewModel.Password = user.Password;
+                objUserViewModel.DOB = user.DOB;
+                objUserViewModel.RoleId = user.RoleId;
+                objUserViewModel.CourseId = user.CourseId;
+                objUserViewModel.AddressId = user.AddressId;
+                objUserViewModel.IsActive = user.IsActive;
+                objUserViewModel.DateCreated = user.DateCreated;
+                objUserViewModel.DateModified = user.DateModified;
+                objUserViewModel.AddressLine1 = user.Address.AddressLine1;
+                objUserViewModel.AddressLine2 = user.Address.AddressLine2;
+                objUserViewModel.CountryId = user.Address.CountryId;
+                objUserViewModel.StateId = user.Address.StateId;
+                objUserViewModel.CityId = user.Address.CityId;
+                objUserViewModel.Zipcode = user.Address.Zipcode;
+
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(objUserViewModel);
+
+
+            }
+            return View(usr);
+
+
 
         }
 
@@ -144,7 +186,7 @@ namespace UserApplication.Controllers
 
                     db.SaveChanges();  //User Data is saved in the user table
 
-                    return RedirectToAction("StudentHomePage", new { id = objUser.UserId });
+                    return RedirectToAction("StudentHomePage1", new { id = objUser.UserId });
 
                 }
                 return View(objUserViewModel);

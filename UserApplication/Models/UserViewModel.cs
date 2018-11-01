@@ -105,49 +105,7 @@ namespace UserApplication.Models
         
     }
 
-    //public class RoleModel
-    //{
-    //    [Key]
-    //    public int RoleId { get; set; }
-    //    public string RoleName { get; set; }
-
-    //}
-    ////public class CourseModel
-    //{
-    //    [Key]
-    //    public int CourseId { get; set; }
-    //    public string CourseName { get; set; }
-    //}
-
-    //public class CountryModel
-    //{
-    //    [Key]
-    //    public int CountryId { get; set; }
-
-    //    [Required(ErrorMessage = "Please enter your country")]
-    //    public string CountryName { get; set; }
-
-    //}
-    //public class StateModel
-    //{
-    //    [Key]
-    //    public int StateId { get; set; }
-
-    //    public string StateName { get; set; }
-
-
-    //}
-    //public class CityModel
-    //{
-    //    [Key]
-    //    public int CityId { get; set; }
-
-    //    public string CityName { get; set; }
-
-
-
-    //}
-
+    
 }
 
 

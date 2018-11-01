@@ -233,17 +233,19 @@
                 <input type="submit" value="save" class="btn btn-success" />
             </div>
         </div>
+        
+
     </div>
 
     }
-    </div>
-    <div>
-        @*<input type="button" class="btn btn-primary btn-sm" '
-            value="Back To Home"
-            onclick="window.location.href='@Url.Action("StudentHomePage","Student")'" />*@
+    
+<div>
 
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Profile"
+           onclick="window.location.href='@Url.Action("StudentHomePage1","Student", new { id = Model.UserId })'" />    
+</div>
     </div>
-
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 

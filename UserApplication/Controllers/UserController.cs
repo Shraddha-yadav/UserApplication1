@@ -24,8 +24,8 @@ namespace UserApplication.Controllers
 
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
-           
-          
+
+
             List<Country> countryList = new List<Country>();
             List<State> stateList = new List<State>();
             List<City> cityList = new List<City>();
@@ -70,7 +70,7 @@ namespace UserApplication.Controllers
                         StateId = objUserViewModel.StateId,
                         CityId = objUserViewModel.CityId,
                         Zipcode = objUserViewModel.Zipcode,
-                       
+
 
                     };
 
@@ -95,7 +95,7 @@ namespace UserApplication.Controllers
                         //AddressLine2 = objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
-                       
+
                         RoleId = objUserViewModel.RoleId,
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
@@ -181,10 +181,14 @@ namespace UserApplication.Controllers
         {
 
             var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-                      if (LoginDetails != null)
+            if (LoginDetails != null)
+            {
+                Session["UserId"] = LoginDetails.UserId.ToString();
+                Session["UserName"] = LoginDetails.Email.ToString();
+                //Session["UserDetails"] = LoginDetails;
                 if (LoginDetails.RoleId == 1)
                 {
-                    
+
                     return RedirectToAction("GetAllUsers", "SuperAdmin");
                 }
                 else if (LoginDetails.RoleId == 2)
@@ -193,15 +197,17 @@ namespace UserApplication.Controllers
                 }
                 else if (LoginDetails.RoleId == 3)
                 {
-                    Session["login"] = user.Email;
-                    Session["userid"] = user.UserId;
-                    return RedirectToAction("TeacherHomePage1", "Teacher", new { id = LoginDetails.UserId });
+                    Session["User"] = LoginDetails;
+                    return RedirectToAction("TeacherHomePage1", "Teacher");
+
+                    //return RedirectToAction("TeacherHomePage1", "Teacher", new { id = ((User)Session["UserDetails"]).UserId });
                 }
                 else
                 {
-                   return RedirectToAction("StudentHomePage", "Student" , new { id = LoginDetails.UserId });
-               }
-
+                    Session["User"] = LoginDetails;
+                    return RedirectToAction("StudentHomePage1", "Student"/*, new { id = LoginDetails.UserId }*/);
+                }
+            }
             return View("Login");
         }
         public ActionResult LogOut()
@@ -210,7 +216,7 @@ namespace UserApplication.Controllers
             Session.Abandon();
             return RedirectToAction("Login");
         }
-      
+
 
 
     }

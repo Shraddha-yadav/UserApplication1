@@ -192,13 +192,17 @@
 
         </dl>
     </div>
-    </div>
+
     <div>
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |*@
-        @Html.ActionLink("Back to list", "GetStudentList", new { id = Model.CourseId })
+        @*@Html.ActionLink("Back to list", "GetStudentList", new { id = Model.CourseId })*@
         @*<input type="button" class="btn btn-primary btn-sm" '
-            value="Back To List"
-            onclick="window.location.href='@Url.Action("GetStudentList","Teacher")'" />*@
+            value="Back To Profile"
+            onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher", new { id = Model.UserId })'" />*@
+
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Back To List"
+               onclick="window.location.href='@Url.Action("GetStudentList","Teacher" , new { id = Model.CourseId })'" />
 
 
     </div>
+</div>

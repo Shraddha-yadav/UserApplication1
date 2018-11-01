@@ -2,11 +2,16 @@
 
 @{
     ViewBag.Title = "TeacherHomePage1";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 }
+
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
 
-    <h2>TeacherHomePage1</h2>
+
+
+    <h2>Welcome Teacher</h2>
 
     <div>
         <h4> </h4>
@@ -190,8 +195,18 @@
 
         </dl>
     </div>
-    </div>
-<p>
-    @Html.ActionLink("Edit", "EditProfile", new { id = Model.UserId }) |
-    @Html.ActionLink("Student List", "GetStudentList", new { id = Model.CourseId }) |
-</p>
+
+    <p>
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Edit Profile"
+               onclick="window.location.href='@Url.Action("EditProfile","Teacher", new { id = Model.UserId })'" />
+
+        <input type="button" class="btn btn-primary btn-sm" '
+               value="Go To student List"
+               onclick="window.location.href='@Url.Action("GetStudentList","Teacher", new { id = Model.CourseId })'" />
+
+        @*@Html.ActionLink("Edit Profile", "EditProfile", new { id = Model.UserId }|
+            @Html.ActionLink("Go to Student List", "GetStudentList", new { id = Model.CourseId })*@
+
+    </p>
+</div>

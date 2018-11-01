@@ -232,18 +232,23 @@
 
     }
 
-    </div>
+    
 
 <div>
-    @Html.RouteLink("Back To Profile ", "Default",
-   new { action = "TeacherHomePage1", controller ="Teacher",   id =Model.UserId})
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Profile"
+           onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher", new { id = Model.UserId })'" />
+
+    @*@Html.RouteLink("Back To Profile ", "Default",
+   new { action = "TeacherHomePage1", controller ="Teacher",   id =Model.UserId})*@
 
     @*<input type="button" class="btn btn-primary btn-sm"
         value="Back To Home"
         onclick="window.location.href='@Url.Action("TeacherHomePage","Teacher")'" />*@
 
 </div>
-
+</div>
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 

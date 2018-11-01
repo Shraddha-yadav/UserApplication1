@@ -113,8 +113,8 @@
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>*@
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |*@
                 @Html.ActionLink("Details", "StudentDetails", new { id = item.UserId })
+
 
             </td>
 
@@ -122,8 +122,14 @@
     }
 
 </table>
+
+
 <p>
 
-@Html.RouteLink("Back To Profile ", "Default",
-new { action = "TeacherHomePage1", controller ="Teacher", })
-    <p>
+    @*@Html.ActionLink("Back to Profile", "TeacherHomePage1")*@
+
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Profile"
+           onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher" )'" />
+</p>

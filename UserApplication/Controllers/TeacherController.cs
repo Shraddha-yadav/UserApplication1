@@ -11,33 +11,25 @@ namespace UserApplication.Controllers
     public class TeacherController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       
+      
+
+
         /// <summary>
         /// Get : get Teachers details
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-            public ActionResult TeacherHomePage1(int? id)
+        public ActionResult TeacherHomePage1()
         {
+            User user = (User)Session["User"];
+            var usr = db.User.Find(user.UserId);
+           
 
-            //if(Session["login"]== null)
-            //{
-            //    return RedirectToAction("Login", "User");
-            //}
-            //var returnedUserList = db.User.Where(x => x.RoleId == 3 /*!= 1 && x.RoleId != 2 && x.RoleId != 4*/ && x.UserId == id).ToList();
-            //return View(returnedUserList);
-
+            if (Session["User"] != null)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                User user = db.User.Find(id);
-                // var userData = from p in db.Users
-                // where p.UserId == id
-                // select p;
-                // var tempUserList = db.Users.ToList();
-
+              
+             
                 UserViewModel objUserViewModel = new UserViewModel();
 
                 objUserViewModel.UserId = user.UserId;
@@ -67,7 +59,12 @@ namespace UserApplication.Controllers
                     return HttpNotFound();
                 }
                 return View(objUserViewModel);
+
+
             }
+            return View(usr);
+
+           
 
         }
 
@@ -93,7 +90,7 @@ namespace UserApplication.Controllers
             var tempStateList = db.States.ToList();
             var tempCityList = db.Cities.ToList();
             var tempCourseList = db.Courses.ToList();
-            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId !=4).ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId != 4).ToList();
 
             //model.States = tempStateList;
             //model.Cities = tempCityList;
@@ -189,7 +186,7 @@ namespace UserApplication.Controllers
 
                     db.SaveChanges();  //User Data is saved in the user table
 
-                    return RedirectToAction("TeacherHomePage1", new { id = objUser.UserId });
+                    return RedirectToAction("TeacherHomePage", new { id = objUser.UserId });
 
                 }
                 return View(objUserViewModel);
@@ -209,8 +206,12 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetStudentList(int id)
         {
-            var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3 && x.CourseId == id ).ToList();
-            return View(returnedUserList);
+           
+                var returnedUserList = db.User.Where(x => x.RoleId == 4 && x.CourseId == id).ToList();   /*db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3 && x.CourseId == id ).ToList();*/
+
+                return View(returnedUserList);
+            
+           
         }
         /// <summary>
         /// GET: To Show the details of the user
