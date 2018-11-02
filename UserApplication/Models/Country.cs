@@ -14,7 +14,7 @@ namespace UserApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CountryId { get; set; }
 
-        //[Required(ErrorMessage = "Please enter your country")]
+       
         public string CountryName { get; set; }
 
         public bool IsActive { get; set; }

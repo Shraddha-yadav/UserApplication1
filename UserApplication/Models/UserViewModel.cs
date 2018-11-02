@@ -14,48 +14,55 @@ namespace UserApplication.Models
         [Key]
         public int UserId { get; set; }
 
-       [Required(ErrorMessage = "Enter your firstname.")]
-       [MaxLength(50)]
+        [Required(ErrorMessage = "Enter your firstname.")]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter your last name.")]
         [MaxLength(50)]
         public string LastName { get; set; }
 
-       [Required(ErrorMessage = "Please enter your gender.")]
+        [Required(ErrorMessage = "Please enter your gender.")]
         public string Gender { get; set; }
 
+        [Required(ErrorMessage = "Please enter valid DOB")]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
-     [Required(ErrorMessage = "Enter your hobbies.")]
+        [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
-       [Required(ErrorMessage = "Enter your email address.")]
-      [DataType(DataType.EmailAddress)]
-      [EmailAddress]
+        [Required(ErrorMessage = "Enter your email address.")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
 
-      [Required(ErrorMessage = "Your email address is not verified.")]
+
         public string IsEmailVerified { get; set; }
 
-        [Required(ErrorMessage = "Enter a password.")]
-       [DataType(DataType.Password)]
+        [Required]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
+            ErrorMessage = "Password should be of minimum 6 characters with at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Confirm your password.")]
+        [Required]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
+           ErrorMessage = "Password should be of minimum 6 characters with at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
         [DataType(DataType.Password)]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
 
-       [Required(ErrorMessage = "Your account is inactive.")]
         public bool IsActive { get; set; }
 
+        [Required(ErrorMessage = "Please select the course")]
         [DisplayName("Course")]
         public int CourseId { get; set; }
 
+        [Required(ErrorMessage = "This field cannot be null")]
         [DisplayName("Address")]
         public int AddressId { get; set; }
 
@@ -70,7 +77,7 @@ namespace UserApplication.Models
 
         [DisplayName("Zip code")]
         [Required(ErrorMessage = "Please enter Zipcode")]
-        
+
         public int Zipcode { get; set; }
 
 
@@ -78,10 +85,10 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter date created.")]
         public DateTime DateCreated { get; set; }
 
-       [Required(ErrorMessage = "Enter date modified.")]
+        [Required(ErrorMessage = "Enter date modified.")]
         public DateTime DateModified { get; set; }
 
-       [DisplayName("Role")]
+        [DisplayName("Role")]
         public int RoleId { get; set; }
 
         public string RoleName { get; set; }
@@ -96,16 +103,30 @@ namespace UserApplication.Models
         public int CityId { get; set; }
 
         public List<Country> Countries { get; set; }
-        public List<State>  States { get; set; }
+        public List<State> States { get; set; }
         public List<City> Cities { get; set; }
 
 
         public List<Role> Roles { get; set; }
-       public List<Course> Courses { get; set; }
-        
+        public List<Course> Courses { get; set; }
+
+        [DisplayName("Your Country ")]
+        public string CountryName { get; set; }
+
+
+        [DisplayName("Your State ")]
+        public string StateName { get; set; }
+
+
+        [DisplayName(" Your City ")]
+        public string CityName { get; set; }
     }
+}
+
 
     
-}
+
+    
+
 
 

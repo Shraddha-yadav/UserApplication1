@@ -66,6 +66,9 @@ namespace UserApplication.Controllers
                 objUserViewModel.StateId = user.Address.StateId;
                 objUserViewModel.CityId = user.Address.CityId;
                 objUserViewModel.Zipcode = user.Address.Zipcode;
+                objUserViewModel.CountryName = user.Address.Country.CountryName;
+                objUserViewModel.StateName = user.Address.State.StateName;
+                objUserViewModel.CityName = user.Address.City.CityName;
 
 
                 if (user == null)
@@ -617,7 +620,7 @@ namespace UserApplication.Controllers
             var listOfCourseAndSubject = db.SubjectsInCourses.ToList();
             return View(listOfCourseAndSubject);
         }
-        [HttpGet]
+        
         public ActionResult CourseAndSubject(int id)
         {
             var removeCourseAndSubject = db.SubjectsInCourses.Single(x => x.CourseId == id);

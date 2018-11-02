@@ -54,9 +54,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Registration(UserViewModel objUserViewModel)
         {
+
             if (!ModelState.IsValid)
             {
-                return View(objUserViewModel);
+                return RedirectToAction("Registration");
             }
             using (var transaction = db.Database.BeginTransaction())
             {
@@ -95,6 +96,7 @@ namespace UserApplication.Controllers
                         //AddressLine2 = objUserViewModel.AddressLine2,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
+                        
 
                         RoleId = objUserViewModel.RoleId,
                         // Adding addresId 

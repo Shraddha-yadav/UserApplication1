@@ -17,11 +17,11 @@ namespace UserApplication.Models
         public int UserId { get; set; }
 
         [DisplayName("First Name")]
-        [Required(ErrorMessage = "FirstName is required")]
+       [Required(ErrorMessage = "FirstName is required")]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
-        [Required(ErrorMessage = "LastName is required")]
+       [Required(ErrorMessage = "LastName is required")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "This field cannot be null")]
@@ -30,13 +30,17 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Please select Hobbies")]
         public string Hobbies { get; set; }
 
+        [Required(ErrorMessage = "Enter your password.")]
         [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
          ErrorMessage = "Password should be of minimum 6 characters with at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm your password.")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
+         ErrorMessage = "Password should be of minimum 6 characters with at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
         [DataType(DataType.Password)]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
 
@@ -46,10 +50,13 @@ namespace UserApplication.Models
         public string IsEmailVerified { get; set; }
 
         [Required(ErrorMessage = "Please enter valid DOB")]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
         [Required(ErrorMessage = "Please select the course")]
-         [DisplayName("Course")]
+        [DisplayName("Course")]
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
         public virtual Course Course { get; set; }
@@ -66,10 +73,10 @@ namespace UserApplication.Models
         [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
 
-        [Required(ErrorMessage = "Enter date created.")]
+       //[Required(ErrorMessage = "Enter date created.")]
         public DateTime DateCreated { get; set; }
 
-        [Required(ErrorMessage = "Enter date modified.")]
+        //[Required(ErrorMessage = "Enter date modified.")]
         public DateTime DateModified { get; set; }
 
         public bool IsActive { get; set; }

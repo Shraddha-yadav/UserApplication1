@@ -15,12 +15,12 @@ namespace UserApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressId { get; set; }
 
-       //[Required(ErrorMessage = "Enter your permanent address")]
+    
        [DisplayName("Permanent Address")]
        public string AddressLine1 { get; set; }
 
 
-      //[Required(ErrorMessage = "Enter your current address")]
+     
       [DisplayName("Temporary Address")]
         public string AddressLine2 { get; set; }
 
