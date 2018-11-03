@@ -24,7 +24,7 @@ namespace UserApplication.Controllers
             var returnedUserList = db.User.Where(x => x.RoleId != 1).ToList();
             return View(returnedUserList);
         }
-        
+
         /// <summary>
         /// GET: To Show the details of the user
         /// </summary>
@@ -54,7 +54,7 @@ namespace UserApplication.Controllers
                 objUserViewModel.Hobbies = user.Hobbies;
                 objUserViewModel.Email = user.Email;
                 objUserViewModel.Password = user.Password;
-               objUserViewModel.DOB = user.DOB;
+                objUserViewModel.DOB = user.DOB;
                 objUserViewModel.RoleId = user.RoleId;
                 objUserViewModel.CourseId = user.CourseId;
                 objUserViewModel.AddressId = user.AddressId;
@@ -117,6 +117,24 @@ namespace UserApplication.Controllers
         public ActionResult CreateUser(UserViewModel objUserViewModel)
         {
 
+            List<Country> countryList = new List<Country>();
+            List<State> stateList = new List<State>();
+            List<City> cityList = new List<City>();
+            List<Course> courseList = new List<Course>();
+            List<Role> roleList = new List<Role>();
+
+            var tempCountryList = db.Countries.ToList();
+            var tempStateList = db.States.ToList();
+            var tempCityList = db.Cities.ToList();
+            var tempCourseList = db.Courses.ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1).ToList();
+
+            objUserViewModel.Countries = tempCountryList;
+            objUserViewModel.States = tempStateList;
+            objUserViewModel.Cities = tempCityList;
+            objUserViewModel.Courses = tempCourseList;
+            objUserViewModel.Roles = tempRoleList;
+
             if (!ModelState.IsValid)
             {
                 return View(objUserViewModel);
@@ -159,8 +177,8 @@ namespace UserApplication.Controllers
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
                         RoleId = objUserViewModel.RoleId,
-                       // Adding addresId 
-                       AddressId = objAddress.AddressId,
+                        // Adding addresId 
+                        AddressId = objAddress.AddressId,
                         DateCreated = DateTime.Now,
                         //Done for testing purpose.
                         DateModified = DateTime.Now
@@ -192,7 +210,7 @@ namespace UserApplication.Controllers
 
                 }
             }
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("GetAllUsers", "SuperAdmin");
 
         }
         public JsonResult GetStates(int CountryId)
@@ -347,14 +365,18 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult EditUser(int id, UserViewModel objUserViewModel)
         {
+
             try
             {
                 User objUser = db.User.Find(id);
                 //  var userData = from p in db.Users where p.UserId == id select p;
                 // var tempUserList = db.Users.FirstOrDefault();
 
-                if (ModelState.IsValid)
+
+
+                 if(ModelState.IsValid)
                 {
+
                     objUser.FirstName = objUserViewModel.FirstName;
                     objUser.LastName = objUserViewModel.LastName;
                     objUser.Gender = objUserViewModel.Gender;
@@ -375,12 +397,17 @@ namespace UserApplication.Controllers
                     objUser.IsActive = objUserViewModel.IsActive;
                     objUser.DateModified = DateTime.Now;
 
+                    
+
                     db.SaveChanges();  //User Data is saved in the user table
 
                     return RedirectToAction("GetAllUsers");
 
-                }
+                 }
                 return View(objUserViewModel);
+
+
+
             }
             catch (Exception ex)
             {
@@ -388,6 +415,8 @@ namespace UserApplication.Controllers
             }
 
         }
+    
+
         /// <summary>
         /// GET:Super Admin can remove user
         /// </summary>
@@ -485,10 +514,18 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateCourse(Course objCourse)
         {
-            db.Courses.Add(objCourse);      //Insert data 
-            db.SaveChanges();               //Save data
+            if (objCourse.CourseName == null)
+            {
+                Console.WriteLine("Course cannot be null");
+            }
+            else
+            {
+                db.Courses.Add(objCourse);      //Insert data 
+                db.SaveChanges();               //Save data
 
-            return RedirectToAction("CourseList");
+                return RedirectToAction("CourseList");
+            }
+            return View(objCourse);
         }
         /// <summary>
         /// GET : Super Admin can create subject
@@ -507,10 +544,19 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateSubject(Subject objSubject)
         {
-            db.Subjects.Add(objSubject);
-            db.SaveChanges();
+            if (objSubject.SubjectName == null)
+            {
+                Console.WriteLine("Subject cannot be null");
+            }
+            else
+            {
+                db.Subjects.Add(objSubject);
+                db.SaveChanges();
 
-            return RedirectToAction("SubjectList");
+                return RedirectToAction("SubjectList");
+            }
+            return View(objSubject);
+           
         }
         /// <summary>
         /// GET: Super Admin can assign subject to course

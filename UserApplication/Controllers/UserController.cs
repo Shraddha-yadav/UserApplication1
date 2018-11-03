@@ -54,15 +54,33 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult Registration(UserViewModel objUserViewModel)
         {
+            List<Country> countryList = new List<Country>();
+            List<State> stateList = new List<State>();
+            List<City> cityList = new List<City>();
+            List<Course> courseList = new List<Course>();
+            List<Role> roleList = new List<Role>();
+
+            var tempCountryList = db.Countries.ToList();
+            var tempStateList = db.States.ToList();
+            var tempCityList = db.Cities.ToList();
+            var tempCourseList = db.Courses.ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2).ToList();
+
+            objUserViewModel.Countries = tempCountryList;
+            objUserViewModel.States = tempStateList;
+            objUserViewModel.Cities = tempCityList;
+            objUserViewModel.Courses = tempCourseList;
+            objUserViewModel.Roles = tempRoleList;
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Registration");
+                return View(objUserViewModel);
             }
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
-                {//Raw data sent to address table.
+                {
+                    //Raw data sent to address table.
                     Address objAddress = new Address
                     {
                         AddressLine1 = objUserViewModel.AddressLine1,
@@ -91,14 +109,11 @@ namespace UserApplication.Controllers
                         Email = objUserViewModel.Email,
                         IsEmailVerified = objUserViewModel.IsEmailVerified,
                         Password = objUserViewModel.Password,
-                        ConfirmPassword = objUserViewModel.ConfirmPassword,
-                        //AddressLine1 = objUserViewModel.AddressLine1,
-                        //AddressLine2 = objUserViewModel.AddressLine2,
+                        ConfirmPassword = objUserViewModel.ConfirmPassword,                      
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
-                        
-
                         RoleId = objUserViewModel.RoleId,
+
                         // Adding addresId 
                         AddressId = objAddress.AddressId,
                         DateCreated = DateTime.Now,
@@ -168,11 +183,6 @@ namespace UserApplication.Controllers
         }
 
 
-
-
-
-
-
         [HttpGet]
         public ActionResult Login()
         {
@@ -187,11 +197,10 @@ namespace UserApplication.Controllers
             {
                 Session["UserId"] = LoginDetails.UserId.ToString();
                 Session["UserName"] = LoginDetails.Email.ToString();
-                //Session["UserDetails"] = LoginDetails;
                 if (LoginDetails.RoleId == 1)
                 {
-
                     return RedirectToAction("GetAllUsers", "SuperAdmin");
+
                 }
                 else if (LoginDetails.RoleId == 2)
                 {
@@ -202,7 +211,6 @@ namespace UserApplication.Controllers
                     Session["User"] = LoginDetails;
                     return RedirectToAction("TeacherHomePage1", "Teacher");
 
-                    //return RedirectToAction("TeacherHomePage1", "Teacher", new { id = ((User)Session["UserDetails"]).UserId });
                 }
                 else
                 {
@@ -214,8 +222,8 @@ namespace UserApplication.Controllers
         }
         public ActionResult LogOut()
         {
-            Session["login"] = null;
-            Session.Abandon();
+            //Session["login"] = null;
+            //Session.Abandon();
             return RedirectToAction("Login");
         }
 

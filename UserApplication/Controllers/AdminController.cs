@@ -69,6 +69,7 @@ namespace UserApplication.Controllers
                 objUserViewModel.CountryName = user.Address.Country.CountryName;
                 objUserViewModel.StateName = user.Address.State.StateName;
                 objUserViewModel.CityName = user.Address.City.CityName;
+                objUserViewModel.CourseName = user.Course.CourseName;
 
 
                 if (user == null)
@@ -118,6 +119,26 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel objUserViewModel)
         {
+
+            List<Country> countryList = new List<Country>();
+            List<State> stateList = new List<State>();
+            List<City> cityList = new List<City>();
+            List<Course> courseList = new List<Course>();
+            List<Role> roleList = new List<Role>();
+
+            var tempCountryList = db.Countries.ToList();
+            var tempStateList = db.States.ToList();
+            var tempCityList = db.Cities.ToList();
+            var tempCourseList = db.Courses.ToList();
+            var tempRoleList = db.Roles.Where(u => u.RoleId != 1 && u.RoleId != 2).ToList();
+
+            objUserViewModel.Countries = tempCountryList;
+            objUserViewModel.States = tempStateList;
+            objUserViewModel.Cities = tempCityList;
+            objUserViewModel.Courses = tempCourseList;
+            objUserViewModel.Roles = tempRoleList;
+
+
             if (!ModelState.IsValid)
             {
                 return View(objUserViewModel);
@@ -491,10 +512,18 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateCourse(Course objCourse)
         {
-            db.Courses.Add(objCourse);      //Insert data 
-            db.SaveChanges();               //Save data
+            if (objCourse.CourseName == null)
+            {
+                Console.WriteLine("Course cannot be null");
+            }
+            else
+            {
+                db.Courses.Add(objCourse);      //Insert data 
+                db.SaveChanges();               //Save data
 
-            return RedirectToAction("CourseList");
+                return RedirectToAction("CourseList");
+            }
+            return View(objCourse);
         }
         /// <summary>
         /// GET : Super Admin can create subject
@@ -513,10 +542,18 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateSubject(Subject objSubject)
         {
-            db.Subjects.Add(objSubject);
-            db.SaveChanges();
+            if (objSubject.SubjectName == null)
+            {
+                Console.WriteLine("Subject cannot be null");
+            }
+            else
+            {
+                db.Subjects.Add(objSubject);
+                db.SaveChanges();
 
-            return RedirectToAction("SubjectList");
+                return RedirectToAction("SubjectList");
+            }
+            return View(objSubject);
         }
         /// <summary>
         /// GET: Super Admin can assign subject to course

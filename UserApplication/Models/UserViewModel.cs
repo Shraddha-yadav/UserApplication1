@@ -14,8 +14,8 @@ namespace UserApplication.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "Enter your firstname.")]
-        [MaxLength(50)]
+       [Required(ErrorMessage = "Enter your firstname.")]
+       [MaxLength(50)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter your last name.")]
@@ -76,8 +76,8 @@ namespace UserApplication.Models
         public string AddressLine2 { get; set; }
 
         [DisplayName("Zip code")]
+        
         [Required(ErrorMessage = "Please enter Zipcode")]
-
         public int Zipcode { get; set; }
 
 
@@ -110,16 +110,28 @@ namespace UserApplication.Models
         public List<Role> Roles { get; set; }
         public List<Course> Courses { get; set; }
 
-        [DisplayName("Your Country ")]
+        
+        [DisplayName("Country")]
         public string CountryName { get; set; }
 
 
-        [DisplayName("Your State ")]
+        [DisplayName("State")]
         public string StateName { get; set; }
 
 
-        [DisplayName(" Your City ")]
+        [DisplayName("City")]
         public string CityName { get; set; }
+
+        [DisplayName("Course")]
+        //[Required(ErrorMessage = "Course cannot be null.")]
+        public string CourseName { get; set; }
+
+
+        //[DisplayName("Subject")]
+        //[Required(ErrorMessage = "Subject cannot be null.")]
+        //public string SubjectName { get; set; }
+
+
     }
 }
 

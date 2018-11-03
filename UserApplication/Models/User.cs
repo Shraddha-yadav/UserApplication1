@@ -17,7 +17,7 @@ namespace UserApplication.Models
         public int UserId { get; set; }
 
         [DisplayName("First Name")]
-       [Required(ErrorMessage = "FirstName is required")]
+      [Required(ErrorMessage = "FirstName is required")]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
