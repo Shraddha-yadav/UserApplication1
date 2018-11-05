@@ -20,7 +20,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.SubjectId, "SubjectId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "--select--", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "--select--", htmlAttributes: new { @class = "form-control", required = "required" })
 
                     @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                 </div>
@@ -42,10 +42,15 @@
         </div>
     }
     </div>
-    <div>
-        <input type="button" class="btn btn-primary btn-sm" '
-               value="Back To List"
-               onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+<div>
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="list of Course and Subject"
+           onclick="window.location.href='@Url.Action("CourseAndSubjectList","Admin")'" />
+   
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
 
 
-    </div>
+</div>

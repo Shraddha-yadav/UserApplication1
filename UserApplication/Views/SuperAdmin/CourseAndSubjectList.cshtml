@@ -51,8 +51,9 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectInCourseId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.SubjectInCourseId })*@
+        @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |*@
+        @Html.ActionLink("Delete", "DeleteCourseAndSubject", new { id=item.SubjectInCourseId })
+               
             </td>
         </tr>
     }
@@ -60,6 +61,6 @@
 </table>
 <p>
     <input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
+           value="Back To Home"
            onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
 </p>

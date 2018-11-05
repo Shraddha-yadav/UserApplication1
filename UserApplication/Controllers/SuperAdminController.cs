@@ -205,6 +205,7 @@ namespace UserApplication.Controllers
                 {
                     //throw ex;
                     //roll back all database operations, if anything goes wrong.
+                    ModelState.AddModelError(string.Empty, ex.Message);
                     transaction.Rollback();
                     ViewBag.ResultMessage = "Error occurred in the registration process.Please register again.";
 
@@ -411,6 +412,7 @@ namespace UserApplication.Controllers
             }
             catch (Exception ex)
             {
+                ModelState.AddModelError(string.Empty, ex.Message);
                 throw ex;
             }
 
@@ -496,7 +498,7 @@ namespace UserApplication.Controllers
             }
             catch (Exception ex)
             {
-
+                ModelState.AddModelError(string.Empty, ex.Message);
                 throw ex;
             }
         }
@@ -660,6 +662,36 @@ namespace UserApplication.Controllers
             var listOfCourseAndSubject = db.SubjectsInCourses.ToList();
             return View(listOfCourseAndSubject);
         }
+
+
+        [HttpGet]
+        public ActionResult DeleteCourseAndSubject(int id)
+        {
+            var removeCourseAndSubject = db.SubjectsInCourses.Single(x => x.SubjectInCourseId == id);          
+            return View(removeCourseAndSubject);
+        }
+        [HttpPost]
+        public ActionResult DeleteCourseAndSubject(int id, Subject objSubject)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                var deleteCourseAndSubject = db.SubjectsInCourses.Single(x => x.SubjectInCourseId == id);
+                db.SubjectsInCourses.Remove(deleteCourseAndSubject);
+
+                db.SaveChanges();
+
+                return RedirectToAction("CourseAndSubjectList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
         [HttpGet]
         public ActionResult CourseAndSubject(int id)
         {

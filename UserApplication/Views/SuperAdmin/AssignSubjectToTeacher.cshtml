@@ -20,7 +20,7 @@
                 @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @*@Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownList("UserId", ViewBag.TeacherList as SelectList, "--select--", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("UserId", ViewBag.TeacherList as SelectList, "--select--", htmlAttributes: new { @class = "form-control",required="required" })
 
                     @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
                 </div>
@@ -30,7 +30,7 @@
                 @Html.LabelFor(model => model.SubjectId, "SubjectId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @*@Html.DropDownList("SubjectId", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control", required = "required" })
 
                     @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
                 </div>
@@ -48,7 +48,11 @@
         @Html.ActionLink("Back to List", "GetAllUsers")
     </div>*@
 <p>
-<input type="button" class="btn btn-primary btn-sm" '
-       value="Back To List"
-       onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
-    </p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Teacher and subject List"
+           onclick="window.location.href='@Url.Action("TeacherAndSubjectList","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Home"
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+</p>

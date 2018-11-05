@@ -318,6 +318,8 @@
     <Content Include="Views\Teacher\TeacherHomePage1.cshtml" />
     <Content Include="Views\Teacher\GetStudentList.cshtml" />
     <Content Include="Views\Student\StudentHomePage1.cshtml" />
+    <Content Include="Views\SuperAdmin\DeleteCourseAndSubject.cshtml" />
+    <Content Include="Views\Admin\DeleteCourseAndSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

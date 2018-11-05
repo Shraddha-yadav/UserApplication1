@@ -59,7 +59,11 @@
 
 <p>
     <input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
+           value="Back To Assign Subject To Teacher"
+           onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","SuperAdmin")'" />
+
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Home"
            onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
 </p>
 

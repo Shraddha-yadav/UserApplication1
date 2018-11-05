@@ -195,6 +195,7 @@ namespace UserApplication.Controllers
             }
             catch (Exception ex)
             {
+                ModelState.AddModelError(string.Empty, ex.Message);
                 throw ex;
             }
 

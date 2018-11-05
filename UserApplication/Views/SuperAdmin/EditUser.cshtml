@@ -148,14 +148,14 @@
                 <div class="col-md-10">
 
 
-                    @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
+              @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
                {
                    Value = item.CountryId.ToString(),
                    Text = item.CountryName.ToString()
 
                }), "---Select Country---", new { id = "ddlCountry" })
                     
-                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" ,required="required"})
 
                 </div>
             </div>

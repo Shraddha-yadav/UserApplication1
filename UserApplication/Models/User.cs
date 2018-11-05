@@ -43,8 +43,8 @@ namespace UserApplication.Models
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
-
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string IsEmailVerified { get; set; }

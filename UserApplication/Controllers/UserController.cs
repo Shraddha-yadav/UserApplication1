@@ -142,6 +142,7 @@ namespace UserApplication.Controllers
                 {
                     //throw ex;
                     //roll back all database operations, if anything goes wrong.
+                    ModelState.AddModelError(string.Empty, ex.Message);
                     transaction.Rollback();
                     ViewBag.ResultMessage = "Error occurred in the registration process.Please register again.";
 

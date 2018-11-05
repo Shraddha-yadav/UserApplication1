@@ -34,8 +34,7 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
-        [Required(ErrorMessage = "Enter your email address.")]
-        [DataType(DataType.EmailAddress)]
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -76,7 +75,7 @@ namespace UserApplication.Models
         public string AddressLine2 { get; set; }
 
         [DisplayName("Zip code")]
-        
+        [RegularExpression(@"^(\d{6})$", ErrorMessage = "ZipCode is not valid.")]
         [Required(ErrorMessage = "Please enter Zipcode")]
         public int Zipcode { get; set; }
 

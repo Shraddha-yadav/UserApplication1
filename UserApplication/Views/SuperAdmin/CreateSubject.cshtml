@@ -3,32 +3,35 @@
 @{
     ViewBag.Title = "CreateSubject";
 }
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
 
-<h2>CreateSubject</h2>
+    <h2>CreateSubject</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Subject</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.SubjectName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control",required="required" } })
-                @Html.ValidationMessageFor(model => model.SubjectName, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>Subject</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.SubjectName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create " class="btn btn-success" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create " class="btn btn-success" />
-            </div>
-        </div>
+    }
     </div>
-}
 
     <div>
         <input type="button" class="btn btn-primary btn-sm" '
@@ -37,8 +40,8 @@
 
 
         <input type="button" class="btn btn-primary btn-sm" '
-               value="Back To List"
-               onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+               value="Back To Create Course"
+               onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
 
 
     </div>

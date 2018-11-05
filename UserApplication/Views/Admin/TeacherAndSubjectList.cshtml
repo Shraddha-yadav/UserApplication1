@@ -26,7 +26,7 @@
 <h2>TeacherAndSubjectList</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", " ")
 </p>
 <table class="table">
     <tr>
@@ -58,6 +58,10 @@
 
 </table>
 <p>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To Assign Subject To Teacher"
+           onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","Admin")'" />
+
     <input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
            onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
