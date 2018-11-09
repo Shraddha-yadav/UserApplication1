@@ -151,12 +151,12 @@ namespace UserApplication.Controllers
             return RedirectToAction("Login", "User");
 
         }
-        public JsonResult getState(int Id)
+        public JsonResult getState(int id)
         {
-            var states = db.States.Where(x => x.CountryId == Id).ToList();
+            var states = db.States.Where(x => x.CountryId == id).ToList();
             List<SelectListItem> stateList = new List<SelectListItem>();
 
-            stateList.Add(new SelectListItem { Text = "", Value = "0" });
+            stateList.Add(new SelectListItem { Text = "--select State--", Value = "0" });
             if (states != null)
             {
                 foreach (var x in states)
@@ -194,7 +194,8 @@ namespace UserApplication.Controllers
         {
 
             var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-            if (LoginDetails != null)
+
+                     if (LoginDetails != null)
             {
                 Session["UserId"] = LoginDetails.UserId.ToString();
                 Session["UserName"] = LoginDetails.Email.ToString();
@@ -219,6 +220,12 @@ namespace UserApplication.Controllers
                     return RedirectToAction("StudentHomePage1", "Student"/*, new { id = LoginDetails.UserId }*/);
                 }
             }
+
+            //else
+            //{
+            //    ModelState.AddModelError("", "Invalid username or password");
+            //    return View("Login");
+            //}
             return View("Login");
         }
         public ActionResult LogOut()

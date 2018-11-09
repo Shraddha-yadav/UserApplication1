@@ -32,7 +32,7 @@ namespace UserApplication.Models
 
         [Required(ErrorMessage = "Enter your password.")]
         [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
-         ErrorMessage = "Password should be of minimum 6 characters with at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character")]
+         ErrorMessage = "incorrect password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

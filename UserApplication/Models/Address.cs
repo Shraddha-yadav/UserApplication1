@@ -29,7 +29,8 @@ namespace UserApplication.Models
 
 
         [DisplayName("Country Name")]
-       // [Required(ErrorMessage = "Please select your Country")]
+        // [Required(ErrorMessage = "Please select your Country")]
+
         public int CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
