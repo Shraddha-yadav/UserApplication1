@@ -10,6 +10,7 @@ using UserApplication.Models;
 
 namespace UserApplication.Controllers
 {
+    
 
     public class UserController : Controller
     {
@@ -228,10 +229,11 @@ namespace UserApplication.Controllers
             //}
             return View("Login");
         }
+        [AllowAnonymous]
         public ActionResult LogOut()
         {
-            //Session["login"] = null;
-            //Session.Abandon();
+            Session["login"] = null;
+            Session.Abandon();
             return RedirectToAction("Login");
         }
 

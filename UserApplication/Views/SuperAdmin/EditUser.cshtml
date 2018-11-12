@@ -67,7 +67,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -149,13 +149,13 @@
 
 
               @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
-               {
-                   Value = item.CountryId.ToString(),
-                   Text = item.CountryName.ToString()
+         {
+             Value = item.CountryId.ToString(),
+             Text = item.CountryName.ToString()
 
-               }), "---Select Country---", new { id = "ddlCountry" })
+         }))
                     
-                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" ,required="required"})
+                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger",required="required" })
 
                 </div>
             </div>
@@ -172,7 +172,7 @@
                     Text = item.StateName.ToString()
 
                 }))
-                    @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger",required = "required" })
                 </div>
             </div>
 
@@ -180,12 +180,12 @@
                 @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.CityId, Model.Cities.Select(item => new SelectListItem
-                 {
-                     Value = item.CityId.ToString(),
-                     Text = item.CityName.ToString()
+               {
+                   Value = item.CityId.ToString(),
+                   Text = item.CityName.ToString()
 
-                 }))
-                    @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+               }))
+                    @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" ,required = "required" })
                 </div>
             </div>
 
@@ -198,7 +198,7 @@
                    Text = item.RoleName.ToString()
 
                }))
-                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger", required = "required" })
                 </div>
             </div>
             <div class="col-md-10">
@@ -213,7 +213,7 @@
                        Text = item.CourseName.ToString()
 
                    }))
-                        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger", required = "required" })
                     </div>
                 </div>
             </div>

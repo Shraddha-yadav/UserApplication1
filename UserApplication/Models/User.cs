@@ -43,7 +43,7 @@ namespace UserApplication.Models
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter valid email address")]
         [EmailAddress]
         public string Email { get; set; }
 

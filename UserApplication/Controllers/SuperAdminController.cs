@@ -302,10 +302,11 @@ namespace UserApplication.Controllers
             var tempCourseList = db.Courses.ToList();
             var tempRoleList = db.Roles.ToList();
 
-            // model.States = tempStateList;
-            //  model.Cities = tempCityList;
-            //   model.Courses = tempCourseList;
-            //   model.Roles = tempRoleList;
+            //model.Countries = tempCountryList;
+            //model.States = tempStateList;
+            // model.Cities = tempCityList;
+            // model.Courses = tempCourseList;
+            // model.Roles = tempRoleList;
 
 
 
@@ -377,7 +378,7 @@ namespace UserApplication.Controllers
 
                  if(ModelState.IsValid)
                 {
-
+                    
                     objUser.FirstName = objUserViewModel.FirstName;
                     objUser.LastName = objUserViewModel.LastName;
                     objUser.Gender = objUserViewModel.Gender;
@@ -389,6 +390,7 @@ namespace UserApplication.Controllers
                     objUser.DOB = objUserViewModel.DOB;
                     objUser.CourseId = objUserViewModel.CourseId;
                     objUser.RoleId = objUserViewModel.RoleId;
+                    //objUser.AddressId = objUserViewModel.AddressId;
                     objUser.Address.AddressLine1 = objUserViewModel.AddressLine1;
                     objUser.Address.AddressLine2 = objUserViewModel.AddressLine2;
                     objUser.Address.CountryId = objUserViewModel.CountryId;

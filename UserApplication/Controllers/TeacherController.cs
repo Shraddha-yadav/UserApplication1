@@ -188,7 +188,7 @@ namespace UserApplication.Controllers
 
                     db.SaveChanges();  //User Data is saved in the user table
 
-                    return RedirectToAction("TeacherHomePage", new { id = objUser.UserId });
+                    return RedirectToAction("TeacherHomePage1", new { id = objUser.UserId });
 
                 }
                 return View(objUserViewModel);

@@ -18,7 +18,7 @@
             $("#State").empty();
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("getstate")',
+                url: '@Url.Action("getState","User")',
 
                 dataType: 'json',
 
@@ -53,7 +53,7 @@
             $("#city").empty();
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("getcity")',
+                url: '@Url.Action("getCity","User")',
                 dataType: 'json',
                 data: { id: $("#State").val() },
                 success: function (city) {
@@ -291,18 +291,18 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+          @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                  
-
-                    @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
-               {
-
-                   Value = item.CountryId.ToString(),
-                   Text = item.CountryName.ToString()
+         @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
+        {
+           
+            Value = item.CountryId.ToString(),
+            Text = item.CountryName.ToString()
 
 
-               } ))
+        } ),
+        "--select--","0"
+        )
                     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -312,11 +312,13 @@
                 @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.StateId, Model.States.Select(item => new SelectListItem
-                {
-                    Value = item.StateId.ToString(),
-                    Text = item.StateName.ToString()
+               {
+                   Value = item.StateId.ToString(),
+                   Text = item.StateName.ToString()
 
-                }))
+               }),
+                 "--select--"
+                 )
                     @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -329,7 +331,9 @@
                      Value = item.CityId.ToString(),
                      Text = item.CityName.ToString()
 
-                 }))
+                 }),
+                   "--select--"
+                   )
                     @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -342,7 +346,9 @@
                    Value = item.RoleId.ToString(),
                    Text = item.RoleName.ToString()
 
-               }))
+               }),
+                "--select--"
+                )
                     @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -357,7 +363,8 @@
                        Value = item.CourseId.ToString(),
                        Text = item.CourseName.ToString()
 
-                   }))
+                   }),
+                "--select--")
                         @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                     </div>
                 </div>

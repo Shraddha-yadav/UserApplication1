@@ -115,6 +115,8 @@
                     Female  @Html.RadioButton("Gender", "Female")
                     Male  @Html.RadioButton("Gender", "Male")
                 </div>
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger",
+             required = "required" })
             </div>
 
             <div class="form-group">
@@ -210,7 +212,7 @@
                    Value = item.CountryId.ToString(),
                    Text = item.CountryName.ToString()
 
-               }))
+               }), "---Select Country---", new { id = "ddlCountry" })
                     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -224,7 +226,7 @@
                     Value = item.StateId.ToString(),
                     Text = item.StateName.ToString()
 
-                }))
+                }), "---Select State---", new { id = "ddlStateData" })
                     @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -237,7 +239,7 @@
                      Value = item.CityId.ToString(),
                      Text = item.CityName.ToString()
 
-                 }))
+                 }), "---Select City---", new { id = "ddlCity" })
                     @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -250,7 +252,7 @@
                    Value = item.RoleId.ToString(),
                    Text = item.RoleName.ToString()
 
-               }))
+               }), "---Select Role---" )
                     @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -265,7 +267,7 @@
                        Value = item.CourseId.ToString(),
                        Text = item.CourseName.ToString()
 
-                   }))
+                   }), "---Select Course---")
                         @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                     </div>
                 </div>

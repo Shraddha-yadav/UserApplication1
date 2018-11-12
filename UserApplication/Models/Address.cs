@@ -29,21 +29,20 @@ namespace UserApplication.Models
 
 
         [DisplayName("Country Name")]
-        // [Required(ErrorMessage = "Please select your Country")]
-
+       [Required(ErrorMessage = "Please select your Country")]
         public int CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 
 
         [DisplayName("State Name")]
-       // [Required(ErrorMessage = "Please select your State")]
+        [Required(ErrorMessage = "Please select your State")]
         public int StateId { get; set; }
         [ForeignKey("StateId")]
         public virtual State State { get; set; }
 
         [DisplayName("City Name")]
-       // [Required(ErrorMessage = "Please select your City name")]
+       [Required(ErrorMessage = "Please select your City name")]
         public int CityId { get; set; }
         [ForeignKey("CityId")]
         public virtual City City { get; set;}

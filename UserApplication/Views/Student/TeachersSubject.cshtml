@@ -25,7 +25,7 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", " ")
 </p>
 <table class="table">
     <tr>
@@ -48,11 +48,16 @@
                 @Html.DisplayFor(modelItem => item.Subject.SubjectName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SubjectInCourseId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SubjectInCourseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SubjectInCourseId })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.SubjectInCourseId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SubjectInCourseId }) |*@
+               @Html.ActionLink("Back To Course List", "TeachersList",  new { id = item.CourseId })
+
+
             </td>
         </tr>
+
     }
 
 </table>
+
+

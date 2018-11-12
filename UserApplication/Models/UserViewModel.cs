@@ -34,7 +34,7 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
-        [Required]
+        [Required (ErrorMessage = "Please enter valid email address")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -93,13 +93,15 @@ namespace UserApplication.Models
         public string RoleName { get; set; }
 
         [DisplayName("Country")]
-
+        [Required(ErrorMessage = "Please select your Country")]
         public int CountryId { get; set; }
 
         [DisplayName("State")]
+        [Required(ErrorMessage = "Please select your State")]
         public int StateId { get; set; }
 
         [DisplayName("City")]
+        [Required(ErrorMessage = "Please select your City name")]
         public int CityId { get; set; }
 
         public List<Country> Countries { get; set; }

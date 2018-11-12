@@ -216,11 +216,11 @@ namespace UserApplication.Controllers
         /// Show the list of teachers with subjects against that particular course
         /// </summary>
         /// <returns></returns>
-        //public ActionResult TeachersSubject(int id)
-        //{
-        //    var listOfTeachersSubject = db.SubjectsInCourses.Where(u => u.CourseId== id).ToList();
-        //    return View(listOfTeachersSubject);
-        //}
+        public ActionResult TeachersSubject(int id)
+        {
+            var listOfTeachersSubject = db.SubjectsInCourses.Where(u => u.CourseId == id).ToList();
+            return View(listOfTeachersSubject);
+        }
         //public ActionResult StudentCourse()
         //{
         //    var listOfStudentCourse = db.User.Where(u => u.RoleId == 4).ToList();
