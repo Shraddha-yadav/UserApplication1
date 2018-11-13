@@ -45,8 +45,12 @@
     @*@Html.ActionLink("Create New", "CreateUser")*@
 </p>
 
-<table class="table">
-    <tr>
+{<table class="table">
+   
+
+
+
+       <tr>
 
 
         <th>
@@ -62,11 +66,11 @@
             @Html.DisplayNameFor(model => model.Hobbies)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ConfirmPassword)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
@@ -83,11 +87,11 @@
             @Html.DisplayNameFor(model => model.RoleName.RoleName)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </th>*@
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
@@ -113,11 +117,11 @@
                 @Html.DisplayFor(modelItem => item.Hobbies)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConfirmPassword)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConfirmPassword)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
@@ -134,11 +138,11 @@
                 @Html.DisplayFor(modelItem => item.RoleName.RoleName)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModified)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
@@ -150,7 +154,7 @@
             </td>
         </tr>
 
-    }
-
-
+      }
+    
+    
 </table>

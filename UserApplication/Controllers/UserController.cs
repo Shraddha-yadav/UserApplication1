@@ -6,11 +6,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using UserApplication.Models;
 
 namespace UserApplication.Controllers
 {
-    
+
 
     public class UserController : Controller
     {
@@ -110,7 +111,7 @@ namespace UserApplication.Controllers
                         Email = objUserViewModel.Email,
                         IsEmailVerified = objUserViewModel.IsEmailVerified,
                         Password = objUserViewModel.Password,
-                        ConfirmPassword = objUserViewModel.ConfirmPassword,                      
+                        ConfirmPassword = objUserViewModel.ConfirmPassword,
                         IsActive = objUserViewModel.IsActive,
                         CourseId = objUserViewModel.CourseId,
                         RoleId = objUserViewModel.RoleId,
@@ -131,6 +132,8 @@ namespace UserApplication.Controllers
                         RoleId = objUserViewModel.RoleId,
                         UserId = objUser.UserId
                     };
+                    objUser.IsActive = true;
+
                     db.UserInRole.Add(objUserInRole);
                     db.SaveChanges();
                     //Everything looks fine,so save the data permanently.
@@ -196,7 +199,14 @@ namespace UserApplication.Controllers
 
             var LoginDetails = db.User.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
 
-                     if (LoginDetails != null)
+            Session["login"] = LoginDetails;
+
+            if (Session["login"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            if (LoginDetails != null)
             {
                 Session["UserId"] = LoginDetails.UserId.ToString();
                 Session["UserName"] = LoginDetails.Email.ToString();
@@ -215,30 +225,40 @@ namespace UserApplication.Controllers
                     return RedirectToAction("TeacherHomePage1", "Teacher");
 
                 }
-                else
+                else if (LoginDetails.RoleId == 4)
+
                 {
                     Session["User"] = LoginDetails;
                     return RedirectToAction("StudentHomePage1", "Student"/*, new { id = LoginDetails.UserId }*/);
                 }
             }
 
-            //else
-            //{
-            //    ModelState.AddModelError("", "Invalid username or password");
-            //    return View("Login");
-            //}
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password");
+                return View("Login");
+            }
             return View("Login");
         }
         [AllowAnonymous]
         public ActionResult LogOut()
         {
-            Session["login"] = null;
-            Session.Abandon();
-            return RedirectToAction("Login");
+            {
+                Response.AddHeader("Cache-Control", "no-cache, no-store,must-revalidate");
+                Response.AddHeader("Pragma", "no-cache");
+                Response.AddHeader("Expires", "0");
+                Session.Abandon();
+                Session.Clear();
+                Response.Cookies.Clear();
+                Session.RemoveAll();
+                Session["Login"] = null;
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "User");
+            }
+
+
+
         }
-
-
-
     }
 }
 

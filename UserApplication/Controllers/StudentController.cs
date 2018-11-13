@@ -20,6 +20,10 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult StudentHomePage1( )
         {
+            if (Session["Login"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             User user = (User)Session["User"];
             var usr = db.User.Find(user.UserId);

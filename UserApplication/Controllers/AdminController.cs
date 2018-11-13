@@ -21,6 +21,10 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetAllUsers()
         {
+            if (Session["Login"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2).ToList();
             return View(returnedUserList);
         }
