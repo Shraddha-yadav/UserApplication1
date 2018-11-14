@@ -289,20 +289,20 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group">
-          @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+          
+            <div class="form-group">
+                @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
+                   {
 
-         @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
-        {
-           
-            Value = item.CountryId.ToString(),
-            Text = item.CountryName.ToString()
+                       Value = item.CountryId.ToString(),
+                       Text = item.CountryName.ToString()
 
 
-        } ),
-        "--select--","0"
-        )
+                   } ),
+                   "--select--","0"
+                   )
                     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -357,8 +357,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-
-                        @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
+                    @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
                    {
                        Value = item.CourseId.ToString(),
                        Text = item.CourseName.ToString()
@@ -377,7 +376,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-default" />
+                    <input type="submit" value="Register" class="btn btn-success" />
                 </div>
             </div>
         </div>
