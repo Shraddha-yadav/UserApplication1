@@ -32,7 +32,7 @@ namespace UserApplication.Models
 
         [Required(ErrorMessage = "Enter your password.")]
         [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{6,}",
-         ErrorMessage = "incorrect password")]
+         ErrorMessage = "Password doesn't match")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

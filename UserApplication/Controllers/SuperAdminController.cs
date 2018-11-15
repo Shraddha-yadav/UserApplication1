@@ -21,7 +21,7 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetAllUsers()
         {
-            if (Session["Login"] == null)
+            if(Session["UserId"] == null && Session["UserName"]==null)
             {
                 return RedirectToAction("Login", "User");
             }
@@ -37,6 +37,10 @@ namespace UserApplication.Controllers
 
         public ActionResult UserDetails(int? id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             {
                 if (id == null)
                 {
@@ -89,6 +93,11 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult CreateUser()
         {
+
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
@@ -120,7 +129,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateUser(UserViewModel objUserViewModel)
         {
-
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             List<Country> countryList = new List<Country>();
             List<State> stateList = new List<State>();
             List<City> cityList = new List<City>();
@@ -290,6 +302,11 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult EditUser(int id)
         {
+
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
@@ -372,6 +389,10 @@ namespace UserApplication.Controllers
         public ActionResult EditUser(int id, UserViewModel objUserViewModel)
         {
 
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             try
             {
                 User objUser = db.User.Find(id);
@@ -433,6 +454,11 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult DeleteUser(int? id)
         {
+
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -479,6 +505,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult DeleteUser(int id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             try
             {
                 if (ModelState.IsValid)
@@ -512,6 +542,10 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult CreateCourse()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             return View();
         }
         /// <summary>
@@ -522,6 +556,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateCourse(Course objCourse)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (objCourse.CourseName == null)
             {
                 Console.WriteLine("Course cannot be null");
@@ -552,6 +590,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult CreateSubject(Subject objSubject)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (objSubject.SubjectName == null)
             {
                 Console.WriteLine("Subject cannot be null");
@@ -573,6 +615,10 @@ namespace UserApplication.Controllers
 
         public ActionResult AssignSubjectForCourse()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             List<Course> List = db.Courses.ToList();
             ViewBag.CourseList = new SelectList(List, "CourseId", "CourseName");
 
@@ -589,6 +635,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult AssignSubjectForCourse(SubjectInCourse objSubjectInCourse)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             List<Course> List = db.Courses.ToList();
             ViewBag.CourseList = new SelectList(List, "CourseId", "CourseName", objSubjectInCourse.CourseId);
 
@@ -604,17 +654,29 @@ namespace UserApplication.Controllers
         }
         public ActionResult CourseList()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var listOfCourse = db.Courses.ToList();
             return View(listOfCourse);
         }
         public ActionResult SubjectList()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var listOfSubject = db.Subjects.ToList();
             return View(listOfSubject);
         }
         [HttpGet]
         public ActionResult DeleteCourse(int id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var removeCourse = db.Courses.Single(x => x.CourseId == id);
 
             return View(removeCourse);
@@ -622,6 +684,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult DeleteCourse(int id, Course objCourse)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             try
             {
                 // TODO: Add delete logic here
@@ -640,6 +706,10 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult DeleteSubject(int id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var removeSubject = db.Subjects.Single(x => x.SubjectId == id);
 
             return View(removeSubject);
@@ -647,6 +717,10 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult DeleteSubject(int id, Subject objSubject)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             try
             {
                 // TODO: Add delete logic here
@@ -665,6 +739,10 @@ namespace UserApplication.Controllers
 
         public ActionResult CourseAndSubjectList()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var listOfCourseAndSubject = db.SubjectsInCourses.ToList();
             return View(listOfCourseAndSubject);
         }
@@ -673,12 +751,21 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult DeleteCourseAndSubject(int id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var removeCourseAndSubject = db.SubjectsInCourses.Single(x => x.SubjectInCourseId == id);          
             return View(removeCourseAndSubject);
         }
         [HttpPost]
         public ActionResult DeleteCourseAndSubject(int id, Subject objSubject)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             try
             {
                 // TODO: Add delete logic here
@@ -701,6 +788,10 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult CourseAndSubject(int id)
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var removeCourseAndSubject = db.SubjectsInCourses.Single(x => x.CourseId == id);
 
             return View(removeCourseAndSubject);
@@ -713,7 +804,11 @@ namespace UserApplication.Controllers
 
         public ActionResult AssignSubjectToTeacher()
         {
-            
+
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             List<User> List = db.User.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId != 4).ToList();
             ViewBag.TeacherList = new SelectList(List, "UserId", "FirstName");
@@ -731,7 +826,11 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult AssignSubjectToTeacher(TeacherInSubject objTeacherInSubject)
         {
-            
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             List<User> List = db.User.Where(u => u.RoleId != 1 && u.RoleId != 2 && u.RoleId != 4).ToList();
             ViewBag.TeacherList = new SelectList(List, "UserId", "FirstName", objTeacherInSubject.UserId);
 
@@ -747,6 +846,11 @@ namespace UserApplication.Controllers
         }
         public ActionResult TeacherAndSubjectList()
         {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var listOfTeacherAndSubject = db.TeacherInSubjects.ToList();
             return View(listOfTeacherAndSubject);
         }

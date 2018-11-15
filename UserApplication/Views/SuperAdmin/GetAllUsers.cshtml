@@ -1,8 +1,27 @@
 ﻿@model IEnumerable<UserApplication.Models.User>
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
 @{
     ViewBag.Title = "GetAllUsers";
-    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+    //Layout = "~/Views/Shared/_LogOutPage.cshtml";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -33,12 +52,12 @@
            value="Create New"
            onclick="window.location.href='@Url.Action("CreateUser","SuperAdmin")'" />
 
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Create Course"
            onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
     <input type="button" class="btn btn-primary btn-sm" '
            value="Assign Subject To Teacher"
-           onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","SuperAdmin")'" />*@
 
 
 
@@ -46,11 +65,11 @@
 </p>
 
 <table class="table">
-   
 
 
 
-       <tr>
+
+    <tr>
 
 
         <th>
@@ -154,7 +173,7 @@
             </td>
         </tr>
 
-      }
-    
-    
+    }
+
+
 </table>

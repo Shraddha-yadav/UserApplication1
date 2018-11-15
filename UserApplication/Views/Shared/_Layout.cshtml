@@ -2,27 +2,6 @@
 <html>
 <head>
 
-    @*<title>School Application</title>*@
-    @*<style>
-            #main {
-                height: 200px;
-                background-color: rebeccapurple;
-                background-image: repeating-linear-gradient(#090, #fff 10%, #2a4f32 20%);
-            }
-
-            .gfg {
-                text-align: center;
-                font-size: 40px;
-                font-weight: bold;
-                padding-top: 80px;
-            }
-
-            .geeks {
-                font-size: 17px;
-                text-align: center;
-            }
-        </style>*@
-
 
 
     <meta charset="utf-8" />
@@ -36,15 +15,10 @@
 </head>
 <body>
 
-    @*<div id="main">
-            <div class="gfg">Shishukunj International</div>
-            <div class="geeks">Portal which Defines Us.....</div>
+   @*<img src="~/Content/Images/schoolimage2.jpeg" alt="Sample Image" width="800" />*@
+    @*<img src="~/UserApplication/Content/Images/schoolimage2.jpeg" alt="Sample Image" width="1200" />*@
 
-
-        </div>*@
-    <img src="~/UserApplication/Content/Images/schoolimage2.jpeg" alt="Sample Image" width="1200" />
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,20 +26,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application Name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("School Application", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">*@
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     @*<li>@Html.ActionLink("Register", "Registration", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
                     @*<li>@Html.ActionLink("Log in", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                         <li>@Html.ActionLink("Log Out ", "LogOut", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
-                </ul>
+                @*</ul>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -201,10 +201,10 @@ namespace UserApplication.Controllers
 
             Session["login"] = LoginDetails;
 
-            if (Session["login"] == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            //if (Session["login"] == null)
+            //{
+            //    return RedirectToAction("Login", "User");
+            //}
 
             if (LoginDetails != null)
             {
@@ -225,7 +225,7 @@ namespace UserApplication.Controllers
                     return RedirectToAction("TeacherHomePage1", "Teacher");
 
                 }
-                else if (LoginDetails.RoleId == 4)
+                else
 
                 {
                     Session["User"] = LoginDetails;
@@ -233,17 +233,16 @@ namespace UserApplication.Controllers
                 }
             }
 
-            else
-            {
-                ModelState.AddModelError("", "Invalid username or password");
-                return View("Login");
-            }
+            //else
+            //{
+            //    ModelState.AddModelError("", "Invalid username or password");
+            //    return View("Login");
+            //}
             return View("Login");
         }
         [AllowAnonymous]
         public ActionResult LogOut()
         {
-            {
                 Response.AddHeader("Cache-Control", "no-cache, no-store,must-revalidate");
                 Response.AddHeader("Pragma", "no-cache");
                 Response.AddHeader("Expires", "0");
@@ -254,11 +253,11 @@ namespace UserApplication.Controllers
                 Session["Login"] = null;
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Login", "User");
-            }
-
-
-
         }
+
+
+
+        
     }
 }
 
