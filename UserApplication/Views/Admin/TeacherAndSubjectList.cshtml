@@ -1,7 +1,30 @@
 ﻿@model IEnumerable<UserApplication.Models.TeacherInSubject>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
 
 @{
     ViewBag.Title = "TeacherAndSubjectList";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 }
 
 <style>
@@ -58,11 +81,11 @@
 
 </table>
 <p>
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To Assign Subject To Teacher"
            onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","Admin")'" />
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />*@
 </p>

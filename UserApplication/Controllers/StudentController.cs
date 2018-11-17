@@ -10,6 +10,7 @@ namespace UserApplication.Controllers
 {
     public class StudentController : Controller
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Student
         
@@ -20,6 +21,11 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult StudentHomePage1( )
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             if (Session["Login"] == null)
             {
                 return RedirectToAction("Login", "User");
@@ -82,6 +88,11 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult EditStudentProfile(int id)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
@@ -162,6 +173,11 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult EditStudentProfile(int id, UserViewModel objUserViewModel)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             try
             {
                 User objUser = db.User.Find(id);
@@ -213,6 +229,11 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult TeachersList(int id)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var listOfTeacherCourse = db.User.Where(u => u.RoleId == 3 && u.CourseId == id).ToList();
             return View(listOfTeacherCourse);
         }
@@ -222,6 +243,11 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult TeachersSubject(int id)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var listOfTeachersSubject = db.SubjectsInCourses.Where(u => u.CourseId == id).ToList();
             return View(listOfTeachersSubject);
         }

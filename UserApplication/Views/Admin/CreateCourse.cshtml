@@ -1,7 +1,30 @@
 ﻿@model UserApplication.Models.Course
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New User", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
 
 @{
     ViewBag.Title = "CreateCourse";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 }
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
@@ -20,7 +43,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CourseName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control",required="required" } })
+                    @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -32,15 +55,15 @@
             </div>
         </div>
     }
-    </div>
+</div>
 
-    <div>
-        <input type="button" class="btn btn-primary btn-sm" '
-               value="Create Subject"
-               onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />
+<div>
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Create Subject"
+           onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />
 
-        <input type="button" class="btn btn-primary btn-sm" '
-               value="Back To List"
-               onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+    <input type="button" class="btn btn-primary btn-sm" '
+           value="Back To List"
+           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
 
-    </div>
+</div>

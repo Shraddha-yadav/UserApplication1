@@ -1,4 +1,24 @@
 ﻿@model IEnumerable<UserApplication.Models.User>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Get Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Teacher Details", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 @{
     ViewBag.Title = "StudentCourse";
@@ -10,8 +30,8 @@
 <p>
     @Html.ActionLink("Student Details", "StudentDetails")
     @*<input type="button" class="btn btn-primary btn-sm" '
-           value="Student Details"
-           onclick="window.location.href='@Url.Action("StudentDetails","Teacher")'" />*@
+        value="Student Details"
+        onclick="window.location.href='@Url.Action("StudentDetails","Teacher")'" />*@
 
 </p>
 <table class="table">
@@ -30,33 +50,34 @@
         <th>
             @Html.DisplayNameFor(model => model.RoleName.RoleName)
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName.RoleName)
-        </td>
-        
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName.RoleName)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+            </td>
+        </tr>
+    }
 
 </table>

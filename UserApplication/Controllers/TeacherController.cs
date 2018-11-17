@@ -23,10 +23,11 @@ namespace UserApplication.Controllers
         public ActionResult TeacherHomePage1()
         {
 
-            if (Session["Login"] == null)
+            if (Session["Login"] == null && Session["User"] == null)
             {
                 return RedirectToAction("Login", "User");
             }
+            
 
             User user = (User)Session["User"];
             var usr = db.User.Find(user.UserId);
@@ -84,6 +85,11 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult EditProfile(int id)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             //Creating object of UserViewModel
             UserViewModel model = new UserViewModel();
 
@@ -164,6 +170,11 @@ namespace UserApplication.Controllers
         [HttpPost]
         public ActionResult EditProfile(int id, UserViewModel objUserViewModel)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             try
             {
                 User objUser = db.User.Find(id);
@@ -215,8 +226,13 @@ namespace UserApplication.Controllers
         /// <returns></returns>
         public ActionResult GetStudentList(int id)
         {
-           
-                var returnedUserList = db.User.Where(x => x.RoleId == 4 && x.CourseId == id).ToList();   /*db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3 && x.CourseId == id ).ToList();*/
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+
+            var returnedUserList = db.User.Where(x => x.RoleId == 4 && x.CourseId == id).ToList();   /*db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3 && x.CourseId == id ).ToList();*/
 
                 return View(returnedUserList);
             
@@ -230,6 +246,11 @@ namespace UserApplication.Controllers
 
         public ActionResult StudentDetails(int? id)
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             {
                 if (id == null)
                 {
@@ -279,6 +300,11 @@ namespace UserApplication.Controllers
 
         public ActionResult StudentCourse()
         {
+            if (Session["Login"] == null && Session["User"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2 && x.RoleId != 3).ToList();
             return View(returnedUserList);
         }

@@ -1,4 +1,25 @@
 ﻿@model UserApplication.Models.UserViewModel
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New User", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
 
 @{
     ViewBag.Title = "DeleteUser";
@@ -10,194 +31,195 @@
 <h3>Are you sure you want to delete this User Record?</h3>
 <div>
     @*<h4></h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DOB)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Hobbies)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Hobbies)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Hobbies)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Hobbies)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsEmailVerified)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsEmailVerified)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsEmailVerified)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsEmailVerified)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ConfirmPassword)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ConfirmPassword)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ConfirmPassword)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CourseId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CourseId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AddressId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AddressId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AddressId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressLine1)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AddressLine1)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AddressLine1)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressLine2)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AddressLine2)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AddressLine2)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Zipcode)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Zipcode)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Zipcode)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DateModified)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoleId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.RoleId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoleName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.RoleName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CountryId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CountryId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CountryId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StateId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StateId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StateId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StateId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CityId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CityId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CityId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CityId)
+            </dd>
 
-    </dl>*@
+        </dl>*@
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
 
-       
-    </div>
+
+        </div>
     }
 </div>
 <p>

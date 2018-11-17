@@ -6,8 +6,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+               
             </button>
-            @Html.ActionLink("Get Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Go To student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
             @Html.ActionLink("Teacher Details", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
            
         </div>
@@ -242,9 +243,9 @@
                value="Edit Profile"
                onclick="window.location.href='@Url.Action("EditProfile","Teacher", new { id = Model.UserId })'" />
 
-        <input type="button" class="btn btn-primary btn-sm" '
+        @*<input type="button" class="btn btn-primary btn-sm" '
                value="Go To student List"
-               onclick="window.location.href='@Url.Action("GetStudentList","Teacher", new { id = Model.CourseId })'" />
+               onclick="window.location.href='@Url.Action("GetStudentList","Teacher", new { id = Model.CourseId })'" />*@
 
         @*@Html.ActionLink("Edit Profile", "EditProfile", new { id = Model.UserId }|
             @Html.ActionLink("Go to Student List", "GetStudentList", new { id = Model.CourseId })*@

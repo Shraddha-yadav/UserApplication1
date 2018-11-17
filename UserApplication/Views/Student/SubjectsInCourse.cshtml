@@ -1,4 +1,24 @@
 ﻿@model IEnumerable<UserApplication.fonts.SubjectInCourse>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Student Details", "StudentHomePage1", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 @{
     ViewBag.Title = "SubjectsInCourse";
@@ -21,20 +41,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.SubjectName)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectInCourseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SubjectInCourseId })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectInCourseId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.SubjectInCourseId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.SubjectInCourseId })*@
+            </td>
+        </tr>
+    }
 
 </table>

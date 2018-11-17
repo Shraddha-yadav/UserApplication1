@@ -1,4 +1,24 @@
 ﻿@model IEnumerable<UserApplication.Models.User>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Student Details", "StudentHomePage1", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 @{
     ViewBag.Title = "StudentHomePage";
@@ -115,7 +135,7 @@
                 @Html.ActionLink("Teacher List", "TeachersList", new { id = item.CourseId }) |
 
                 @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })*@
             </td>
         </tr>
     }
