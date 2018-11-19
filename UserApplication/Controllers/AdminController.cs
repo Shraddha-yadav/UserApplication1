@@ -838,6 +838,41 @@ namespace UserApplication.Controllers
             var listOfTeacherAndSubject = db.TeacherInSubjects.ToList();
             return View(listOfTeacherAndSubject);
         }
+
+        [HttpGet]
+        public ActionResult DeleteTeacherAndSubject(int id)
+        {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var removeTeaherAndSubject = db.TeacherInSubjects.Single(x => x.TeacherInSubjectId == id);
+            return View(removeTeaherAndSubject);
+        }
+        [HttpPost]
+        public ActionResult DeleteTeacherAndSubject(int id, Subject objSubject)
+        {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            try
+            {
+                // TODO: Add delete logic here
+                var deleteTeacherAndSubject = db.TeacherInSubjects.Single(x => x.TeacherInSubjectId == id);
+                db.TeacherInSubjects.Remove(deleteTeacherAndSubject);
+
+                db.SaveChanges();
+
+                return RedirectToAction("TeacherAndSubjectList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 
 }

@@ -9,16 +9,23 @@
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Assign Subject for Course", "AssignSubjectForCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Subject List", "SubjectList", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
 @{
     ViewBag.Title = "CreateSubject";
@@ -56,14 +63,14 @@
     </div>
 
     <div>
-        <input type="button" class="btn btn-primary btn-sm" '
+        @*<input type="button" class="btn btn-primary btn-sm" '
                value="Assign Subject for Course"
-               onclick="window.location.href='@Url.Action("AssignSubjectForCourse","SuperAdmin")'" />
+               onclick="window.location.href='@Url.Action("AssignSubjectForCourse","SuperAdmin")'" />*@
 
 
-        <input type="button" class="btn btn-primary btn-sm" '
+        @*<input type="button" class="btn btn-primary btn-sm" '
                value="Back To Create Course"
-               onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
+               onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />*@
 
 
     </div>

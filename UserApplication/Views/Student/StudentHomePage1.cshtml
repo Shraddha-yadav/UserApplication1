@@ -7,8 +7,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Student Details", "StudentHomePage1", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @*@Html.ActionLink("Student Details", "StudentHomePage1", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+            @Html.ActionLink("Go To Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Edit Profile", "EditStudentProfile", "Student", new { id = Model.UserId }, new { @class = "navbar-brand" })
+
 
         </div>
         <div class="navbar-collapse collapse">
@@ -237,13 +239,13 @@
     
     <p>
 
-        <input type="button" class="btn btn-primary btn-sm" '
+        @*<input type="button" class="btn btn-primary btn-sm" '
                value="Edit Profile"
                onclick="window.location.href='@Url.Action("EditStudentProfile","Student", new { id = Model.UserId })'" />
 
         <input type="button" class="btn btn-primary btn-sm" '
                value="Go To Teacher List"
-               onclick="window.location.href='@Url.Action("TeachersList","Student", new { id = Model.CourseId })'" />
+               onclick="window.location.href='@Url.Action("TeachersList","Student", new { id = Model.CourseId })'" />*@
 
         @*@Html.ActionLink("Edit", "EditStudentProfile", new { id = item.UserId }) |
         @Html.ActionLink("Teacher List", "TeachersList", new { id = item.CourseId }) |*@

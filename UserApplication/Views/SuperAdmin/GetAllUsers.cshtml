@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @*@Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })*@
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
@@ -113,9 +113,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateModified)
             </th>*@
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+        </th>*@
 
         <th>Action</th>
     </tr>
@@ -164,9 +164,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DateModified)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
+            </td>*@
 
             <td>
                 @Html.ActionLink("Edit", "EditUser", new { id = item.UserId }) |

@@ -7,18 +7,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Back To User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Create Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Create Subject ", "CreateSubject", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand " })
+                    @Html.ActionLink("Assign Subject for Course", "AssignSubjectForCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                </ul>
+                </div>
+                    </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
 @{
     ViewBag.Title = "CourseAndSubjectList";
@@ -82,7 +88,7 @@
 
 </table>
 <p>
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To Home"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />*@
 </p>

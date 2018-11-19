@@ -671,7 +671,7 @@ namespace UserApplication.Controllers
             return View(listOfSubject);
         }
         [HttpGet]
-        public ActionResult DeleteCourse(int id)
+        public ActionResult DeleteCourse(int? id)
         {
             if (Session["UserId"] == null && Session["UserName"] == null)
             {
@@ -682,7 +682,7 @@ namespace UserApplication.Controllers
             return View(removeCourse);
         }
         [HttpPost]
-        public ActionResult DeleteCourse(int id, Course objCourse)
+        public ActionResult DeleteCourse(int id/*, Course objCourse*/)
         {
             if (Session["UserId"] == null && Session["UserName"] == null)
             {
@@ -691,8 +691,12 @@ namespace UserApplication.Controllers
             try
             {
                 // TODO: Add delete logic here
-                var deleteCourse = db.Courses.Single(x => x.CourseId == id);
-                db.Courses.Remove(deleteCourse);
+                SubjectInCourse subjectInCourse = new SubjectInCourse();
+                subjectInCourse= db.SubjectsInCourses.Where(x => x.CourseId == id).FirstOrDefault(); 
+                Course objCourse = new Course();
+                objCourse = db.Courses.Where(x => x.CourseId == id).FirstOrDefault(); 
+                db.Courses.Remove(objCourse);
+                db.SubjectsInCourses.Remove(subjectInCourse);
 
                 db.SaveChanges();
 
@@ -854,6 +858,42 @@ namespace UserApplication.Controllers
             var listOfTeacherAndSubject = db.TeacherInSubjects.ToList();
             return View(listOfTeacherAndSubject);
         }
+
+        [HttpGet]
+        public ActionResult DeleteTeacherAndSubject(int id)
+        {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var removeTeaherAndSubject = db.TeacherInSubjects.Single(x => x.TeacherInSubjectId == id);
+            return View(removeTeaherAndSubject);
+        }
+        [HttpPost]
+        public ActionResult DeleteTeacherAndSubject(int id, Subject objSubject)
+        {
+            if (Session["UserId"] == null && Session["UserName"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            try
+            {
+                // TODO: Add delete logic here
+                var deleteTeacherAndSubject = db.TeacherInSubjects.Single(x => x.TeacherInSubjectId == id);
+                db.TeacherInSubjects.Remove(deleteTeacherAndSubject);
+
+                db.SaveChanges();
+
+                return RedirectToAction("TeacherAndSubjectList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
 
     }
 }

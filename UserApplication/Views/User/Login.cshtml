@@ -1,14 +1,46 @@
 ﻿@model UserApplication.Models.UserViewModel
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*@Html.ActionLink("Teacher Profile", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Back To Student List ", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("Register Here", "Registration", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
+
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Styles/style.css" rel="stylesheet" type="text/css" media="screen" />
 
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 
 }
-@*<img src="~/Content/Images/schoolimage2.jpeg" alt="Sample Image" width="800" />*@
-<img src="~/Content/Images/schoolBandW.jpg" alt="Sample Image" width="1000" />
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <center>
+            <img src="~/Content/Images/schoolBandW.jpg" alt="Sample Image" width="800" />
+                <</center>>
+        </div>
+    </div>
+</section>
+
 <style></style>
 
 <div id="main">
@@ -74,9 +106,9 @@
 </div>
 <p>
 
-    <input type="button" class="btn btn-primary btn-sm"
+    @*<input type="button" class="btn btn-primary btn-sm"
            value="Register"
-           onclick="window.location.href='@Url.Action("Registration", "User")'" />
+           onclick="window.location.href='@Url.Action("Registration", "User")'" />*@
 
 
 </p>

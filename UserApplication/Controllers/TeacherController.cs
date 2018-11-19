@@ -39,29 +39,29 @@ namespace UserApplication.Controllers
              
                 UserViewModel objUserViewModel = new UserViewModel();
 
-                objUserViewModel.UserId = user.UserId;
-                objUserViewModel.FirstName = user.FirstName;
-                objUserViewModel.LastName = user.LastName;
-                objUserViewModel.Gender = user.Gender;
-                objUserViewModel.Hobbies = user.Hobbies;
-                objUserViewModel.Email = user.Email;
-                objUserViewModel.Password = user.Password;
-                objUserViewModel.DOB = user.DOB;
-                objUserViewModel.RoleId = user.RoleId;
-                objUserViewModel.CourseId = user.CourseId;
-                objUserViewModel.AddressId = user.AddressId;
-                objUserViewModel.IsActive = user.IsActive;
-                objUserViewModel.DateCreated = user.DateCreated;
-                objUserViewModel.DateModified = user.DateModified;
-                objUserViewModel.AddressLine1 = user.Address.AddressLine1;
-                objUserViewModel.AddressLine2 = user.Address.AddressLine2;
-                objUserViewModel.CountryId = user.Address.CountryId;
-                objUserViewModel.StateId = user.Address.StateId;
-                objUserViewModel.CityId = user.Address.CityId;
-                objUserViewModel.Zipcode = user.Address.Zipcode;
-                objUserViewModel.CountryName = user.Address.Country.CountryName;
-                objUserViewModel.StateName = user.Address.State.StateName;
-                objUserViewModel.CityName = user.Address.City.CityName;
+                objUserViewModel.UserId = usr.UserId;
+                objUserViewModel.FirstName = usr.FirstName;
+                objUserViewModel.LastName = usr.LastName;
+                objUserViewModel.Gender = usr.Gender;
+                objUserViewModel.Hobbies = usr.Hobbies;
+                objUserViewModel.Email = usr.Email;
+                objUserViewModel.Password = usr.Password;
+                objUserViewModel.DOB = usr.DOB;
+                objUserViewModel.RoleId = usr.RoleId;
+                objUserViewModel.CourseId = usr.CourseId;
+                objUserViewModel.AddressId = usr.AddressId;
+                objUserViewModel.IsActive = usr.IsActive;
+                objUserViewModel.DateCreated = usr.DateCreated;
+                objUserViewModel.DateModified = usr.DateModified;
+                objUserViewModel.AddressLine1 = usr.Address.AddressLine1;
+                objUserViewModel.AddressLine2 = usr.Address.AddressLine2;
+                objUserViewModel.CountryId = usr.Address.CountryId;
+                objUserViewModel.StateId = usr.Address.StateId;
+                objUserViewModel.CityId = usr.Address.CityId;
+                objUserViewModel.Zipcode = usr.Address.Zipcode;
+                objUserViewModel.CountryName = usr.Address.Country.CountryName;
+                objUserViewModel.StateName = usr.Address.State.StateName;
+                objUserViewModel.CityName = usr.Address.City.CityName;
 
                 if (user == null)
                 {

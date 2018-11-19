@@ -7,8 +7,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @*@Html.ActionLink("Get Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Teacher Details", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })*@
+            @*@Html.ActionLink("Get Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+        @Html.ActionLink("Back To Profile", "TeacherHomePage1", "Teacher"@*, new { id = Model.UserId }*@, new { @class = "navbar-brand" })
 
 
         </div>
@@ -150,7 +150,7 @@
     @*@Html.ActionLink("Back to Profile", "TeacherHomePage1")*@
 
 
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To Profile"
-           onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher" )'" />
+           onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher" )'" />*@
 </p>

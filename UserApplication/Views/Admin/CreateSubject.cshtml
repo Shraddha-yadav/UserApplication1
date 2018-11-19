@@ -8,10 +8,17 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Create New User", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Assign Subject for Course", "AssignSubjectForCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+                </ul>
+            </div>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-right">
@@ -20,7 +27,6 @@
         </div>
     </div>
 </div>
-
 @{
     ViewBag.Title = "CreateSubject";
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
@@ -50,19 +56,19 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-success" />
                 </div>
             </div>
         </div>
     }
 </div>
 <div>
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Assign Subject for Course"
            onclick="window.location.href='@Url.Action("AssignSubjectForCourse","Admin")'" />
 
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />*@
 </div>

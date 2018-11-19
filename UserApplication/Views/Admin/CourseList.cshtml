@@ -8,17 +8,23 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Create New User", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Add  Subject ", "CreateSubject", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
 
 @{
@@ -49,7 +55,7 @@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |*@
-                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
+                @*@Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })*@
 
 
 
@@ -58,8 +64,8 @@
     }
 
 </table>
-<<p>
-    <input type="button" class="btn btn-primary btn-sm" '
+<p>
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Add Subject"
            onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />
 
@@ -69,6 +75,6 @@
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Add Course"
-           onclick="window.location.href='@Url.Action("CreateCourse","Admin")'" />
+           onclick="window.location.href='@Url.Action("CreateCourse","Admin")'" />*@
 
 </p>

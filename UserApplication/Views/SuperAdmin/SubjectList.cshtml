@@ -9,16 +9,25 @@
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Assign Subject for Course", "AssignSubjectForCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Course And Subject List", "CourseAndSubjectList", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                    @Html.ActionLink("Back To Add  Subject ", "CreateSubject", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-    </div>
 </div>
 @{
     ViewBag.Title = "SubjectList";
@@ -58,7 +67,7 @@
 </table>
 <p>
 
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="List of Course And Subject"
            onclick="window.location.href='@Url.Action("CourseAndSubjectList","SuperAdmin")'" />
 
@@ -73,6 +82,6 @@
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Add Subject"
-           onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />*@
 
 </p>

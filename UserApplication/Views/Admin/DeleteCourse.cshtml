@@ -8,10 +8,15 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Create New User", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Course List", "CourseList", "Admin", new { area = "" }, new { @class = "navbar-brand " })
+
+                </ul>
+            </div>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-right">
@@ -47,7 +52,7 @@
         @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
 
 
 
@@ -55,7 +60,7 @@
     }
 </div>
 <p>
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To Course"
-           onclick="window.location.href='@Url.Action("CourseList","Admin")'" />
+           onclick="window.location.href='@Url.Action("CourseList","Admin")'" />*@
 </p>

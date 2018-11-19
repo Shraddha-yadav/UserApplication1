@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Back To User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
@@ -35,7 +35,7 @@
     <h2>UserDetails</h2>
 
     <div>
-        <h4>UserViewModel</h4>
+        <h4> </h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -244,8 +244,8 @@
 <p>
     @*@Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }) |*@
     @*@Html.Partial("_BackToListButtonPartial", "GetAllUsers")*@
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />*@
 
 </p>

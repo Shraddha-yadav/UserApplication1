@@ -11,14 +11,18 @@
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+          </ul>
+                </div>
+                    </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
 @{
     ViewBag.Title = "TeacherAndSubjectList";
@@ -71,8 +75,8 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.TeacherInSubjectId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.TeacherInSubjectId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.TeacherInSubjectId })*@
+                    @Html.ActionLink("Details", "Details", new { id = item.TeacherInSubjectId }) |*@
+                    @Html.ActionLink("Delete", "DeleteTeacherAndSubject", new { id = item.TeacherInSubjectId })
             </td>
         </tr>
     }
@@ -80,12 +84,12 @@
 </table>
 
 <p>
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Back To Assign Subject To Teacher"
            onclick="window.location.href='@Url.Action("AssignSubjectToTeacher","SuperAdmin")'" />
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Back To Home"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />*@
 </p>
 

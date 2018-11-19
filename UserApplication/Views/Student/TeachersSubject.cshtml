@@ -8,7 +8,8 @@
                 <span class="icon-bar"></span>
             </button>
             @*@Html.ActionLink("Student Details", "StudentHomePage1", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+        @Html.ActionLink("Teacher List", "TeachersList", "Student", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+            @Html.ActionLink("Back To Profile", "StudentHomePage1", "Student"@*, new { id = Model.UserId }*@, new { @class = "navbar-brand" })
 
         </div>
         <div class="navbar-collapse collapse">

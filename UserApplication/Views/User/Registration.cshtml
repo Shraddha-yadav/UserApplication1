@@ -1,164 +1,36 @@
 ﻿@model UserApplication.Models.UserViewModel
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*@Html.ActionLink("Teacher Profile", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Back To Student List ", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })*@
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-right">
+                @Html.ActionLink("Back To Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+            </ul>
+        </div>
+    </div>
+</div>
+
+
 @{
     ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_LogOutPage.cshtml";
+
 
 }
 
 
 @*Jquery code for dropdown calling*@
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-
-        $("#country").change(function () {
-            $("#State").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("getState","User")',
-
-                dataType: 'json',
-
-                data: { id: $("#country").val() },
-
-
-                success: function (states) {
-
-
-                    $.each(states, function (i, state) {
-                        $("#State").append('<option value="' + state.Value + '">' +
-                             state.Text + '</option>');
-
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-
-</script>
-
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-
-        $("#State").change(function () {
-            $("#city").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("getCity","User")',
-                dataType: 'json',
-                data: { id: $("#State").val() },
-                success: function (city) {
-
-                    $.each(city, function (i, city) {
-                        $("#city").append('<option value="'
-                                                   + city.Value + '">'
-                                             + city.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            jQuery("#ddlStateData").empty();
-            $("#ddlCity").empty();
-
-            var id = $("#ddlCountry").val();
-                $.ajax({
-                    type: 'Post',
-                    url: '@Url.Action("getState")',
-
-                    dataType: 'json',
-                    data: { Id: id },
-                    success: function (states) {
-
-                        $.each(states, function (i, state) {
-                            $("#ddlStateData").append('<option value="' + state.Value + '">' + state.Text + '</option>');
-                        });
-                    },
-                    error: function (ex) {
-                        alert('Failed to retrieve states.' + ex);
-                    }
-                });
-
-        });
-
-            $("#ddlCountry").change(function () {
-                debugger;
-                jQuery("#ddlStateData").empty();
-                var id = $("#ddlCountry").val();
-                $.ajax({
-                    type: 'Post',
-
-                    url: '@Url.Action("getState")',
-                    dataType: 'json',
-                    data: { Id: id },
-                    success: function (states) {
-
-                        $.each(states, function (i, state) {
-                            $("#ddlStateData").append('<option value="' + state.Value + '">' + state.Text + '</option>');
-                        });
-                    },
-                    error: function (ex) {
-                        alert('Failed to retrieve states.' + ex);
-                    }
-                });
-                return false;
-            });
-
-              $("#ddlStateData").change(function () {
-                    $("#ddlCity").empty();
-                    $.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("getcity")',
-                        dataType: 'json',
-                        data: { id: $("#ddlStateData").val() },
-                        success: function (city) {
-
-                            $.each(city, function (i, city) {
-                                $("#ddlCity").append('<option value="'
-                                    + city.Value + '">'
-                                    + city.Text + '</option>');
-                            });
-                        },
-                        error: function (ex) {
-                            alert('Failed.' + ex);
-                        }
-                    });
-                    return false;
-                });
-
-    </script>*@
-
-
 
 <link href="~/Content/Site.css" rel="stylesheet" />
 <div style="display: table; margin: 0 auto; width: 100%; max-width: 500px;">
@@ -289,21 +161,21 @@
                 </div>
             </div>
 
-          
+
             <div class="form-group">
                 @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.DropDownListFor(model => model.CountryId, Model.Countries.Select(item => new SelectListItem
-                   {
+               {
 
-                       Value = item.CountryId.ToString(),
-                       Text = item.CountryName.ToString()
+                   Value = item.CountryId.ToString(),
+                   Text = item.CountryName.ToString()
 
 
-                   } ),
-                   "--select--","0"
-                   )
-                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+               } ),
+                   "--select--", new { @id = "country" }
+               )
+                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger"})
                 </div>
             </div>
 
@@ -317,7 +189,7 @@
                    Text = item.StateName.ToString()
 
                }),
-                 "--select--"
+                 "--select--", new { @id = "State" }
                  )
                     @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                 </div>
@@ -332,7 +204,7 @@
                      Text = item.CityName.ToString()
 
                  }),
-                   "--select--"
+                   "--select--", new { @id = "city" }
                    )
                     @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                 </div>
@@ -357,13 +229,13 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
-                   {
-                       Value = item.CourseId.ToString(),
-                       Text = item.CourseName.ToString()
+                        @Html.DropDownListFor(model => model.CourseId, Model.Courses.Select(item => new SelectListItem
+                       {
+                           Value = item.CourseId.ToString(),
+                           Text = item.CourseName.ToString()
 
-                   }),
-                "--select--")
+                       }),
+                    "--select--")
                         @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -383,12 +255,69 @@
     }
 
     <div>
-        <input type="button" class="btn btn-primary btn-sm" '
-               value=" Back To Login"
-               onclick="window.location.href='@Url.Action("Login","User")'" />
+        @*<input type="button" class="btn btn-primary btn-sm" '
+            value=" Back To Login"
+            onclick="window.location.href='@Url.Action("Login","User")'" />*@
 
     </div>
 </div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+
+    
+    
+        $("#country").change(function () {
+            $("#State").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getState", "User")',
+
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+
+                    //$("#State").get(0).options[0] = new Option("Select State", "1");
+                    $.each(states, function (i, state) {
+                        $("#State").append('<option value="' + state.Value + '">' +state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+    
+
+        $("#State").change(function () {
+            $("#city").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getCity","User")',
+                dataType: 'json',
+                data: { id: $("#State").val() },
+                success: function (city) {
+                    //$("#city").get(0).options[0] = new Option("Select city", "1");
+                    $.each(city, function (i, city) {
+                        $("#city").append('<option value="'+ city.Value + '">'+ city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        });
+</script>
+
+
+
 
 
 

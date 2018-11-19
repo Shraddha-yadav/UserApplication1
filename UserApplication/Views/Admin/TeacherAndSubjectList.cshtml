@@ -11,8 +11,12 @@
             @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
+           
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>        </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-right">
                 @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
@@ -73,8 +77,9 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.TeacherInSubjectId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.TeacherInSubjectId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.TeacherInSubjectId })*@
+        @Html.ActionLink("Details", "Details", new { id=item.TeacherInSubjectId }) |*@
+         @Html.ActionLink("Delete", "DeleteTeacherAndSubject", new { id = item.TeacherInSubjectId })
+
             </td>
         </tr>
     }

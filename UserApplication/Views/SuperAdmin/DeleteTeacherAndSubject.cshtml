@@ -1,4 +1,4 @@
-﻿@model UserApplication.fonts.SubjectInCourse
+﻿@model UserApplication.Models.TeacherInSubject
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -9,16 +9,15 @@
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
 
+            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-right">
-                    @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.ActionLink("Back To Course And Subject List", "CourseAndSubjectList", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-                </ul>
+                    @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Teacher And Subject List", "TeacherAndSubjectList", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+               </ul>
+                </div>
             </div>
-        </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-right">
                     @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
@@ -26,27 +25,20 @@
             </div>
         </div>
 </div>
+
 @{
-    ViewBag.Title = "DeleteCourseAndSubject";
+    ViewBag.Title = "DeleteTeacherAndSubject";
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
 
 }
 
 <h2> </h2>
 
-<h3>Are you sure you want to delete this Course And Subject?</h3>
+<h3>Are you sure you want to delete this Teacher And Subject?</h3>
 <div>
     <h4> </h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseName)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Subject.SubjectName)
         </dt>
@@ -55,19 +47,23 @@
             @Html.DisplayFor(model => model.Subject.SubjectName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger" /> 
-            @*@Html.ActionLink("Back to List", "CourseAndSubjectList")*@
+            @*@Html.ActionLink("Back to List", "Index")*@
         </div>
     }
 </div>
-<p>
-@*<input type="button" class="btn btn-primary btn-sm" '
-       value="Back To Course And Subject List"
-       onclick="window.location.href='@Url.Action("CourseAndSubjectList","SuperAdmin")'" />*@
-</p>

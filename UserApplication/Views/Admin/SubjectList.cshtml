@@ -9,16 +9,19 @@
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-    </div>
 </div>
 
 @{
@@ -60,7 +63,7 @@
 </table>
 <p>
 
-    <input type="button" class="btn btn-primary btn-sm" '
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="List of Course And Subject"
            onclick="window.location.href='@Url.Action("CourseAndSubjectList","Admin")'" />
 
@@ -75,6 +78,6 @@
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Add Subject"
-           onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />
+           onclick="window.location.href='@Url.Action("CreateSubject","Admin")'" />*@
 
 </p>

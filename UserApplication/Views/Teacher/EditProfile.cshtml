@@ -8,8 +8,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Get Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Teacher Details", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Go To Student List", "GetStudentList", "Teacher", new { id = Model.CourseId }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Back To Profile", "TeacherHomePage1", "Teacher", new { id = Model.UserId }, new { @class = "navbar-brand" })
 
         </div>
         <div class="navbar-collapse collapse">
@@ -97,7 +97,7 @@
 
 
 
-            <div class="form-group">
+            <div class="form-group hidden">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
@@ -107,7 +107,7 @@
 
 
 
-            <div class="form-group">
+            <div class="form-group hidden">
                 @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
@@ -176,7 +176,7 @@
                    Value = item.CountryId.ToString(),
                    Text = item.CountryName.ToString()
 
-               }), "---Select Country---", new { id = "ddlCountry" })
+               }), "--select--", new { @id = "country" })
 
                     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                 </div>
@@ -193,7 +193,8 @@
                     Value = item.StateId.ToString(),
                     Text = item.StateName.ToString()
 
-                }))
+                }),
+                 "--select--", new { @id = "State" })
                     @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -206,23 +207,12 @@
                      Value = item.CityId.ToString(),
                      Text = item.CityName.ToString()
 
-                 }))
+                 }),
+                 "--select--", new { @id = "city" })
                     @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.DropDownListFor(model => model.RoleId, Model.Roles.Select(item => new SelectListItem
-                   {
-                       Value = item.RoleId.ToString(),
-                       Text = item.RoleName.ToString()
-
-                   }))
-                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
             <div class="col-md-10">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -258,9 +248,9 @@
 
     <div>
 
-        <input type="button" class="btn btn-primary btn-sm" '
-               value="Back To Profile"
-               onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher", new { id = Model.UserId })'" />
+        @*<input type="button" class="btn btn-primary btn-sm" '
+            value="Back To Profile"
+            onclick="window.location.href='@Url.Action("TeacherHomePage1","Teacher", new { id = Model.UserId })'" />*@
 
         @*@Html.RouteLink("Back To Profile ", "Default",
             new { action = "TeacherHomePage1", controller ="Teacher",   id =Model.UserId})*@
@@ -272,48 +262,67 @@
     </div>
 </div>
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
-<script lang="javascript" type="text/javascript">
+<script type="text/javascript">
 
-    $(document).ready(function () {
-        // this is for dropdown's
-        $("#ddlCountry").change(function () {
 
-            var id = $("#ddlCountry").val();
 
-            $("#state").empty();
-            $.getJSON("GetStates", { CountryId: id }, function (data) {
-                var v = "<option>..Select State..</option>";
-                $.each(data, function (i, v1) {
-                    v += "<option Value=" + v1.StateId + ">" + v1.StateName + "</option>";
-                });
 
-                $("#state").html(v);
+        $("#country").change(function () {
+            $("#State").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getState", "User")',
 
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+
+                    //$("#State").get(0).options[0] = new Option("Select State", "1");
+                    $.each(states, function (i, state) {
+                        $("#State").append('<option value="' + state.Value + '">' +state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
             });
+            return false;
         });
-        $("#state").change(function () {
 
-            var id = $("#state").val();
+
+        $("#State").change(function () {
             $("#city").empty();
-            $.getJSON("GetCities", { StateId: id }, function (data) {
-                var v = "<option>..Select City..</option>";
-                $.each(data, function (i, v1) {
-                    console.log(v1);
-                    v += "<option Value=" + v1.CityId + ">" + v1.CityName + "</option>";
-
-                });
-                $("#city").html(v);
-
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getCity","User")',
+                dataType: 'json',
+                data: { id: $("#State").val() },
+                success: function (city) {
+                    //$("#city").get(0).options[0] = new Option("Select city", "1");
+                    $.each(city, function (i, city) {
+                        $("#city").append('<option value="'+ city.Value + '">'+ city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
             });
+            return false;
         });
-    });
-
-
-
-
 </script>
+
+
+
+
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

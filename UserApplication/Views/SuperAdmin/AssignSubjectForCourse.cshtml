@@ -8,18 +8,25 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Create New User", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Create Subject ", "CreateSubject", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand " })
+                    @Html.ActionLink("Course And Subject List", "CourseAndSubjectList", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
+
 @{
     ViewBag.Title = "AssignSubjectForCourse";
     Layout = "~/Views/Shared/_LogOutPage.cshtml";
@@ -37,13 +44,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>SubjectInCourse</h4>
+            <h4> </h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.SubjectId, "SubjectId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control",required="required" })
+                    @Html.DropDownList("SubjectId", ViewBag.SubjectList as SelectList, "--select--", htmlAttributes: new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -51,7 +58,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "--select--", htmlAttributes: new { @class = "form-control",required="required" })
+                    @Html.DropDownList("CourseId", ViewBag.CourseList as SelectList, "--select--", htmlAttributes: new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -63,16 +70,16 @@
             </div>
         </div>
     }
-    </div>
+</div>
 
 <div>
-    <input type="button" class="btn btn-primary btn-sm" '
-           value="list of Course and Subject"
-           onclick="window.location.href='@Url.Action("CourseAndSubjectList","SuperAdmin")'" />
+    @*<input type="button" class="btn btn-primary btn-sm" '
+        value="list of Course and Subject"
+        onclick="window.location.href='@Url.Action("CourseAndSubjectList","SuperAdmin")'" />*@
 
-    <input type="button" class="btn btn-primary btn-sm" '
-           value="Back To List"
-           onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />
+    @*<input type="button" class="btn btn-primary btn-sm" '
+        value="Back To List"
+        onclick="window.location.href='@Url.Action("GetAllUsers","SuperAdmin")'" />*@
 
 
 </div>

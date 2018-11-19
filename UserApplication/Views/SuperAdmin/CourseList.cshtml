@@ -7,18 +7,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Back To User List", "GetAllUsers", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Assign Subject To Teacher", "AssignSubjectToTeacher", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("Back To Add Course", "CreateCourse", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Back To Add  Subject ", "CreateSubject", "SuperAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-right">
+                    @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-right">
-                @Html.ActionLink("LogOut", "LogOut", "User", new { area = "" }, new { @class = "navbar-brand" })
-            </ul>
-        </div>
-    </div>
 </div>
 @{
     ViewBag.Title = "CourseList";
@@ -48,14 +53,14 @@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |*@
-                @Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })
+                @*@Html.ActionLink("Delete", "DeleteCourse", new { id = item.CourseId })*@
             </td>
         </tr>
     }
 
 </table>
-<<p>
-    <input type="button" class="btn btn-primary btn-sm" '
+<p>
+    @*<input type="button" class="btn btn-primary btn-sm" '
            value="Add Subject"
            onclick="window.location.href='@Url.Action("CreateSubject","SuperAdmin")'" />
 
@@ -65,6 +70,6 @@
 
     <input type="button" class="btn btn-primary btn-sm" '
            value="Add Course"
-           onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />
+           onclick="window.location.href='@Url.Action("CreateCourse","SuperAdmin")'" />*@
 
 </p>

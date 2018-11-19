@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Back To User List", "GetAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             @Html.ActionLink("Create New USer", "CreateUser", "Admin", new { area = "" }, new { @class = "navbar-brand" })
 
             @Html.ActionLink("Add Course", "CreateCourse", "Admin", new { area = "" }, new { @class = "navbar-brand" })
@@ -254,7 +254,7 @@
     </div>
     <p>
         @*@Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |*@
-        <input type="button" class="btn btn-primary btn-sm" '
+        @*<input type="button" class="btn btn-primary btn-sm" '
                value="Back To List"
-               onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />
+               onclick="window.location.href='@Url.Action("GetAllUsers","Admin")'" />*@
     </p>
