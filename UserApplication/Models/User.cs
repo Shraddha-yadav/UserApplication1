@@ -45,6 +45,7 @@ namespace UserApplication.Models
 
         [Required(ErrorMessage = "Please enter valid email address")]
         [EmailAddress]
+
         public string Email { get; set; }
 
         public string IsEmailVerified { get; set; }
