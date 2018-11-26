@@ -225,12 +225,17 @@ namespace UserApplication.Controllers
                     return RedirectToAction("TeacherHomePage1", "Teacher");
 
                 }
-                else
+                else if(LoginDetails.RoleId == 4)
 
                 {
                     Session["User"] = LoginDetails;
                     return RedirectToAction("StudentHomePage1", "Student"/*, new { id = LoginDetails.UserId }*/);
                 }
+                else
+            {
+                    ModelState.AddModelError("", "Email and Password do not match");
+                }
+
             }
 
             //else
@@ -255,9 +260,13 @@ namespace UserApplication.Controllers
                 return RedirectToAction("Login", "User");
         }
 
+        public JsonResult IsUserExists(string Email)
+        {
+            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.   
+            return Json(!db.User.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+        }
 
 
-        
     }
 }
 

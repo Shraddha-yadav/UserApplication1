@@ -88,6 +88,7 @@ namespace UserApplication.Controllers
         [HttpGet]
         public ActionResult EditStudentProfile(int id)
         {
+
             if (Session["Login"] == null && Session["User"] == null)
             {
                 return RedirectToAction("Login", "User");

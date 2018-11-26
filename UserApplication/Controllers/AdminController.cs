@@ -28,6 +28,7 @@ namespace UserApplication.Controllers
             var returnedUserList = db.User.Where(x => x.RoleId != 1 && x.RoleId != 2).ToList();
             return View(returnedUserList);
         }
+
         /// <summary>
         /// GET: To Show the details of the user
         /// </summary>
@@ -566,7 +567,7 @@ namespace UserApplication.Controllers
             return View(objCourse);
         }
         /// <summary>
-        /// GET : Super Admin can create subject
+        /// GET : Super Admin can create subject 
         /// </summary>
         /// <returns></returns>
         [HttpGet]

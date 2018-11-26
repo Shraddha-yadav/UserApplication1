@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace UserApplication.Models
 {
     [Table("UserViewModel")]
+
     public class UserViewModel
     {
         [Key]
@@ -35,10 +36,9 @@ namespace UserApplication.Models
         [Required(ErrorMessage = "Enter your hobbies.")]
         public string Hobbies { get; set; }
 
-        [Required (ErrorMessage = "Please enter valid email address")]
+        [Required(ErrorMessage = "Please enter valid email address")]
         [EmailAddress]
-        [Remote("Email", "User", HttpMethod = "POST", ErrorMessage = "Email address already registered.")]
-
+        [Remote("IsUserExists", "User", HttpMethod = "POST", ErrorMessage = "Email address already registered.")]
         public string Email { get; set; }
 
 

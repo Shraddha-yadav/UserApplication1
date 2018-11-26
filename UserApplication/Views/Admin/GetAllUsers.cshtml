@@ -158,7 +158,8 @@
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>*@
                 <td>
-                    @Html.ActionLink("Edit", "EditUser", new { id = item.UserId }) |
+                    @Html.ActionLink("Edit", "EditUser",  new {xyz = DateTime.Now, id = item.UserId})
+                    @*@Html.ActionLink("Edit", "EditUser", new { id = item.UserId }) |*@
                     @Html.ActionLink("Details", "UserDetails", new { id = item.UserId }) |
                     @Html.ActionLink("Delete", "DeleteUser", new { id = item.UserId })
                 </td>
